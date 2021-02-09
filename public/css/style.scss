@@ -2,9 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    //font-family: 'Bahnschrift';
+    font-family: 'Bariol Regular';
 }
 
-@import 'scss/commons','scss/main';
+@import 'scss/commons','scss/header','scss/main';
 
 html {
     font-size: 62.5%;
