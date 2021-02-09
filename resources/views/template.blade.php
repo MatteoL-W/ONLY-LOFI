@@ -15,10 +15,22 @@
 </head>
 <body>
     <header>
-        <i class='demo-icon icon-music'></i>
+        <div class='header__left'><img src="/assets/inline-logo.svg" alt="Logo ONLYLOFI" class='header__left-logo'></div>
+        <div class='header__right'>
+            <input type="search" name="" id="" class='header__right-search'>
+            <div class="header__right-burger">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        
     </header>
 
 @yield('content')
 
+    <footer>
+        footer
+    </footer>
+    <script src="/script/menu.js"></script>
 </body>
 </html>
