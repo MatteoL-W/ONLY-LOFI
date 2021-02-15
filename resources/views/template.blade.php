@@ -23,13 +23,27 @@
                 <div></div>
             </div>
         </div>
-        
     </header>
+
+    <div id="menu" class='menu'>
+        <div class="menu__grid">
+            <div class="menu__grid-links">
+                <a href="#">Main page</a>
+                <a href="#">Library</a>
+                <a href="#">Upload</a>
+                <a href="#">My account</a>
+                <a href="#">Disconnect</a>
+            </div>
+            <div class="menu__grid-illustration border-rouge-gauche">
+                <img src="/assets/briquet.png" alt="Briquet">
+            </div>
+        </div>
+    </div>
 
 @yield('content')
 
     <footer>
-        footer
+        footer <i class='icon-music'></i>
     </footer>
     <script src="/script/menu.js"></script>
 </body>

@@ -1,0 +1,73 @@
+h2 {
+    color: $bleu;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    font-family: 'Bahnschrift';
+    line-height: 1.5;
+}
+
+p {
+    font-size: 2rem;
+    color: #3C3E40;
+    line-height: 1.5;
+}
+
+.bouton-bleu {
+    display: block;
+    background-color: $bleu;
+    padding: 10px;
+    padding-right: 13px;
+    font-family: 'Bahnschrift';
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
+    width: fit-content;
+}
+
+.border-bleu-droit {
+    position: relative;
+}
+
+.border-bleu-droit::after {
+    content:" ";
+    position: absolute;
+
+    border: 2px solid $bleu;
+    top: -7%; left: -1%;
+    width: 103%; height: 100%;
+    z-index: -1;
+}
+
+.border-bleu-gauche {
+    position: relative;
+}
+
+.border-bleu-gauche::after {
+    content:" ";
+    position: absolute;
+
+    top: -7%; left: -25%;
+    border: 2px solid $bleu;
+    width: 130%; height: 100%;
+    z-index: -1;
+}
+
+.border-rouge-gauche {
+    position: relative;
+}
+
+.border-rouge-gauche::after {
+    content:" ";
+    position: absolute;
+
+    top: -5%; left: -5%;
+    border: 2px solid $rouge;
+    width: 100%; height: 100%;
+    z-index: -1;
+}
+
+.full-width {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}

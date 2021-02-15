@@ -6,10 +6,11 @@
     font-family: 'Bariol Regular';
 }
 
-@import 'scss/commons','scss/header','scss/main';
+@import 'scss/commons','scss/default','scss/menu','scss/header','scss/main';
 
 html {
     font-size: 62.5%;
     background-color: $gris;
+    overflow-x: hidden;
 }
 
