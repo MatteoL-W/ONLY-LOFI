@@ -1,7 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bariol Regular";
+  font-size: 1.2rem;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.red-title {
+  font-family: "Bariol";
+  color: #BF2B3D;
+  font-weight: bold;
+}
+
 .split {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+.split > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.split > div .semi-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.split > div .semi-header img {
+  width: 30%;
+}
+.split > div .semi-form {
+  width: 70%;
+  text-align: left;
+}
+
+.inscription .red-title, .connexion .red-title {
+  margin-bottom: 20px;
+}
+
+.inscription {
+  position: relative;
+}
+.inscription__gridform {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  grid-template-areas: "pseudo pseudo avatar avatar" "birthday birthday remember remember" "pwd pwd pwd sign" "pwd2 pwd2 pwd2 sign" "email email email email";
+}
+.inscription__gridform input {
+  background-color: #BF2B3D;
+  border-radius: 8px;
+  color: white;
+  border: 0;
+  outline: none;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+}
+.inscription__gridform input::placeholder {
+  color: white;
+}
+
+#pseudo {
+  grid-area: pseudo;
+}
+
+#avatar {
+  grid-area: avatar;
+}
+
+#birthday {
+  grid-area: birthday;
+}
+
+#remember {
+  color: white;
+  grid-area: remember;
+  display: flex;
+  justify-content: space-between;
+  background-color: #BF2B3D;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 8px;
+}
+#remember input {
+  height: auto;
+  padding: 0;
+  width: auto;
+}
+
+#pwd {
+  grid-area: pwd;
+}
+
+#pwd2 {
+  grid-area: pwd2;
+}
+
+#sign {
+  grid-area: sign;
+  height: auto;
+}
+
+#email {
+  grid-area: email;
+}
+
+#fixed-bar {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  height: 157px;
+  width: 10px;
+  background-color: #BF2B3D;
+  transform: translateX(-50%);
+}
+
+#goToLoginBtn {
+  position: absolute;
+  bottom: 10%;
+  transform: translateY(-50px);
+  right: 5%;
+}
+
+.connexion__gridform {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  grid-template-areas: "nickname nickname nickname log" "password password password log";
+}
+.connexion__gridform input {
+  background-color: #BF2B3D;
+  border-radius: 8px;
+  color: white;
+  border: 0;
+  outline: none;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+}
+.connexion__gridform input::placeholder {
+  color: white;
+}
+
+#password {
+  grid-area: password;
+}
+
+#log {
+  grid-area: log;
+  height: auto;
+}
+
+#nickname {
+  grid-area: nickname;
+}
+
+#goToSignInBtn {
+  position: absolute;
+  bottom: 10%;
+  transform: translateY(-50px);
+  left: 5%;
+}
+
+#moving-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: ease 1s;
+}
+
+#moving-image.sign-in {
+  transform: translate3D(100%, 0, 0);
+  background-image: url("/assets/wave_girl.gif");
+}
+
+#moving-image.log-in {
+  transform: translate3D(0, 0, 0);
+  background-image: url("/assets/wave.gif");
+}
+
+.log-in {
+  position: relative;
+}
+
+.log-in::before {
+  content: "";
+  position: absolute;
+  width: 50vw;
+  height: 100vh;
+  background: white;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, white 100%);
+  top: 0;
+  left: -100%;
+}
+
+.sign-in {
+  position: relative;
+}
+
+.sign-in::after {
+  content: "";
+  position: absolute;
+  width: 50vw;
+  height: 100vh;
+  background: white;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, white 100%);
+  top: 0;
+  left: 100%;
 }
 
 /*# sourceMappingURL=inscription.css.map */

@@ -24,8 +24,10 @@ p {
     width: fit-content;
 }
 
+
 .border-bleu-droit {
     position: relative;
+    width: fit-content;
 }
 
 .border-bleu-droit::after {
@@ -33,10 +35,12 @@ p {
     position: absolute;
 
     border: 2px solid $bleu;
-    top: -7%; left: -1%;
-    width: 103%; height: 100%;
+    top: -20px; left: 20px;
+    width: 100%; height: 100%;
     z-index: -1;
 }
+
+
 
 .border-bleu-gauche {
     position: relative;
@@ -46,9 +50,9 @@ p {
     content:" ";
     position: absolute;
 
-    top: -7%; left: -25%;
+    top: -20px; left: -20px;
     border: 2px solid $bleu;
-    width: 130%; height: 100%;
+    width: 100%; height: 100%;
     z-index: -1;
 }
 
@@ -60,7 +64,7 @@ p {
     content:" ";
     position: absolute;
 
-    top: -5%; left: -5%;
+    top: -20px; left: -20px;
     border: 2px solid $rouge;
     width: 100%; height: 100%;
     z-index: -1;

@@ -19,11 +19,66 @@
         <![endif]-->
 
         <div class="split">
-            <div class="inscription"></div>
-            <div class="connexion"></div>
-        </div>
+            <div class="inscription">
+                <div class="semi-header">
+                    <img src="/assets/inline-logo.svg" alt="Logo ONLY-LOFI">
+                </div>
+
+                <div class="semi-form">
+                    <h2 class="red-title">sign-in</h2>
+                    <form class="inscription__gridform" action="" method="post">
+                        <input type="text" name="pseudo" id="pseudo" placeholder="pseudo">
+                        <input type="file" name="avatar" id="avatar">
+
+                        <input type="date" name="birthday" id="birthday" placeholder="birthday">
+                        <div id="remember">
+                            <span>remember</span>
+                            <input type="checkbox" name="checkbox" id="remember_checkbox">
+                        </div>
+
+                        <input type="password" name="pwd" id="pwd" placeholder="password">
+                        <input type="password" name="pwd2" id="pwd2" placeholder="confirm password">
+                        <input type="submit" value="▶" name="sign" id="sign">
+
+                        <input type="email" name="email" id="email" placeholder="email address">
+
+                    </form>
+                </div>
+
+                <h2 id="goToLoginBtn"class="red-title">log-in</h2>
+            </div>
+
+
+
+
+
+
+            <div class="connexion">
+                <div class="semi-header">
+                    <img src="/assets/inline-logo.svg" alt="Logo ONLY-LOFI">
+                </div>
+
+                <div class="semi-form">
+                    <h2 class="red-title">log-in</h2>
+                    <form class="connexion__gridform" action="" method="post">
+                        <input type="nickname" name="nickname" id="nickname" placeholder="nickname">
+                        <input type="password" name="password" id="password" placeholder="password">
+
+                        <input type="submit" value="▶" name="log" id="log">
+                    </form>
+                </div>
+
+                <h2 id="goToSignInBtn"class="red-title">sign-in</h2>
+            </div>
+
+            <div id="moving-image" class='log-in'>
+            </div>
+
+            <div id="fixed-bar">
+
+            </div>
         
-        <script src="" async defer></script>
+        <script src="/script/inscription.js" async defer></script>
     </body>
 </html>
 
