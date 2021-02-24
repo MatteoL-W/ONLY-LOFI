@@ -47,6 +47,13 @@ html {
         .semi-form {
             width: 70%;
             text-align: left;
+
+            .top-form {
+                display: flex;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+            }
         }
 
         
@@ -98,6 +105,42 @@ html {
 
 #avatar {
     grid-area: avatar;
+    padding-top: 10px;
+    font-size: 1rem;
+}
+
+.more_info {
+    position: relative;
+    overflow: hidden;
+}
+
+.more_info::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: #2d77a0;
+    border-radius: 8px;
+    position: absolute;
+    top: 0; left: 0;
+
+    transform: translateY(-100%);
+    transition: 0.5s ease-in-out;
+}
+
+#birthday.more_info::after {
+    content: "Birthday";
+}
+
+#avatar.more_info::after {
+    content: "Avatar";
+}
+
+.info_active::after {
+    transform: translateY(0);
 }
 
 #birthday {
@@ -144,6 +187,9 @@ html {
 
 
 #fixed-bar {
+    transition-property: opacity, transform;
+    transition: 1s ease-in-out;
+
     position: absolute;
     bottom: 10%;
     left: 50%;
@@ -153,14 +199,18 @@ html {
     background-color: #BF2B3D;
 
     transform: translateX(-50%);
+    opacity: 1;
 }
 
-#goToLoginBtn {
-    position: absolute;
-    bottom: 10%;
-    transform: translateY(-50px);
-    right: 5%;
+#fixed-bar.is-rotating {
+    transform: rotate(220deg);
+    opacity: 0;
 }
+
+#fixed-bar.is-moving-right {
+    transform: translateX(50px);
+}
+
 
 .connexion {
     &__gridform {
@@ -203,11 +253,21 @@ html {
     grid-area: nickname;
 }
 
+#goToLoginBtn {
+    transform: translateY(-50px);
+    right: 5%;
+}
+
 #goToSignInBtn {
-    position: absolute;
-    bottom: 10%;
     transform: translateY(-50px);
     left: 5%;
+}
+
+#goToSignInBtn, #goToLoginBtn {
+    position: absolute;
+    bottom: 10%;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 
@@ -236,6 +296,10 @@ html {
     background-image: url('/assets/wave.gif');
 }
 
+#moving-image.is-moving {
+    width: 100vw;
+}
+/*
 .log-in {
     position: relative;
 }
@@ -246,9 +310,9 @@ html {
     width: 50vw;
     height: 100vh;
     background: rgb(255,255,255);
-background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+background: linear-gradient(90deg, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
     top: 0; left: -100%;
-}
+}*/
 
 .sign-in {
     position: relative;
@@ -260,6 +324,18 @@ background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 1
     width: 50vw;
     height: 100vh;
     background: rgb(255,255,255);
-background: linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+background: linear-gradient(270deg, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
     top: 0; left: 100%;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+#sign-info {
+    color: #BF2B3D;
+}
+
+#sign-info.active {
+    color: #2d77a0;
 }

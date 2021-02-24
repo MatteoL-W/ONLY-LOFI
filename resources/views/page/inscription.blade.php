@@ -25,12 +25,16 @@
                 </div>
 
                 <div class="semi-form">
-                    <h2 class="red-title">sign-in</h2>
+                    <div class="top-form">
+                        <h2 class="red-title">sign-in</h2>
+                        <i class='icon-info-circled' id='sign-info'></i>
+                    </div>
+
                     <form class="inscription__gridform" action="" method="post">
                         <input type="text" name="pseudo" id="pseudo" placeholder="pseudo">
-                        <input type="file" name="avatar" id="avatar">
+                        <input type="file" name="avatar" id="avatar" class='more_info'>
 
-                        <input type="date" name="birthday" id="birthday" placeholder="birthday">
+                        <input type="date" name="birthday" id="birthday" class='more_info'>
                         <div id="remember">
                             <span>remember</span>
                             <input type="checkbox" name="checkbox" id="remember_checkbox">
