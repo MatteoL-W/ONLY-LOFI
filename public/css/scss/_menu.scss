@@ -63,6 +63,9 @@
     position: relative;
     width: auto;
     height: auto;
+
+    transform: perspective(500px);
+    transform-style: preserve-3d;
 }
 
 .menu__grid-links > a > div {
@@ -83,6 +86,9 @@
 
     color: white;
     font-size: 7rem;
+
+    transform: translateZ(50px) scale(0.7);
+    transform-style: preserve-3d;
 }
 
 .menu__grid-links > a:hover > div {
