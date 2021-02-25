@@ -84,47 +84,89 @@ p {
 }
 
 #menu {
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.5s ease;
-}
-
-#menu.active {
-  visibility: visible;
-  opacity: 1;
-  z-index: 100;
+  background-color: #FFDFE3;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #FFDFE3;
+  transform: translateX(-100vw);
+  z-index: 100;
+  transition: all 1s ease-in-out;
+}
+
+#menu.active {
+  transform: translateX(0);
 }
 
 .menu__grid {
-  width: 90%;
+  width: 70%;
   position: absolute;
   top: 20%;
-  left: 5%;
+  left: 15%;
   height: 80%;
-  display: grid;
-  grid-template-columns: 5fr 7fr;
+  margin: 0 auto;
 }
 .menu__grid-links {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .menu__grid-links a {
-  width: fit-content;
+  width: 250px;
+  text-align: left;
   text-decoration: none;
   line-height: 2.5;
   font-size: 5rem;
   color: #232323;
   font-family: "Bahnschrift";
+  position: relative;
 }
-.menu__grid-illustration {
-  height: fit-content;
-  width: fit-content;
+.menu__grid-links a::before {
+  content: "";
+  transition: width 0.3s ease-in-out;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: #232323;
+}
+.menu__grid-links a:hover::before {
+  width: 100%;
+}
+
+.menu__grid-links > a {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+.menu__grid-links > a > div {
+  transition: 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  background-color: #BF2B3D;
+  width: 250px;
+  height: 250px;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 7rem;
+}
+
+.menu__grid-links > a:hover > div {
+  opacity: 1;
+  visibility: visible;
+}
+
+.icon-fleche {
+  padding-right: 30px;
 }
 
 header {
@@ -162,6 +204,7 @@ header .header__right-search {
 }
 
 .header__right-burger {
+  cursor: pointer;
   z-index: 101;
   position: relative;
   height: 50px;
