@@ -2,6 +2,8 @@
 
 @section('content')
 
+    @include('partials/last4')
+
     <section class="hero">
 
         <div class='hero__illustration border-bleu-droit'>

@@ -42,7 +42,11 @@
     <footer>
         footer <i class='icon-music'></i>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
     <script src="/script/vanilla-tilt.min.js"></script>
     <script src="/script/menu.js"></script>
+    <script src="/script/hover_circle.js"></script>
 </body>
 </html>

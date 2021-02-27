@@ -29,6 +29,16 @@ p {
   text-decoration: none;
   font-size: 2rem;
   width: fit-content;
+  border: 2px solid transparent;
+  transition: 0.3s ease-in-out;
+  transition-property: background-color, border, color, transform;
+}
+
+.bouton-bleu:hover {
+  background-color: transparent;
+  color: #2D77A0;
+  border: 2px solid #2D77A0;
+  transform: translateX(15px);
 }
 
 .border-bleu-droit {
@@ -303,6 +313,54 @@ header .header__right-search {
 }
 .wannashare__grid-illustration img {
   width: 100%;
+}
+
+.template4 {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.template4__grid {
+  z-index: inherit;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.template4__grid-card {
+  text-decoration: none;
+}
+.template4__grid-card img {
+  width: 60%;
+  height: auto;
+  margin-bottom: 20px;
+}
+.template4__grid-card img:hover {
+  background-color: white;
+}
+
+#hover__circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #EBEBEB;
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: #BF2B3D;
+  font-size: 2rem;
+  font-family: "Bariol Regular";
+  transform: scale(0);
+}
+#hover__circle .icon-fleche {
+  padding-left: 20px;
 }
 
 html {
