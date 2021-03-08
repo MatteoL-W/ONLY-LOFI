@@ -1,0 +1,341 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    //font-family: 'Bahnschrift';
+    font-family: 'Bariol Regular';
+    font-size: 1.2rem;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+.red-title {
+    font-family: 'Bariol';
+    color: #BF2B3D;
+    font-weight: bold;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100vw;
+    height: 100vh;
+
+    text-align: center;    
+
+    > div {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        height: 100%;
+
+        .semi-header {
+            position: absolute;
+            left: 0; right: 0; top: 0;
+
+            margin-top: 50px;
+            img { width: 30%; }
+            margin-bottom: 50px;
+        }
+
+        .semi-form {
+            width: 70%;
+            text-align: left;
+
+            .top-form {
+                display: flex;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        
+    }
+}
+
+.inscription, .connexion {
+    .red-title {
+        margin-bottom: 20px;
+    }
+}
+
+.inscription {
+    position: relative;
+
+    &__gridform {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        grid-gap: 20px;
+        grid-template-areas:
+            "pseudo pseudo avatar avatar"
+            "birthday birthday remember remember"
+            "pwd pwd pwd sign"
+            "pwd2 pwd2 pwd2 sign"
+            "email email email email";
+
+        input {
+            background-color: #BF2B3D;
+            border-radius: 8px;
+            color: white;
+            border: 0; outline: none;
+            height: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            width: 100%;
+        }
+
+        input::placeholder {
+            color: white;
+        }
+    }
+}
+
+#pseudo {
+    grid-area: pseudo;
+}
+
+#avatar {
+    grid-area: avatar;
+    padding-top: 10px;
+    font-size: 1rem;
+}
+
+.more_info {
+    position: relative;
+    overflow: hidden;
+}
+
+.more_info::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: #2d77a0;
+    border-radius: 8px;
+    position: absolute;
+    top: 0; left: 0;
+
+    transform: translateY(-100%);
+    transition: 0.5s ease-in-out;
+}
+
+#birthday.more_info::after {
+    content: "Birthday";
+}
+
+#avatar.more_info::after {
+    content: "Avatar";
+}
+
+.info_active::after {
+    transform: translateY(0);
+}
+
+#birthday {
+    grid-area: birthday;
+}
+
+#remember {
+    color: white;
+    grid-area: remember;
+    display: flex;
+    justify-content: space-between;
+    background-color: #BF2B3D;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 8px;
+
+    input {
+        height: auto;
+        padding: 0;
+        width: auto;
+    }
+}
+
+#pwd {
+    grid-area: pwd;
+}
+
+#pwd2 {
+    grid-area: pwd2;
+}
+
+#sign {
+    grid-area: sign;
+    height: auto;
+}
+
+#email {
+    grid-area: email;
+}
+
+
+
+#fixed-bar {
+    transition-property: opacity, transform;
+    transition: 1s ease-in-out;
+
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+
+    height: 157px;
+    width: 10px;
+    background-color: #BF2B3D;
+
+    transform: translateX(-50%);
+    opacity: 1;
+}
+
+#fixed-bar.is-rotating {
+    transform: rotate(220deg);
+    opacity: 0;
+}
+
+#fixed-bar.is-moving-right {
+    transform: translateX(50px);
+}
+
+
+.connexion {
+    &__gridform {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        grid-gap: 20px;
+        grid-template-areas:
+            "nickname nickname nickname log"
+            "password password password log";
+
+        input {
+            background-color: #BF2B3D;
+            border-radius: 8px;
+            color: white;
+            border: 0; outline: none;
+            height: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            width: 100%;
+        }
+
+        input::placeholder {
+            color: white;
+        }
+    }
+}
+
+#password {
+    grid-area: password;
+}
+
+#log {
+    grid-area: log;
+    height: auto;
+}
+
+#nickname {
+    grid-area: nickname;
+}
+
+#goToLoginBtn {
+    transform: translateY(-50px);
+    right: 5%;
+}
+
+#goToSignInBtn {
+    transform: translateY(-50px);
+    left: 5%;
+}
+
+#goToSignInBtn, #goToLoginBtn {
+    position: absolute;
+    bottom: 10%;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+#moving-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 50vw;
+    height: 100vh;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transition: ease 1s;
+}
+
+#moving-image.sign-in {
+    transform: translate3D(100%,0,0);
+    background-image: url('/assets/wave_girl.gif');
+}
+
+#moving-image.log-in {
+    transform: translate3D(0,0,0);
+    background-image: url('/assets/wave.gif');
+}
+
+#moving-image.is-moving {
+    width: 100vw;
+}
+/*
+.log-in {
+    position: relative;
+}
+
+.log-in::before {
+    content: "";
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
+    top: 0; left: -100%;
+}*/
+
+.sign-in {
+    position: relative;
+}
+
+.sign-in::after {
+    content: "";
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    background: rgb(255,255,255);
+background: linear-gradient(270deg, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
+    top: 0; left: 100%;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+#sign-info {
+    color: #BF2B3D;
+}
+
+#sign-info.active {
+    color: #2d77a0;
+}

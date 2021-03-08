@@ -1,15 +1,16 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
     //font-family: 'Bahnschrift';
     font-family: 'Bariol Regular';
 }
 
-@import 'scss/commons','scss/header','scss/main';
+@import 'scss/commons','scss/default','scss/menu','scss/header','scss/page_main','scss/page_upload','scss/page_song','scss/split_avatar','scss/template4';
 
 html {
     font-size: 62.5%;
     background-color: $gris;
+    overflow-x: hidden;
 }
 

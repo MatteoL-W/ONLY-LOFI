@@ -1,0 +1,70 @@
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+    margin-top: 100px;
+
+    &__illustration {
+        width: 80%;
+        img {
+            width: 100%;
+        }
+    }
+
+    &__text {
+        width: fit-content;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+
+        p, h2 {
+            width: fit-content;
+        }
+
+        .bouton-bleu {
+            margin-top: 40px;
+            margin-left: auto;
+        }
+    }
+}
+
+.wannashare {
+    margin-top: 40px;
+    padding-top: 100px;
+    border-left: 2px solid $bleu;
+    height: 400px;
+    width: 98%;
+    margin-left: auto;
+
+    &__grid {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 100px;
+
+        &-text {
+            text-align: right;
+            width: 40%;
+
+            .bouton-bleu {
+                text-align: left;
+                margin: 0 auto;
+                margin-top: 40px;
+                width: 250px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        &-illustration {
+            width: 35%;
+            img {
+                width: 100%;
+                //transform: translateX(-15%);
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+.template4 {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 100px;
+
+    &__grid {
+        z-index: inherit;
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+    }
+}
+
+.template4__grid-card {
+    text-decoration: none;
+    img {
+        width: 60%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    img:hover {
+        background-color: white;
+    }
+}
+
+#hover__circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: $gris;
+    position: absolute;
+    top: -40px;
+    left: -40px;
+
+    pointer-events: none;
+    mix-blend-mode: screen;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    color: $rouge;
+    font-size: 2rem;
+    font-family: "Bariol Regular";
+
+    transform: scale(0);
+
+    .icon-fleche {
+        padding-left: 20px;
+    }
+}

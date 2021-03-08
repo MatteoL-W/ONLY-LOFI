@@ -23,14 +23,34 @@
                 <div></div>
             </div>
         </div>
-        
     </header>
+
+    <div id="menu" class='menu'>
+        <div class="menu__grid">
+            <div class="menu__grid-links">
+                <a href="#" class='links-main' data-tilt data-tilt-max="10">Main page <div><i class='icon-music'></i></div></a>
+                <a href="#" class='links-library' data-tilt data-tilt-max="10">Library <div><i class='icon-playlist'></i></div></a>
+                <a href="#" class='links-upload' data-tilt data-tilt-max="10">Upload <div><i class='icon-triangle'></i></div></a>
+                <a href="#" class='links-myacc' data-tilt data-tilt-max="10">My account <div><i class='icon-avatar'></i></div></a>
+                <a href="#" class='links-disconnect' data-tilt data-tilt-max="10">Disconnect <div><i class='icon-fleche'></i></div></a>
+            </div>
+        </div>
+    </div>
 
 @yield('content')
 
+    <div id="hover__circle">
+        see more<br><i class='icon-fleche'></i>
+    </div>
+    
     <footer>
-        footer
+        footer <i class='icon-music'></i>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+    <script src="/script/vanilla-tilt.min.js"></script>
     <script src="/script/menu.js"></script>
+    <script src="/script/hover_circle.js"></script>
 </body>
 </html>
