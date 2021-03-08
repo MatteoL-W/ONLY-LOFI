@@ -25,6 +25,3 @@
     </div>
 </section>
 
-<div id="hover__circle">
-    see more<br><i class='icon-fleche'></i>
-</div>

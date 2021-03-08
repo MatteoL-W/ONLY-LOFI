@@ -1,0 +1,19 @@
+.grid_avatar {
+    padding-top: 50px;
+    width: 80%;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+
+    div:nth-child(1) {
+        img {
+            width: 400px;
+            height: 400px;
+        }
+    }
+
+    div:nth-child(2) {
+        padding-top: 100px;
+    }
+}

@@ -39,6 +39,10 @@
 
 @yield('content')
 
+    <div id="hover__circle">
+        see more<br><i class='icon-fleche'></i>
+    </div>
+    
     <footer>
         footer <i class='icon-music'></i>
     </footer>

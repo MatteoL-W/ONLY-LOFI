@@ -1,0 +1,42 @@
+
+.upload__grid-upload {
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+
+        input[type=text], div {
+            padding-left: 30px;
+            padding-right: 20px;
+            margin-top: 20px;
+            color: white;
+            background-color: $bleu;
+            height: 50px;
+            border-radius: 8px;
+            outline: none;
+            border: none;
+            font-size: 2rem;
+        }
+
+        #redirect_file {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input[type=text]::placeholder {
+            color: white;
+        }
+
+        input[type=submit] {
+            margin-top: 40px;
+            margin-left: auto;
+        }
+
+        input[type=file] {
+            display: none;
+        }
+    }
+}

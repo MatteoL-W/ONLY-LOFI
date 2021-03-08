@@ -1,0 +1,75 @@
+.song__info-icons {
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+
+    .icon-fleche {
+        padding-right: 0;
+    }
+
+    > i {
+        font-size: 3rem;
+        color: $bleu;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+}
+
+.song_comments {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+
+    h2 {
+        font-size: 4rem;
+    }
+
+    .comment {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 20px;
+
+        a {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+
+            img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .under_img {
+                transition: transform 0.3s ease-in-out;
+                position: absolute;
+                bottom: -30px; left: 0;
+                height: 30px;
+                width: 100%;
+                background-color: $bleu;
+                font-size: 2rem;
+                color: white;
+                text-align: center;
+            }
+        }
+
+        a:hover .under_img {
+            transform: translateY(-30px);
+        }
+        
+
+        > div {
+            margin-left: 25px;
+        }
+
+        .comment__info {
+            color: #9B9999;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+    }
+}
