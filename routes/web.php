@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MainController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('page/main');
-});
+Route::get('/inscription', [MainController::class, 'inscription']);
+
+Route::get('/', [MainController::class, 'main']);
+
+Route::get('/upload', [MainController::class, 'upload']);
+
+Route::get('/song', [MainController::class, 'song']);
