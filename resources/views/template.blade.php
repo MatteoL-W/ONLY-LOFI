@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/fonts/bariol.css">
     <link rel="stylesheet" href="/fonts/bahnschrift.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/toastr.css">
 
     <title>ONLY-LOFI</title>
 </head>
@@ -52,5 +53,7 @@
     <script src="/script/vanilla-tilt.min.js"></script>
     <script src="/script/menu.js"></script>
     <script src="/script/hover_circle.js"></script>
+    <script src="/script/jquery.pjax.js"></script>
+    <script src="/script/toastr.min.js"></script>
 </body>
 </html>
