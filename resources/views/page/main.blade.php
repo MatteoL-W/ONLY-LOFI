@@ -14,7 +14,7 @@
             <h2>Listen to the best lo-fi freely<br>from the most valid source.</h2>
             <p>Aren't you tired of listening lo-fi on YouTube and its<br>low-quality?</p>
             
-            <a href="#" class="bouton-bleu">SEE THE LIBRARY <i class='icon-fleche'></i></a>
+            <a href="song" class="bouton-bleu">SEE THE LIBRARY <i class='icon-fleche'></i></a>
         </div>
 
     </section>
@@ -27,7 +27,7 @@
                 <p>You can easily upload your sound and create playlists.<br>
                 Then feel free to share it to your friends !</p>
 
-                <a href="#" class="bouton-bleu">UPLOAD<i class='icon-fleche'></i></a>
+                <a href="upload" class="bouton-bleu">UPLOAD<i class='icon-fleche'></i></a>
             </div>
 
             <div class="wannashare__grid-illustration border-bleu-gauche">
