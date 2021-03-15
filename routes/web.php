@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MainController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,12 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/inscription', [MainController::class, 'inscription']);
+//Route::post('/inscription', [MainController::class, 'Tinscription']);
 
-Route::get('/', [MainController::class, 'main']);
+Route::get('/', [MainController::class, 'main'])->middleware('auth');
 
-Route::get('/upload', [MainController::class, 'upload']);
+Route::get('/upload', [MainController::class, 'upload'])->middleware('auth');
 
-Route::get('/song', [MainController::class, 'song']);
+Route::get('/song', [MainController::class, 'song'])->middleware('auth');
+
+Auth::routes();
