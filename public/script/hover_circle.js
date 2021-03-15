@@ -13,7 +13,6 @@ if (typeof circle !== 'undefined') {
                     },
                 }
             )
-            console.log('in');
         })
 
         listener.addEventListener('mouseleave', () => {
@@ -24,7 +23,6 @@ if (typeof circle !== 'undefined') {
                     },
                 }
             )
-            console.log('out');
         })
 
         listener.addEventListener('mousemove', (e) => {
