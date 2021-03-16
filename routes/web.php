@@ -16,7 +16,7 @@ use App\Models\User;
 |
 */
 
-Route::get('/inscription', [MainController::class, 'inscription']);
+
 //Route::post('/inscription', [MainController::class, 'Tinscription']);
 
 Route::get('/', [MainController::class, 'main'])->middleware('auth');
@@ -26,3 +26,4 @@ Route::get('/upload', [MainController::class, 'upload'])->middleware('auth');
 Route::get('/song', [MainController::class, 'song'])->middleware('auth');
 
 Auth::routes();
+

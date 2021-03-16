@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class MainController extends Controller
 {
     public function inscription() {
-        return view("page.inscription");
+        return view("auth.register");
     }
 
     public function main() {
