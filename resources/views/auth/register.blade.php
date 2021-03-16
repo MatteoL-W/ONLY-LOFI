@@ -55,6 +55,7 @@
                     <input type="password" name="pwd" id="pwd" placeholder="password" required>
                     <input type="password" name="pwd_confirmation" id="pwd2" required placeholder="confirm password">
                     <input type="submit" value="▶" name="sign" id="sign">
+                    <a href="{{ route('password.request') }}">I forgot my password</a>
 
                     <input type="email" name="email" id="email" placeholder="email address" required value="{{ old('email') }}">
 

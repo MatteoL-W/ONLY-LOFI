@@ -89,6 +89,8 @@
 
                     <input type="submit" value="▶" name="log" id="log">
 
+                    <a href="{{ route('password.request') }}">I forgot my password</a>
+
                     @if ($errors->any())
                         <ul>
                             @foreach ($errors->all() as $error)
