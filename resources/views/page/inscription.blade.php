@@ -58,10 +58,6 @@
 
                     <input type="date" name="birthday" id="birthday" class='more_info'>
 
-                    <div id="remember">
-                        <span>remember</span>
-                        <input type="checkbox" name="checkbox" id="remember_checkbox">
-                    </div>
 
                     <input type="password" name="pwd" id="pwd" placeholder="password">
                     <input type="password" name="pwd_confirmation" id="pwd2" placeholder="confirm password">

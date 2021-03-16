@@ -48,26 +48,15 @@
                     </div>
                     @endif
 
-                    <input type="text" name="pseudo" id="pseudo" placeholder="pseudo">
-                    @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                    <input type="file" name="avatar" id="avatar" class='more_info'>
+                    <input type="text" name="pseudo" id="pseudo" placeholder="pseudo" required value="{{ old('pseudo') }}" >
 
-                    <input type="date" name="birthday" id="birthday" class='more_info'>
+                    <input type="date" name="birthday" id="birthday" class='more_info' required value="{{ old('birthday') }}">
 
-                    <div id="remember">
-                        <span>remember</span>
-                        <input type="checkbox" name="checkbox" id="remember_checkbox">
-                    </div>
-
-                    <input type="password" name="pwd" id="pwd" placeholder="password">
-                    <input type="password" name="pwd_confirmation" id="pwd2" placeholder="confirm password">
+                    <input type="password" name="pwd" id="pwd" placeholder="password" required>
+                    <input type="password" name="pwd_confirmation" id="pwd2" required placeholder="confirm password">
                     <input type="submit" value="▶" name="sign" id="sign">
 
-                    <input type="email" name="email" id="email" placeholder="email address">
+                    <input type="email" name="email" id="email" placeholder="email address" required value="{{ old('email') }}">
 
                 </form>
             </div>
@@ -89,10 +78,24 @@
                 <h2 class="red-title">log-in</h2>
                 <form class="connexion__gridform" action="{{ route('login') }}" method="post">
                     @csrf
-                    <input type="email" name="email" id="nickname" placeholder="email" required>
+                    <input type="email" name="email" value="{{ old('email') }}" autocomplete="email" id="nickname" placeholder="email" required>
                     <input type="password" name="password" id="password" placeholder="password" required>
 
+                    
+                    <div id="remember">
+                        <span>remember</span>
+                        <input type="checkbox" name="remember" id="remember_checkbox" {{ old('remember') ? 'checked' : '' }}>
+                    </div>
+
                     <input type="submit" value="▶" name="log" id="log">
+
+                    @if ($errors->any())
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </form>
             </div>
 

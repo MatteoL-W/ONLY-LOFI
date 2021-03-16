@@ -75,8 +75,7 @@ html {
 
         grid-gap: 20px;
         grid-template-areas:
-            "pseudo pseudo avatar avatar"
-            "birthday birthday remember remember"
+            "pseudo pseudo birthday birthday"
             "pwd pwd pwd sign"
             "pwd2 pwd2 pwd2 sign"
             "email email email email";
@@ -147,26 +146,6 @@ html {
     grid-area: birthday;
 }
 
-#remember {
-    color: white;
-    grid-area: remember;
-    display: flex;
-    justify-content: space-between;
-    background-color: #BF2B3D;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 8px;
-
-    input {
-        height: auto;
-        padding: 0;
-        width: auto;
-    }
-}
-
 #pwd {
     grid-area: pwd;
 }
@@ -220,7 +199,8 @@ html {
         grid-gap: 20px;
         grid-template-areas:
             "nickname nickname nickname log"
-            "password password password log";
+            "password password password log"
+            "remember remember remember remember";
 
         input {
             background-color: #BF2B3D;
@@ -251,6 +231,27 @@ html {
 
 #nickname {
     grid-area: nickname;
+}
+
+#remember {
+    color: white;
+    grid-area: remember;
+    display: flex;
+    justify-content: space-between;
+    background-color: #BF2B3D;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 8px;
+
+    input {
+        height: auto;
+        padding: 0;
+        width: auto;
+    }
 }
 
 #goToLoginBtn {

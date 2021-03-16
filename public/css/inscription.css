@@ -64,7 +64,7 @@ html {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-  grid-template-areas: "pseudo pseudo avatar avatar" "birthday birthday remember remember" "pwd pwd pwd sign" "pwd2 pwd2 pwd2 sign" "email email email email";
+  grid-template-areas: "pseudo pseudo birthday birthday" "pwd pwd pwd sign" "pwd2 pwd2 pwd2 sign" "email email email email";
 }
 .inscription__gridform input {
   background-color: #BF2B3D;
@@ -127,25 +127,6 @@ html {
   grid-area: birthday;
 }
 
-#remember {
-  color: white;
-  grid-area: remember;
-  display: flex;
-  justify-content: space-between;
-  background-color: #BF2B3D;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 8px;
-}
-#remember input {
-  height: auto;
-  padding: 0;
-  width: auto;
-}
-
 #pwd {
   grid-area: pwd;
 }
@@ -189,7 +170,7 @@ html {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-  grid-template-areas: "nickname nickname nickname log" "password password password log";
+  grid-template-areas: "nickname nickname nickname log" "password password password log" "remember remember remember remember";
 }
 .connexion__gridform input {
   background-color: #BF2B3D;
@@ -217,6 +198,26 @@ html {
 
 #nickname {
   grid-area: nickname;
+}
+
+#remember {
+  color: white;
+  grid-area: remember;
+  display: flex;
+  justify-content: space-between;
+  background-color: #BF2B3D;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 8px;
+}
+#remember input {
+  height: auto;
+  padding: 0;
+  width: auto;
 }
 
 #goToLoginBtn {
