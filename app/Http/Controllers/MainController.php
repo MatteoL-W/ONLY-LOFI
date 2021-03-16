@@ -19,4 +19,8 @@ class MainController extends Controller
     public function song() {
         return view("page.song");
     }
+
+    public function user() {
+        return view("page.user");
+    }
 }

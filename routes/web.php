@@ -23,5 +23,7 @@ Route::get('/upload', [MainController::class, 'upload'])->middleware('auth');
 
 Route::get('/song', [MainController::class, 'song'])->middleware('auth');
 
+Route::get('/user', [MainController::class, 'user']);
+
 Auth::routes(['verify' => true]);
 

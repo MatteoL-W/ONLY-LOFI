@@ -37,6 +37,44 @@ p {
     transform: translateX(15px)
 }
 
+.youtube {
+    background-color: #D41F1F;
+}
+
+.youtube:hover {
+    border: 2px solid #D41F1F;
+    color: #D41F1F;
+}
+
+.soundcloud {
+    background-color: #FF5100;
+}
+
+.soundcloud:hover {
+    border: 2px solid #FF5100;
+    color: #FF5100;
+}
+
+.twitter {
+    background-color: #21A3F2;
+}
+
+.twitter:hover {
+    border: 2px solid #21A3F2;
+    color: #21A3F2;
+}
+
+.instagram {
+    background-color: #F85049;
+}
+
+.instagram:hover {
+    border: 2px solid #F85049;
+    color: #F85049;
+}
+
+
+
 
 .border-bleu-droit {
     position: relative;
@@ -87,4 +125,17 @@ p {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+}
+
+.border-gauche {
+    position: relative;
+}
+
+.border-gauche::before {
+    content: "";
+    position: absolute;
+    height: 105%;
+    width: 3px;
+    background-color: $bleu;
+    transform: translateX(-50px);
 }

@@ -1,0 +1,52 @@
+.user__grid {
+    &-image {
+        width: 400px;
+        height: 400px;
+    }
+
+    &-text {
+        &_redirect {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 600px;
+
+            a {
+                display: block;
+                margin-top: 20px;
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+#last-user {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    color: $bleu;
+    font-size: 2rem;
+
+    margin-top: 30px;
+
+    > div {
+        transform: translateX(100px);
+    }
+
+    h2 {
+        transform: translateX(-20px);
+    }
+
+    ol {
+        li {
+            a {
+                color: $bleu;
+                text-decoration: none;
+                line-height: 200%;
+            }
+            span {
+                color: #3C3E40;
+            }
+        }
+    }
+}
