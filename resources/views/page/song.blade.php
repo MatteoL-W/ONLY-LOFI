@@ -23,8 +23,6 @@
         
         <h2>{{$nbComments}} comments</h2>
 
-        
-
         @foreach ($comments as $comment)
 
             <div class="comment">

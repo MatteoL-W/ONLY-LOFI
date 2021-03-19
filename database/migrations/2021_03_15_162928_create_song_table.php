@@ -18,6 +18,7 @@ class CreateSongTable extends Migration
             $table->string('title', 255);
             $table->string('url', 255);
             $table->string('img', 255)->default('');
+            $table->boolean('playlist');
             $table->bigInteger('user_id');
             $table->timestamps();
         });

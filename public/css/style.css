@@ -13,6 +13,15 @@ h2 {
   font-weight: 400;
   line-height: 1.5;
 }
+h2 u {
+  font-family: "Bahnschrift";
+}
+
+h3 {
+  margin-top: 50px;
+  font-size: 2rem;
+  font-family: "Bahnschrift";
+}
 
 p {
   font-size: 2rem;
@@ -144,6 +153,13 @@ p {
   transform: translateX(-50px);
 }
 
+.grid-3 {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
 #menu {
   background-color: #FFDFE3;
   position: absolute;
@@ -254,18 +270,38 @@ header .header__left-logo {
   width: 150px;
 }
 header .header__right {
-  width: 30%;
+  width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+header .header__right form {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
 header .header__right-search {
-  height: 20px;
-  width: 180px;
+  height: 100%;
+  width: 250px;
   background-color: #C0D3E6;
+  padding-left: 5px;
   outline: none;
-  border: 1Px solid grey;
+  border: none;
   font-size: 2rem;
+}
+header .header__right-search::placeholder {
+  color: #EBEBEB;
+  font-style: italic;
+}
+header .header__right input[type=submit] {
+  margin-left: 10px;
+  width: 30px;
+  height: 100%;
+  outline: none;
+  color: #2D77A0;
+  background-color: #C0D3E6;
+  border: none;
 }
 
 .header__right-burger {
@@ -468,6 +504,8 @@ header .header__right-search {
 .user__grid-image {
   width: 400px;
   height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .user__grid-text_redirect {
   display: flex;
@@ -501,6 +539,12 @@ header .header__right-search {
 }
 #last-user ol li span {
   color: #3C3E40;
+}
+
+.recherche {
+  padding-top: 70px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .grid_avatar {
@@ -582,6 +626,41 @@ header .header__right-search {
 .comments input[type=submit] {
   margin-left: auto;
   outline: none;
+}
+
+.user-component {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 7px;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+}
+.user-component-avatar {
+  width: 40%;
+  border-radius: 7px;
+  height: 100%;
+}
+.user-component-avatar img {
+  height: 100%;
+}
+.user-component-info {
+  height: fit-content;
+  width: 60%;
+}
+.user-component-info .name {
+  font-family: "Bahnschrift";
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.user-component:hover {
+  box-shadow: 1px 1px 17px 0px rgba(0, 0, 0, 0.28);
+  -webkit-box-shadow: 1px 1px 17px 0px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 1px 1px 17px 0px rgba(0, 0, 0, 0.28);
 }
 
 html {

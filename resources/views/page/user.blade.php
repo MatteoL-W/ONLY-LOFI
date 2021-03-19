@@ -4,7 +4,7 @@
 
     <div class="grid_avatar user__grid">
 
-        <div class="user__grid-image border-bleu-droit" style="background-image:url('/assets/kurochuu.png')";>
+        <div class="user__grid-image border-bleu-droit" style="background-image:url('{{$user->avatar}}')">
 
         </div>
 

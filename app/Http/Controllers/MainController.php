@@ -58,7 +58,7 @@ class MainController extends Controller
 
     public function addComment($id, Request $request) {
         $request->validate([
-            'content' => 'required|max:500',
+            'content' => 'required|min:7|max:500',
         ]);
 
         $comment = new Comment();
@@ -66,13 +66,16 @@ class MainController extends Controller
         $comment->idPost = $id;
         $comment->content = $request->input('content');
         $comment->save();
-        /*$song->url = "/uploads/".Auth::id()."/".$name; 
-
-        $song->votes = 0;
-        $song->user_id = Auth::id();
-        $song->save();*/
 
         return redirect("/song/$id");
 
+    }
+
+    public function search($search) {
+        $songs = Song::whereRaw("title LIKE CONCAT('%', ?, '%')", [$search])->where('playlist', '=', 0)->get();
+        $playlists = Song::whereRaw("title LIKE CONCAT('%', ?, '%')", [$search])->where('playlist', '=', 1)->get();
+        $users = User::whereRaw("name LIKE CONCAT('%', ?, '%')", [$search])->get();
+
+        return view('page.search', ['search' => $search, 'users' => $users, 'songs' => $songs, 'playlists' => $playlists]);
     }
 }

@@ -18,7 +18,12 @@
     <header>
         <div class='header__left'><a href="/"><img src="/assets/inline-logo.svg" alt="Logo ONLYLOFI" class='header__left-logo'></a></div>
         <div class='header__right'>
-            <input type="search" name="" id="" class='header__right-search'>
+            
+            <form action="/search" method="get" id="search">
+                <input type="search" name="search" id="search" class='header__right-search' placeholder="Search anything...">
+                <input type="submit" value="→">
+            </form>
+
             <div class="header__right-burger">
                 <div></div>
                 <div></div>
