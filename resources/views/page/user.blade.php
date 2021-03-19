@@ -9,13 +9,28 @@
         </div>
 
         <div class="user__grid-text">
-            <h2>Chilled Cow</h2>
-            <p>Producer and lo-fi leaker ! Got a YouTube channel about lo-fi !</p>
+            <h2>{{$user->name}}</h2>
+            <p>{{$user->description}}</p>
             <div class="user__grid-text_redirect">
-                <a href="##" class='bouton-bleu youtube'>SEE YOUTUBE <i class="icon-fleche"></i></a>
-                <a href="##" class='bouton-bleu soundcloud'>SEE SOUNDCLOUD <i class="icon-fleche"></i></a>
-                <a href="##" class='bouton-bleu twitter'>SEE TWITTER <i class="icon-fleche"></i></a>
-                <a href="##" class='bouton-bleu instagram'>SEE INSTAGRAM <i class="icon-fleche"></i></a>
+            @if ($user->youtube !== '')
+                <a href="{{$user->youtube}}" class='bouton-bleu youtube'>SEE YOUTUBE <i class="icon-fleche"></i></a>
+            @endif
+
+            @if ($user->soundcloud !== '')
+            <a href="##" class='bouton-bleu soundcloud'>SEE SOUNDCLOUD <i class="icon-fleche"></i></a>
+            @endif
+
+            @if ($user->twitter !== '')
+            <a href="##" class='bouton-bleu twitter'>SEE TWITTER <i class="icon-fleche"></i></a>
+            @endif
+
+            @if ($user->instagram !== '')
+            <a href="##" class='bouton-bleu instagram'>SEE INSTAGRAM <i class="icon-fleche"></i></a>
+            @endif
+                
+                
+                
+                
             </div>
             
         </div>
