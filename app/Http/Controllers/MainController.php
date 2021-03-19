@@ -6,13 +6,11 @@ use App\Models\Song;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class MainController extends Controller
 {
-    public function inscription() {
-        return view("page.inscription");
-    }
 
     public function main() {
         
@@ -37,5 +35,18 @@ class MainController extends Controller
         $song->save();
 
         return redirect("upload");
+    }
+
+    public function user() {
+        return view("page.user");
+    }
+
+    public function userId($id) {
+        /*$artist = Artist::findOrFail($id);
+        $oeuvres = Oeuvre::all()->where('idArtist', '=', $id);
+        return view('page/artiste', ["artist" => $artist, "oeuvres" => $oeuvres]);*/
+        $user = User::findOrFail($id);
+        $social = ['youtube', 'soundcloud', 'twitter', 'instagram'];
+        return view("page.user", ["user" => $user, "social" => $social]);
     }
 }

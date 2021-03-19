@@ -65,22 +65,13 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
-        $avatar = 'avatarDefaut.png';
-
-        $request = app('request');
-        if ($request->hasFile('avatar')) {
-            $avatar = '/upload/avatar/' . $data['pseudo'];
-
-            // ca uploads pas vraiment
-        }
-
+    {        
         return User::create([
             'name' => $data['pseudo'],
             'email' => $data['email'],
             'password' => Hash::make($data['pwd']),
             'birthday' => $data['birthday'],
-            'avatar' => $avatar
+            'avatar' => 'avatarDefaut.png'
         ]);
     }
 }

@@ -51,6 +51,42 @@ p {
           transform: translateX(15px);
 }
 
+.youtube {
+  background-color: #D41F1F;
+}
+
+.youtube:hover {
+  border: 2px solid #D41F1F;
+  color: #D41F1F;
+}
+
+.soundcloud {
+  background-color: #FF5100;
+}
+
+.soundcloud:hover {
+  border: 2px solid #FF5100;
+  color: #FF5100;
+}
+
+.twitter {
+  background-color: #21A3F2;
+}
+
+.twitter:hover {
+  border: 2px solid #21A3F2;
+  color: #21A3F2;
+}
+
+.instagram {
+  background-color: #F85049;
+}
+
+.instagram:hover {
+  border: 2px solid #F85049;
+  color: #F85049;
+}
+
 .border-bleu-droit {
   position: relative;
   width: -webkit-fit-content;
@@ -103,6 +139,19 @@ p {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+}
+
+.border-gauche {
+  position: relative;
+}
+
+.border-gauche::before {
+  content: "";
+  position: absolute;
+  height: 105%;
+  width: 3px;
+  background-color: #2D77A0;
+  transform: translateX(-50px);
 }
 
 #menu {
@@ -579,6 +628,44 @@ header .header__right-search {
   color: #9B9999;
   font-size: 1.5rem;
   margin-top: 10px;
+}
+
+.user__grid-image {
+  width: 400px;
+  height: 400px;
+}
+.user__grid-text_redirect {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 600px;
+}
+.user__grid-text_redirect a {
+  display: block;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+#last-user {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: #2D77A0;
+  font-size: 2rem;
+  margin-top: 30px;
+}
+#last-user > div {
+  transform: translateX(100px);
+}
+#last-user h2 {
+  transform: translateX(-20px);
+}
+#last-user ol li a {
+  color: #2D77A0;
+  text-decoration: none;
+  line-height: 200%;
+}
+#last-user ol li span {
+  color: #3C3E40;
 }
 
 .grid_avatar {
