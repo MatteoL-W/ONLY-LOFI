@@ -47,11 +47,16 @@
     <div id="hover__circle">
         see more<br><i class='icon-fleche'></i>
     </div>
+
+    <div id="lecteur">
+        <audio controls id="audio">
+    </div>
     
     <footer>
         footer <i class='icon-music'></i>
     </footer>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
     <script src="/script/vanilla-tilt.min.js"></script>
@@ -59,5 +64,6 @@
     <script src="/script/hover_circle.js"></script>
     <script src="/script/jquery.pjax.js"></script>
     <script src="/script/toastr.min.js"></script>
+    <script src="/script/player.js"></script>
 </body>
 </html>

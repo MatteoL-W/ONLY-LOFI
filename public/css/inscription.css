@@ -1,8 +1,9 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Bariol Regular";
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Bariol Regular';
   font-size: 1.2rem;
 }
 
@@ -11,26 +12,39 @@ html {
 }
 
 .red-title {
-  font-family: "Bariol";
+  font-family: 'Bariol';
   color: #BF2B3D;
   font-weight: bold;
 }
 
 .split {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   width: 100vw;
   height: 100vh;
   text-align: center;
 }
+
 .split > div {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   height: 100%;
 }
+
 .split > div .semi-header {
   position: absolute;
   left: 0;
@@ -39,18 +53,28 @@ html {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
 .split > div .semi-header img {
   width: 30%;
 }
+
 .split > div .semi-form {
   width: 70%;
   text-align: left;
 }
+
 .split > div .semi-form .top-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .inscription .red-title, .connexion .red-title {
@@ -60,12 +84,16 @@ html {
 .inscription {
   position: relative;
 }
+
 .inscription__gridform {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   grid-template-areas: "pseudo pseudo birthday birthday" "pwd pwd pwd sign" "pwd2 pwd2 pwd2 sign" "email email email email";
 }
+
 .inscription__gridform input {
   background-color: #BF2B3D;
   border-radius: 8px;
@@ -77,15 +105,34 @@ html {
   padding-right: 20px;
   width: 100%;
 }
+
+.inscription__gridform input::-webkit-input-placeholder {
+  color: white;
+}
+
+.inscription__gridform input:-ms-input-placeholder {
+  color: white;
+}
+
+.inscription__gridform input::-ms-input-placeholder {
+  color: white;
+}
+
 .inscription__gridform input::placeholder {
   color: white;
 }
 
 #pseudo {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
   grid-area: pseudo;
 }
 
 #avatar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
   grid-area: avatar;
   padding-top: 10px;
   font-size: 1rem;
@@ -97,9 +144,15 @@ html {
 }
 
 .more_info::after {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 100%;
   width: 100%;
   background-color: #2d77a0;
@@ -107,7 +160,9 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
@@ -120,32 +175,52 @@ html {
 }
 
 .info_active::after {
-  transform: translateY(0);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 #birthday {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
   grid-area: birthday;
 }
 
 #pwd {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
   grid-area: pwd;
 }
 
 #pwd2 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
   grid-area: pwd2;
 }
 
 #sign {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 4;
   grid-area: sign;
   height: auto;
 }
 
 #email {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
   grid-area: email;
 }
 
 #fixed-bar {
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
   transition-property: opacity, transform;
+  transition-property: opacity, transform, -webkit-transform;
+  -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
   position: absolute;
   bottom: 10%;
@@ -153,25 +228,31 @@ html {
   height: 157px;
   width: 10px;
   background-color: #BF2B3D;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   opacity: 1;
 }
 
 #fixed-bar.is-rotating {
-  transform: rotate(220deg);
+  -webkit-transform: rotate(220deg);
+          transform: rotate(220deg);
   opacity: 0;
 }
 
 #fixed-bar.is-moving-right {
-  transform: translateX(50px);
+  -webkit-transform: translateX(50px);
+          transform: translateX(50px);
 }
 
 .connexion__gridform {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   grid-template-areas: "nickname nickname nickname log" "password password password log" "remember remember remember remember";
 }
+
 .connexion__gridform input {
   background-color: #BF2B3D;
   border-radius: 8px;
@@ -183,20 +264,42 @@ html {
   padding-right: 20px;
   width: 100%;
 }
+
+.connexion__gridform input::-webkit-input-placeholder {
+  color: white;
+}
+
+.connexion__gridform input:-ms-input-placeholder {
+  color: white;
+}
+
+.connexion__gridform input::-ms-input-placeholder {
+  color: white;
+}
+
 .connexion__gridform input::placeholder {
   color: white;
 }
 
 #password {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
   grid-area: password;
 }
 
 #log {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 4;
   grid-area: log;
   height: auto;
 }
 
 #nickname {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
   grid-area: nickname;
 }
 
@@ -221,12 +324,14 @@ html {
 }
 
 #goToLoginBtn {
-  transform: translateY(-50px);
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
   right: 5%;
 }
 
 #goToSignInBtn {
-  transform: translateY(-50px);
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
   left: 5%;
 }
 
@@ -246,16 +351,19 @@ html {
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
+  -webkit-transition: ease 1s;
   transition: ease 1s;
 }
 
 #moving-image.sign-in {
-  transform: translate3D(100%, 0, 0);
+  -webkit-transform: translate3D(100%, 0, 0);
+          transform: translate3D(100%, 0, 0);
   background-image: url("/assets/wave_girl.gif");
 }
 
 #moving-image.log-in {
-  transform: translate3D(0, 0, 0);
+  -webkit-transform: translate3D(0, 0, 0);
+          transform: translate3D(0, 0, 0);
   background-image: url("/assets/wave.gif");
 }
 
@@ -287,13 +395,15 @@ background: linear-gradient(90deg, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 
   width: 50vw;
   height: 100vh;
   background: white;
+  background: -webkit-gradient(linear, right top, left top, color-stop(50%, rgba(255, 255, 255, 0)), to(white));
   background: linear-gradient(270deg, rgba(255, 255, 255, 0) 50%, white 100%);
   top: 0;
   left: 100%;
 }
 
 ::-webkit-calendar-picker-indicator {
-  filter: invert(1);
+  -webkit-filter: invert(1);
+          filter: invert(1);
 }
 
 #sign-info {
@@ -303,5 +413,4 @@ background: linear-gradient(90deg, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 
 #sign-info.active {
   color: #2d77a0;
 }
-
 /*# sourceMappingURL=inscription.css.map */
