@@ -47,6 +47,10 @@
     <div id="hover__circle">
         see more<br><i class='icon-fleche'></i>
     </div>
+
+    <div id="lecteur">
+        <audio controls id="audio">
+    </div>
     
     <footer>
         footer <i class='icon-music'></i>
@@ -60,5 +64,6 @@
     <script src="/script/hover_circle.js"></script>
     <script src="/script/jquery.pjax.js"></script>
     <script src="/script/toastr.min.js"></script>
+    <script src="/script/player.js"></script>
 </body>
 </html>

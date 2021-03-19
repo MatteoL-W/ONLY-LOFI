@@ -11,7 +11,7 @@
             <p>published by kurochuu.</p>
 
             <div class="song__info-icons">
-                <div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div>
+                <a href="#" data-file="{{$songs[0]->url}}" class="song"><div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div></a>
                 <i class='icon-star-empty'></i>
                 <i class='icon-playlist'></i>
             </div>
