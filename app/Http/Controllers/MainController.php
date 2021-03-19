@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Song;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 
 class MainController extends Controller
 {
 
     public function main() {
-        
         return view("page.main");
     }
 
@@ -37,16 +36,43 @@ class MainController extends Controller
         return redirect("upload");
     }
 
+    public function songId($id) { 
+        $song = Song::findOrFail($id);
+        $uploaderName = User::select('name')->where('id', '=', $song->user_id)->get();
+        
+        $comments = Comment::join('users','comments.idWriter', '=', 'users.id')->where('idPost', '=', $id)->get();
+        $nbComments = count($comments);
+        
+        return view("page.song", ["song" => $song, "artist" => $uploaderName, "comments" => $comments, "nbComments" => $nbComments]);
+    }
+
     public function user() {
         return view("page.user");
     }
 
     public function userId($id) {
-        /*$artist = Artist::findOrFail($id);
-        $oeuvres = Oeuvre::all()->where('idArtist', '=', $id);
-        return view('page/artiste', ["artist" => $artist, "oeuvres" => $oeuvres]);*/
         $user = User::findOrFail($id);
         $social = ['youtube', 'soundcloud', 'twitter', 'instagram'];
         return view("page.user", ["user" => $user, "social" => $social]);
+    }
+
+    public function addComment($id, Request $request) {
+        $request->validate([
+            'content' => 'required|max:500',
+        ]);
+
+        $comment = new Comment();
+        $comment->idWriter = Auth::id();
+        $comment->idPost = $id;
+        $comment->content = $request->input('content');
+        $comment->save();
+        /*$song->url = "/uploads/".Auth::id()."/".$name; 
+
+        $song->votes = 0;
+        $song->user_id = Auth::id();
+        $song->save();*/
+
+        return redirect("/song/$id");
+
     }
 }

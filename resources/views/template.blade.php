@@ -30,9 +30,9 @@
         <div class="menu__grid">
             <div class="menu__grid-links">
                 <a href="/" class='links-main' data-tilt data-tilt-max="10">Main page <div><i class='icon-music'></i></div></a>
-                <a href="song" class='links-library' data-tilt data-tilt-max="10">Library <div><i class='icon-playlist'></i></div></a>
-                <a href="upload" class='links-upload' data-tilt data-tilt-max="10">Upload <div><i class='icon-triangle'></i></div></a>
-                <a href="#" class='links-myacc' data-tilt data-tilt-max="10">My account <div><i class='icon-avatar'></i></div></a>
+                <a href="/song" class='links-library' data-tilt data-tilt-max="10">Library <div><i class='icon-playlist'></i></div></a>
+                <a href="/upload" class='links-upload' data-tilt data-tilt-max="10">Upload <div><i class='icon-triangle'></i></div></a>
+                <a href="/account" class='links-myacc' data-tilt data-tilt-max="10">My account <div><i class='icon-avatar'></i></div></a>
                 <a href="{{ route('logout') }}" class='links-disconnect' data-tilt data-tilt-max="10" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Disconnect <div><i class='icon-fleche'></i></div></a>
             </div>
 

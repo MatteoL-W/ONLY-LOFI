@@ -4,14 +4,15 @@
 
     <div class="grid_avatar song">
         <div class='border-bleu-droit'>
-            <img src="/assets/img_aot.png" alt="aot">
+            <img src="{{$song->img}}" alt="{{$song->title}}">
         </div>
         <div class="song__info">
-            <h2>AoT but it's lofi ~ red swan</h2>
-            <p>published by kurochuu.</p>
+            <h2>{{$song->title}}</h2>
+            <p>published by <a href="/user/{{$song->user_id}}">{{$artist[0]->name}}</a>.</p>
+            
 
             <div class="song__info-icons">
-                <a href="#" data-file="{{$songs[0]->url}}" class="song"><div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div></a>
+                <a href="#" data-file="{{$song->url}}" class="song"><div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div></a>
                 <i class='icon-star-empty'></i>
                 <i class='icon-playlist'></i>
             </div>
@@ -19,35 +20,35 @@
     </div>
 
     <div class="song_comments">
-        <h2>2 comments</h2>
+        
+        <h2>{{$nbComments}} comments</h2>
 
-        <div class="comment">
-            <a href="#">
-                <img src="/assets/kurochuu.png" alt="">
-            
-                <div class="under_img">kurochuu</div>
-            </a>
+        
 
-            <div>
-                <p>Thank you so much for listening to my songs !!<br>Don't forget to like the song and add it to your playlists to support me !<br>You're the best !</p>
-                <p class="comment__info">published the 08/02/2021 at 14:37</p>
+        @foreach ($comments as $comment)
+
+            <div class="comment">
+                <a href="#">
+                    <img src="/assets/kurochuu.png" alt="">
+                
+                    <div class="under_img">{{$comment->name}}</div>
+                </a>
+
+                <div>
+                    <p>{{$comment->content}}</p>
+                    <p class="comment__info">published the {{$comment->created_at}}</p>
+                </div>
             </div>
-        </div>
 
+        @endforeach
 
+        <form action="" method="post" class="comments">
+            @csrf
+            <h2>Post a comment</h2>
+            <textarea name="content" id="content"></textarea>
+            <input type="submit" value="Submit →" class='bouton-bleu'>
+        </form>
 
-        <div class="comment">
-            <a href="#">
-                <img src="/assets/lofistream.png" alt="">
-            
-                <div class="under_img">girl</div>
-            </a>
-
-            <div>
-                <p>Nice one !</p>
-                <p class="comment__info">published the 08/02/2021 at 14:37</p>
-            </div>
-        </div>
     </div>
 
 

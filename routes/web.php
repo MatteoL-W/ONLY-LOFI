@@ -22,8 +22,9 @@ Route::get('/', [MainController::class, 'main'])->middleware('auth');
 Route::get('/upload', [MainController::class, 'upload'])->middleware('auth');
 
 Route::get('/song', [MainController::class, 'song'])->middleware('auth');
+Route::get('/song/{id}', [MainController::class, 'songId'])->where('id','[0-9]+');
+Route::post('/song/{id}', [MainController::class, 'addComment'])->where('id','[0-9]+');
 
-Route::get('/user', [MainController::class, 'user']);
 Route::get('/user/{id}', [MainController::class, 'userId'])->where('id','[0-9]+');
 
 Auth::routes(['verify' => true]);
