@@ -26,6 +26,8 @@ Route::get('/song', [MainController::class, 'song'])->middleware('auth');
 Route::get('/song/{id}', [MainController::class, 'songId'])->where('id','[0-9]+');
 Route::post('/song/{id}', [MainController::class, 'addComment'])->where('id','[0-9]+');
 
+Route::get('/playlist/{id}', [MainController::class, 'playlistId'])->where('id','[0-9]+');
+
 Route::get('/user/{id}', [MainController::class, 'userId'])->where('id','[0-9]+');
 
 Route::get('/search/{id}', [MainController::class, "search"]);

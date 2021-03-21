@@ -160,6 +160,11 @@ p {
   gap: 20px;
 }
 
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
 #menu {
   background-color: #FFDFE3;
   position: absolute;
@@ -501,6 +506,28 @@ header .header__right input[type=submit] {
   margin-top: 10px;
 }
 
+.songsFromPlaylist {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 2rem;
+  padding-left: 150px;
+  padding-top: 50px;
+}
+.songsFromPlaylist li a {
+  text-decoration: none;
+  color: #3C3E40;
+  font-family: "Bahnschrift";
+  line-height: 250%;
+}
+.songsFromPlaylist li b {
+  color: #2D77A0;
+  font-family: "Bahnschrift";
+}
+.songsFromPlaylist li::marker {
+  color: #2D77A0;
+  font-family: "Bahnschrift";
+}
+
 .user__grid-image {
   width: 400px;
   height: 400px;
@@ -547,6 +574,12 @@ header .header__right input[type=submit] {
   margin: 0 auto;
 }
 
+.library {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
 .grid_avatar {
   padding-top: 50px;
   width: 80%;
@@ -563,9 +596,7 @@ header .header__right input[type=submit] {
 }
 
 .template4 {
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 100px;
+  margin-bottom: 50px;
 }
 .template4__grid {
   z-index: inherit;
