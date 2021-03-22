@@ -2,4 +2,18 @@
     width: 80%;
     margin: 0 auto;
     margin-top: 50px;
+
+    a.see-all {
+        margin-top: 20px;
+        color: $bleu;
+        font-size: 2rem;
+        text-align: center;
+        text-decoration: none;
+        margin-bottom: 50px;
+        display: block;
+    }
+
+    a.see-all:hover {
+        text-decoration: underline;
+    }
 }

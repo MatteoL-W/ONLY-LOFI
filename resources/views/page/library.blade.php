@@ -6,17 +6,18 @@
 
     <h2>Your lasts playlists listened</h2>
     @include('partials/last4', ["collection" => $PlastsListened])
-    <a href="#">See all your playlists</a>
+    <a class='see-all' href="#">See all your playlists...</a>
 
     <h2>Your lasts playlist created</h2>
     @include('partials/last4', ["collection" => $PlastsCreated])
-    <a href="#">See all your playlists</a>
+    <a class='see-all' href="#">See all your playlists...</a>
 
     <h2>Your lasts songs listened</h2>
     @include('partials/last4', ["collection" => $SlastsListened])
 
     <h2>Your likes</h2>
-    <a href="#">See all your likes</a>
+    @include('partials/last4', ["collection" => $SlastsLikes])
+    <a class='see-all' href="/likes">See all your likes...</a>
 </section>
 
 @endsection

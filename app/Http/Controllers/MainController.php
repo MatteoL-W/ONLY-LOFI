@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use App\Models\User;
 use App\Models\Comment;
-use App\Models\Listened;
 use App\Models\Playlist;
 use App\Models\PlaylistSong;
 use Illuminate\Http\Request;
@@ -16,7 +15,9 @@ class MainController extends Controller
 {
 
     public function main() {
-        $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->get();
+        $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
+        $PlastsListened = $PlastsListened->unique('idPlaylist');
+
         return view("page.main", ["PlastsListened" => $PlastsListened]);
     }
 
@@ -24,17 +25,29 @@ class MainController extends Controller
         return view("page.upload");
     }
 
-    public function song() {
-        // DISTINCT FIX
-        //$PlastsListened = Playlist::join('listened', 'idListened', '=', 'playlist.id')->where('idListener','=', Auth::id())->where('playlist','=', 1)->limit(4)->get()->sortByDesc('updated_at');
-        //$PlastsCreated = Playlist::where('user_id','=', Auth::id())->limit(4)->get()->sortByDesc('playlist.id');
-        //$SlastsListened = Song::join('listened', 'idListened', '=', 'song.id')->where('idListener','=', Auth::id())->where('playlist','=', 0)->limit(4)->get()->sortByDesc('updated_at');
-       
-        $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->get();
-        $PlastsCreated = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->limit(4)->orderBy('playlist.id', 'DESC')->get();
-        $SlastsListened = Song::select('*','song.id as idSong')->join('listened', 'idListened', '=', 'song.id')->where('idListener','=', Auth::id())->where('playlist','=', 0)->limit(4)->orderBy('listened.id', 'DESC')->get();
+    public function likes() {
+        $allLikes = Song::select('*')->join('likes','idSong','=','song.id')->where('idLikeur','=', Auth::id())->orderBy('likes.id', 'DESC')->get();
+        return view("page.defaultAll", ["collection" => $allLikes]);
+    }
 
-        return view("page.library", ["PlastsListened" => $PlastsListened, "PlastsCreated" => $PlastsCreated, "SlastsListened" => $SlastsListened]);
+    public function playlists() {
+        $playlists = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->limit(4)->orderBy('playlist.id', 'DESC')->get();
+        return view("page.defaultAll", ["collection" => $playlists]);
+    }
+
+    public function song() {
+             
+        $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
+        $PlastsListened = $PlastsListened->unique('idPlaylist');
+
+        $PlastsCreated = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->limit(4)->orderBy('playlist.id', 'DESC')->get();
+
+        $SlastsListened = Song::select('*','song.id as idSong')->join('listened', 'idListened', '=', 'song.id')->where('idListener','=', Auth::id())->where('playlist','=', 0)->limit(4)->orderBy('listened.id', 'DESC')->get();
+        $SlastsListened = $SlastsListened->unique('idSong');
+        
+        $SlastsLikes = Song::select('*')->join('likes','idSong','=','song.id')->where('idLikeur','=', Auth::id())->orderBy('likes.id', 'DESC')->limit(4)->get();
+
+        return view("page.library", ["PlastsListened" => $PlastsListened, "PlastsCreated" => $PlastsCreated, "SlastsListened" => $SlastsListened, "SlastsLikes" => $SlastsLikes]);
     }
 
     public function store(Request $request) {
@@ -115,5 +128,10 @@ class MainController extends Controller
         $users = User::whereRaw("name LIKE CONCAT('%', ?, '%')", [$search])->get();
 
         return view('page.search', ['search' => $search, 'users' => $users, 'songs' => $songs, 'playlists' => $playlists]);
+    }
+
+    public function changeLike($id) {
+        Auth::user()->ILikeThem()->toggle($id);
+        return back();
     }
 }

@@ -625,8 +625,7 @@ header .header__right input[type=submit] {
 .song__info-icons .icon-fleche {
   padding-right: 0;
 }
-
-.song__info-icons > i {
+.song__info-icons > a > i {
   font-size: 3rem;
   color: #2D77A0;
   margin-left: 20px;
@@ -792,6 +791,18 @@ header .header__right input[type=submit] {
   margin: 0 auto;
   margin-top: 50px;
 }
+.library a.see-all {
+  margin-top: 20px;
+  color: #2D77A0;
+  font-size: 2rem;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 50px;
+  display: block;
+}
+.library a.see-all:hover {
+  text-decoration: underline;
+}
 
 .grid_avatar {
   padding-top: 50px;
@@ -810,10 +821,6 @@ header .header__right input[type=submit] {
 
 .grid_avatar div:nth-child(2) {
   padding-top: 100px;
-}
-
-.template4 {
-  margin-bottom: 50px;
 }
 
 .template4__grid {

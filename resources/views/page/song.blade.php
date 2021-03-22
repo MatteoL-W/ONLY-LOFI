@@ -14,11 +14,22 @@
         <div class="song__info-icons">
             <a href="#" data-file="{{$song->url}}" class="song">
                 <div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div>
-            </a>         
-            <i class='icon-star-empty'></i>
-            @if ($playlist === false)<i class='icon-playlist'></i>@endif
-            
+            </a>      
+            @if ($playlist === false)
+                @auth
+                        @if(Auth::user()->ILikeThem->contains($song->id))
+                            <a href="/changeLike/{{$song->id}}"><i class='icon-star'></i></a>
+                        @else
+                            <a href="/changeLike/{{$song->id}}"><i class='icon-star-empty'></i></a>
+                        @endif
+                @endauth
+
+                
+                
+                <a><i class='icon-playlist'></i></a>
+            @endif
         </div>
+
     </div>
 </div>
 

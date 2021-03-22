@@ -42,4 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function ILikeThem() {
+        return $this->belongsToMany("App\Models\Song", "likes", "idLikeur", "idSong");
+        // SEELECT * FROM users JOIN connection ON to_id=users.id WHERE from_id=$this->id
+    }
 }

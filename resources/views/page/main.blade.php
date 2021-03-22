@@ -2,10 +2,12 @@
 
 @section('content')
 
-    <div class="container" style='margin-top: 50px'>
-        <h2>Hello {{ Auth::user()->name }}, here are your last playlists listened</h2>
-        @include('partials/last4', ["collection" => $PlastsListened])
-    </div>
+    @if (count($PlastsListened) != 0)
+        <div class="container" style='margin-top: 50px'>
+            <h2>Hello {{ Auth::user()->name }}, here are your last playlists listened</h2>
+            @include('partials/last4', ["collection" => $PlastsListened])
+        </div>
+    @endif
 
     <section class="hero">
 
