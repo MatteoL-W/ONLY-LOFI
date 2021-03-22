@@ -451,7 +451,7 @@ header .header__right input[type=submit] {
 .song__info-icons .icon-fleche {
   padding-right: 0;
 }
-.song__info-icons > i {
+.song__info-icons > a > i {
   font-size: 3rem;
   color: #2D77A0;
   margin-left: 20px;

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use App\Models\User;
 use App\Models\Comment;
-use App\Models\Listened;
 use App\Models\Playlist;
 use App\Models\PlaylistSong;
 use Illuminate\Http\Request;
@@ -110,5 +109,10 @@ class MainController extends Controller
         $users = User::whereRaw("name LIKE CONCAT('%', ?, '%')", [$search])->get();
 
         return view('page.search', ['search' => $search, 'users' => $users, 'songs' => $songs, 'playlists' => $playlists]);
+    }
+
+    public function changeLike($id) {
+        Auth::user()->ILikeThem()->toggle($id);
+        return back();
     }
 }

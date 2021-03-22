@@ -14,4 +14,6 @@ class Song extends Model
         // SELECT * FROM users WHERE users.id=$this->user_id
         return $this->belongsTo("App\Models\User", "user_id");
     }
+
+    
 }

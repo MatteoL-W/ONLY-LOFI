@@ -32,5 +32,7 @@ Route::get('/user/{id}', [MainController::class, 'userId'])->where('id','[0-9]+'
 
 Route::get('/search/{id}', [MainController::class, "search"]);
 
+Route::get('/changeLike/{id}', [MainController::class, "changeLike"]);
+
 Auth::routes(['verify' => true]);
 
