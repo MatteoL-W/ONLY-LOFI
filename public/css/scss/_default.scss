@@ -5,6 +5,16 @@ h2 {
     font-family: 'Bahnschrift';
     font-weight: 400;
     line-height: 1.5;
+
+    u {  
+        font-family: 'Bahnschrift';
+    }
+}
+
+h3 {
+    margin-top: 50px;
+    font-size: 2rem;
+    font-family: 'Bahnschrift';
 }
 
 p {
@@ -138,4 +148,17 @@ p {
     width: 3px;
     background-color: $bleu;
     transform: translateX(-50px);
+}
+
+.grid-3 {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
 }

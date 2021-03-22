@@ -6,7 +6,24 @@
     font-family: 'Bariol Regular';
 }
 
-@import 'scss/commons','scss/default','scss/menu','scss/header','scss/page_main','scss/page_upload','scss/page_song','scss/page_user','scss/split_avatar','scss/template4';
+@import 'scss/commons';
+@import 'scss/default';
+
+@import 'scss/menu';
+@import 'scss/header';
+
+@import 'scss/page_main';
+@import 'scss/page_upload';
+@import 'scss/page_song';
+@import 'scss/page_user';
+@import 'scss/page_search';
+@import 'scss/page_library';
+
+@import 'scss/split_avatar';
+@import 'scss/template4';
+@import 'scss/comments';
+
+@import 'scss/userComponent';
 
 html {
     font-size: 62.5%;

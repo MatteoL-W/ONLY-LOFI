@@ -73,3 +73,31 @@
         }
     }
 }
+
+.songsFromPlaylist {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 2rem;
+    padding-left: 150px;
+    padding-top: 50px;
+
+    li {
+
+        a {
+            text-decoration: none;
+            color: #3C3E40;
+            font-family: "Bahnschrift";
+            line-height: 250%;
+        }
+
+        b {
+            color: $bleu;
+            font-family: "Bahnschrift";
+        }
+    }
+
+    li::marker {
+        color: $bleu;
+        font-family: "Bahnschrift";
+    }
+}

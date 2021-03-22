@@ -1,0 +1,23 @@
+.comments {
+
+    h2 {
+        margin-top: 40px;
+    }
+
+    textarea {
+        width: 100%;
+        resize: vertical;
+        height: 100px;
+        margin-bottom: 30px;
+
+        font-size: 1.5rem;
+        border: 1px solid $bleu;
+        outline: none;
+        padding: 10px;
+    }
+
+    input[type=submit] {
+        margin-left: auto;
+        outline: none;
+    }
+}
