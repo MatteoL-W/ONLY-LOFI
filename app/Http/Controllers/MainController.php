@@ -15,7 +15,9 @@ class MainController extends Controller
 {
 
     public function main() {
-        $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->get();
+        $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
+        $PlastsListened = $PlastsListened->unique('idPlaylist');
+
         return view("page.main", ["PlastsListened" => $PlastsListened]);
     }
 
@@ -23,12 +25,18 @@ class MainController extends Controller
         return view("page.upload");
     }
 
+    public function likes() {
+        $allLikes = Song::select('*')->join('likes','idSong','=','song.id')->where('idLikeur','=', Auth::id())->orderBy('likes.id', 'DESC')->get();
+        return view("page.defaultAll", ["collection" => $allLikes]);
+    }
+
+    public function playlists() {
+        $playlists = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->limit(4)->orderBy('playlist.id', 'DESC')->get();
+        return view("page.defaultAll", ["collection" => $playlists]);
+    }
+
     public function song() {
-        // DISTINCT FIX
-        //$PlastsListened = Playlist::join('listened', 'idListened', '=', 'playlist.id')->where('idListener','=', Auth::id())->where('playlist','=', 1)->limit(4)->get()->sortByDesc('updated_at');
-        //$PlastsCreated = Playlist::where('user_id','=', Auth::id())->limit(4)->get()->sortByDesc('playlist.id');
-        //$SlastsListened = Song::join('listened', 'idListened', '=', 'song.id')->where('idListener','=', Auth::id())->where('playlist','=', 0)->limit(4)->get()->sortByDesc('updated_at');
-       
+             
         $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
         $PlastsListened = $PlastsListened->unique('idPlaylist');
 
