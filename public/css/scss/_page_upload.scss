@@ -24,6 +24,11 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+            
+        }
+
+        #label_song_file {
+            cursor: pointer;
         }
 
         input[type=text]::placeholder {
@@ -36,7 +41,7 @@
         }
 
         input[type=file] {
-            display: none;
+            
         }
     }
 }

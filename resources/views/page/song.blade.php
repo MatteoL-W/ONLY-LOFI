@@ -24,6 +24,7 @@
 
 @if ($playlist === true)
 
+
     <section class='songsFromPlaylist'>
 
         <div class="border-gauche">

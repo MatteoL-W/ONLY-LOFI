@@ -38,11 +38,22 @@ class MainController extends Controller
     }
 
     public function store(Request $request) {
+
+        $request->validate([
+            'song_title' => "required|min:4|max:255",
+            'song_file' => 'required|file|mimes:mp3,ogg'
+        ]);
+
+        $name = $request->file('song_file')->hashName();
+        $request->file('song_file')->move("uploads/".Auth::id(), $name);
+
         $song = new Song();
-        $song->title = $request->input('title');
-        $song->url = $request->input('url');
-        $song->votes = 0;
+        $song->title = $request->input('song_title');
+        $song->url = "/uploads/".Auth::id()."/".$name;
+
+        $song->img = "/assets/redswankurochuu.png";
         $song->user_id = Auth::id();
+
         $song->save();
 
         return redirect("upload");

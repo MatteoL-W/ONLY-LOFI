@@ -20,6 +20,7 @@ use App\Models\User;
 Route::get('/', [MainController::class, 'main'])->middleware('auth');
 
 Route::get('/upload', [MainController::class, 'upload'])->middleware('auth');
+Route::post('/upload/new', [MainController::class, 'store'])->middleware('auth');
 
 Route::get('/song', [MainController::class, 'song'])->middleware('auth');
 
