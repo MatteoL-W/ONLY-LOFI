@@ -25,6 +25,10 @@ class MainController extends Controller
         return view("page.upload");
     }
 
+    public function account() {
+        return view("page.account");
+    }
+
     public function likes() {
         $allLikes = Song::select('*')->join('likes','idSong','=','song.id')->where('idLikeur','=', Auth::id())->orderBy('likes.id', 'DESC')->get();
         return view("page.defaultAll", ["collection" => $allLikes]);
@@ -67,8 +71,10 @@ class MainController extends Controller
         
         $comments = Comment::join('users','comments.idWriter', '=', 'users.id')->where('idPost', '=', $id)->get();
         $nbComments = count($comments);
+
+        $allPlaylists = Playlist::select('id','title')->where('user_id','=', Auth::id())->get();
         
-        return view("page.song", ["song" => $song, "artist" => $uploaderName, "comments" => $comments, "nbComments" => $nbComments, "playlist" => false]);
+        return view("page.song", ["song" => $song, "artist" => $uploaderName, "comments" => $comments, "nbComments" => $nbComments, "playlist" => false, "allPlaylists" => $allPlaylists]);
     }
 
     public function playlistId($id) { 
@@ -122,5 +128,15 @@ class MainController extends Controller
     public function changeLike($id) {
         Auth::user()->ILikeThem()->toggle($id);
         return back();
+    }
+
+    public function addToPlaylist($idPlaylist, $idSong) {
+
+        $playlistSong = new PlaylistSong();
+        $playlistSong->idPlaylist = $idPlaylist;
+        $playlistSong->idSong = $idSong;
+        $playlistSong->save();
+
+        return redirect("/song/$idPlaylist");
     }
 }

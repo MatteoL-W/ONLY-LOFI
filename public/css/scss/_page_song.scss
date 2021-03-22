@@ -5,6 +5,7 @@
     flex-direction: row;
     align-items: center;
 
+    position: relative;
 
     .icon-fleche {
         padding-right: 0;
@@ -16,6 +17,7 @@
         margin-left: 20px;
         cursor: pointer;
     }
+
 }
 
 .song_comments {

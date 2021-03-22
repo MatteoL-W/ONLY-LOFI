@@ -17,6 +17,7 @@ class CreatePlaylistSongs extends Migration
             $table->id();
             $table->integer('idPlaylist');
             $table->integer('idSong');
+            $table->timestamps();
         });
     }
 
