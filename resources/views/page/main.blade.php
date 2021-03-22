@@ -4,7 +4,7 @@
 
     <div class="container" style='margin-top: 50px'>
         <h2>Hello {{ Auth::user()->name }}, here are your last playlists listened</h2>
-        @include('partials/last4')
+        @include('partials/last4', ["collection" => $PlastsListened])
     </div>
 
     <section class="hero">
