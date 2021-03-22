@@ -16,6 +16,7 @@
     @include('partials/last4', ["collection" => $SlastsListened])
 
     <h2>Your likes</h2>
+    @include('partials/last4', ["collection" => $SlastsLikes])
     <a href="#">See all your likes</a>
 </section>
 
