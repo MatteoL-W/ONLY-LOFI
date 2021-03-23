@@ -9,6 +9,8 @@ use App\Models\Playlist;
 use App\Models\PlaylistSong;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Response;
 
 
 class MainController extends Controller
@@ -55,11 +57,22 @@ class MainController extends Controller
     }
 
     public function store(Request $request) {
+
+        $request->validate([
+            'song_title' => "required|min:4|max:255",
+            'song_file' => 'required|file|mimes:mp3,ogg'
+        ]);
+
+        $name = $request->file('song_file')->hashName();
+        $request->file('song_file')->move("uploads/".Auth::id(), $name);
+
         $song = new Song();
-        $song->title = $request->input('title');
-        $song->url = $request->input('url');
-        $song->votes = 0;
+        $song->title = $request->input('song_title');
+        $song->url = "/uploads/".Auth::id()."/".$name;
+
+        $song->img = "/assets/redswankurochuu.png";
         $song->user_id = Auth::id();
+
         $song->save();
 
         return redirect("upload");
@@ -132,6 +145,19 @@ class MainController extends Controller
         return back();
     }
 
+    public function render($id, $file) {
+        $song = Song::find($id);
+        $file = ".".$song->url;
+        $mime_type = "audio/mp3";
+        $fileContents = File::get($file);
+
+        return Response::make($fileContents, 200)
+            ->header('Accept-Ranges', 'bytes')
+            ->header('Content-Type', $mime_type)
+            ->header('Content-Length', filesize($file))
+            ->header('vary', 'Accept-Encoding');
+        }
+        
     public function addToPlaylist($idPlaylist, $idSong) {
 
         $playlistSong = new PlaylistSong();

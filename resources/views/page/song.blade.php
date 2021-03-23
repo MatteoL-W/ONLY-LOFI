@@ -1,5 +1,12 @@
 @extends('template')
 
+@php
+
+$nb = 0;
+
+@endphp
+
+
 @section('content')
 
 <div class="grid_avatar song">
@@ -12,7 +19,7 @@
 
 
         <div class="song__info-icons">
-            <a href="#" data-file="{{$song->url}}" class="song">
+            <a href="#" data-file="/render/{{ $song->id }}{{substr($song->url, 10)}}" data-nb="{{$nb++}}" data-title="{{$song->title}}" data-artist="{{$artist[0]->name}}" class="song">
                 <div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div>
             </a>      
             @if ($playlist === false)
@@ -36,6 +43,7 @@
 </div>
 
 @if ($playlist === true)
+
 
     <section class='songsFromPlaylist'>
 
