@@ -7,12 +7,13 @@
             <img src="/assets/img_upload.png" alt="Upload image">
         </div>
         <div class="upload__grid-upload">
-            <form action="">
+            <form method="POST" action="/upload/new" enctype="multipart/form-data">
+            @CSRF
                 <h2>Upload your song</h2>
                 <input type="text" name="song_title" id="song_title" placeholder="song title">
-                <div id="redirect_file"><span>your song</span><i class='icon-music'></i></div>
+                <label  id="label_song_file"><div id="redirect_file"><span>your song</span><i class='icon-music'></i></div></label>
 
-                <input type="file" name="song_file" id="song_file">
+                <input type="file" name="song_file" id="song_file" accept="audio/mp3, audio/ogg">
                 <input type="submit" value="SUBMIT      →" class="bouton-bleu">
             </form>
         </div>

@@ -15,6 +15,7 @@
     <title>ONLY-LOFI</title>
 </head>
 <body>
+    
     <header>
         <div class='header__left'><a href="/"><img src="/assets/inline-logo.svg" alt="Logo ONLYLOFI" class='header__left-logo'></a></div>
         <div class='header__right'>
@@ -30,6 +31,7 @@
             </div>
         </div>
     </header>
+    @include('partials.audioplayer')
 
     <div id="menu" class='menu'>
         <div class="menu__grid">
@@ -53,9 +55,7 @@
         see more<br><i class='icon-fleche'></i>
     </div>
 
-    <div id="lecteur">
-        <audio controls id="audio">
-    </div>
+    
     
     <footer>
         footer <i class='icon-music'></i>
@@ -64,6 +64,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+    <script src="https://kit.fontawesome.com/721a596d94.js" crossorigin="anonymous"></script>
     <script src="/script/vanilla-tilt.min.js"></script>
     <script src="/script/menu.js"></script>
     <script src="/script/hover_circle.js"></script>

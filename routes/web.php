@@ -20,10 +20,13 @@ use App\Models\User;
 Route::get('/', [MainController::class, 'main'])->middleware('auth');
 
 Route::get('/upload', [MainController::class, 'upload'])->middleware('auth');
+Route::post('/upload/new', [MainController::class, 'store'])->middleware('auth');
 
 Route::get('/account', [MainController::class, 'account'])->middleware('auth');
 
 Route::get('/song', [MainController::class, 'song'])->middleware('auth');
+
+Route::get("/render/{id}/{file}", [MainController::class, "render"])->middleware('auth')->where("id", "[0-9]+");
 
 Route::get('/likes', [MainController::class, 'likes'])->middleware('auth');
 

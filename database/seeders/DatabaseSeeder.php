@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
         DB::table('song')->insert([
             'title' => 'chanson un',
             'url' => 'https://www.dropbox.com/s/lhwia07riwm9pms/old-songs-but-its-lofi-remix.mp3?dl=0',
-            'votes' => 1350,
             'user_id' => 1,
         ]);
         
