@@ -613,13 +613,9 @@ header .header__right input[type=submit] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
 }
 
 .song__info-icons .icon-fleche {
@@ -953,6 +949,21 @@ button {
 .comments input[type=submit] {
   margin-left: auto;
   outline: none;
+}
+
+#bloc_playlist {
+  position: absolute;
+  left: 50%;
+  background-color: #BF2B3D;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+#bloc_playlist a {
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+  border-top: 1px solid #EBEBEB;
 }
 
 .user-component {

@@ -34,6 +34,8 @@ $nb = 0;
                 
                 
                 <a><i class='icon-playlist'></i></a>
+                
+                @include('partials/addToPlaylist', ['idSong' => $song->id])
             @endif
         </div>
 
