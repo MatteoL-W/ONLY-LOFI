@@ -2,21 +2,17 @@
     <div>
         <h2>Lasts playlists</h2>
         <ol class='border-gauche'>
-            <li><a href="##">beats to relax/study to</a></li>
-            <li><a href="##">beats to relax/study to</a></li>
-            <li><a href="##">beats to relax/study to</a></li>
-            <li><a href="##">beats to relax/study to</a></li>
-            <li><a href="##">beats to relax/study to</a></li>
+            @foreach ($playlists as $playlist)
+                <li><a href="/playlist/{{$playlist->id}}">{{$playlist->title}}</span></a></li>
+            @endforeach
         </ol>
     </div>
     <div>
         <h2>Lasts songs</h2>
         <ol class='border-gauche'>
-            <li><a href="##">Blue moon <span>by Tysu, Spencer Hunt</span></a></li>
-            <li><a href="##">Blue moon <span>by Tysu, Spencer Hunt</span></a></li>
-            <li><a href="##">Blue moon <span>by Tysu, Spencer Hunt</span></a></li>
-            <li><a href="##">Blue moon <span>by Tysu, Spencer Hunt</span></a></li>
-            <li><a href="##">Blue moon <span>by Tysu, Spencer Hunt</span></a></li>
+            @foreach ($songs as $song)
+                <li><a href="/song/{{$song->id}}">{{$song->title}}</span></a></li>
+            @endforeach
         </ol>
     </div>
 

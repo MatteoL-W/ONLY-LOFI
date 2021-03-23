@@ -70,5 +70,6 @@
     <script src="/script/jquery.pjax.js"></script>
     <script src="/script/toastr.min.js"></script>
     <script src="/script/player.js"></script>
+    <script src="/script/app.js"></script>
 </body>
 </html>

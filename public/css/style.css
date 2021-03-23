@@ -447,7 +447,6 @@ header .header__right input[type=submit] {
   display: flex;
   flex-direction: row;
   align-items: center;
-  position: relative;
 }
 .song__info-icons .icon-fleche {
   padding-right: 0;
@@ -671,17 +670,23 @@ header .header__right input[type=submit] {
 
 #bloc_playlist {
   position: absolute;
-  left: 50%;
+  left: 20%;
+  top: 100%;
   background-color: #BF2B3D;
   font-size: 2rem;
   display: flex;
   flex-direction: column;
+  display: none;
 }
 #bloc_playlist a {
   color: white;
   text-decoration: none;
   padding: 20px;
   border-top: 1px solid #EBEBEB;
+}
+
+#bloc_playlist.active {
+  display: flex;
 }
 
 .user-component {

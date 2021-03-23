@@ -31,12 +31,12 @@ class MainController extends Controller
 
     public function likes() {
         $allLikes = Song::select('*')->join('likes','idSong','=','song.id')->where('idLikeur','=', Auth::id())->orderBy('likes.id', 'DESC')->get();
-        return view("page.defaultAll", ["collection" => $allLikes]);
+        return view("page.defaultAll", ["collection" => $allLikes, "intitule" => "Your likes"]);
     }
 
     public function playlists() {
         $playlists = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->limit(4)->orderBy('playlist.id', 'DESC')->get();
-        return view("page.defaultAll", ["collection" => $playlists]);
+        return view("page.defaultAll", ["collection" => $playlists, "intitule" => "Your playlists created"]);
     }
 
     public function song() {
@@ -98,8 +98,10 @@ class MainController extends Controller
 
     public function userId($id) {
         $user = User::findOrFail($id);
+        $playlists = Playlist::select('id', 'title')->where('user_id', '=', $id)->limit(4)->get();
+        $songs = Song::select('id', 'title')->where('user_id', '=', $id)->limit(4)->get();
         $social = ['youtube', 'soundcloud', 'twitter', 'instagram'];
-        return view("page.user", ["user" => $user, "social" => $social]);
+        return view("page.user", ["user" => $user, "social" => $social, "playlists" => $playlists, "songs" => $songs]);
     }
 
     public function addComment($id, Request $request) {
