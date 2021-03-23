@@ -24,6 +24,8 @@ Route::post('/upload/new', [MainController::class, 'store'])->middleware('auth')
 
 Route::get('/song', [MainController::class, 'song'])->middleware('auth');
 
+Route::get("/render/{id}/{file}", [MainController::class, "render"])->middleware('auth')->where("id", "[0-9]+");
+
 Route::get('/likes', [MainController::class, 'likes'])->middleware('auth');
 
 Route::get('/song/{id}', [MainController::class, 'songId'])->where('id','[0-9]+');

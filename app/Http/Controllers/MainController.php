@@ -9,6 +9,8 @@ use App\Models\Playlist;
 use App\Models\PlaylistSong;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Response;
 
 
 class MainController extends Controller
@@ -134,4 +136,17 @@ class MainController extends Controller
         Auth::user()->ILikeThem()->toggle($id);
         return back();
     }
+
+    public function render($id, $file) {
+        $song = Song::find($id);
+        $file = ".".$song->url;
+        $mime_type = "audio/mp3";
+        $fileContents = File::get($file);
+
+        return Response::make($fileContents, 200)
+            ->header('Accept-Ranges', 'bytes')
+            ->header('Content-Type', $mime_type)
+            ->header('Content-Length', filesize($file))
+            ->header('vary', 'Accept-Encoding');
+        }
 }

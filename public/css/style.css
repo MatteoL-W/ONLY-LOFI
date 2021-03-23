@@ -625,6 +625,7 @@ header .header__right input[type=submit] {
 .song__info-icons .icon-fleche {
   padding-right: 0;
 }
+
 .song__info-icons > a > i {
   font-size: 3rem;
   color: #2D77A0;
@@ -791,6 +792,7 @@ header .header__right input[type=submit] {
   margin: 0 auto;
   margin-top: 50px;
 }
+
 .library a.see-all {
   margin-top: 20px;
   color: #2D77A0;
@@ -800,8 +802,60 @@ header .header__right input[type=submit] {
   margin-bottom: 50px;
   display: block;
 }
+
 .library a.see-all:hover {
   text-decoration: underline;
+}
+
+#lecteur {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 13%;
+  z-index: 1000;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+}
+
+.buffered {
+  height: 20px;
+  position: relative;
+  background: #555;
+  width: 300px;
+}
+
+#buffered-amount {
+  display: block;
+  height: 100%;
+  background-color: #777;
+  width: 0;
+}
+
+.progress {
+  margin-top: -20px;
+  height: 20px;
+  position: relative;
+  width: 300px;
+}
+
+#progress-amount {
+  display: block;
+  height: 100%;
+  background-color: #595;
+  width: 0;
 }
 
 .grid_avatar {
