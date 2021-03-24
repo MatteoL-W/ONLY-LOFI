@@ -1,3 +1,7 @@
+.song__info a {
+    color: $bleu;
+}
+
 .song__info-icons {
     margin-top: 40px;
 
@@ -100,4 +104,8 @@
         color: $bleu;
         font-family: "Bahnschrift";
     }
+}
+
+.song {
+    text-decoration: none;
 }

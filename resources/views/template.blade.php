@@ -57,8 +57,23 @@
 
     
     
-    <footer>
-        footer <i class='icon-music'></i>
+    <footer class="footer">
+        <div class="footer__network">
+            <h2>Follow us on our networks</h2>
+            <div class="footer__network-icons">
+                <a href="href">
+                    <img src="/assets/twitter.png" alt="Logo twitter">
+                </a>
+
+                <a href="href">
+                    <img src="/assets/ytb.png" alt="Logo twitter">
+                </a>
+
+                <a href="href">
+                    <img src="/assets/fb.png" alt="Logo twitter">
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

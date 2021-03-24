@@ -9,7 +9,12 @@
         </div>
 
         <div class="user__grid-text">
-            <h2>{{$user->name}}</h2>
+            @if (Auth::id() == $user->id)
+                <h2>You ({{$user->name}})</h2>
+                <a class='wanna_update' href='/account'>want to update your profile ?</a>
+            @else
+                <h2>{{$user->name}}</h2>
+            @endif
             <p>{{$user->description}}</p>
             <div class="user__grid-text_redirect">
             @if ($user->youtube !== '')

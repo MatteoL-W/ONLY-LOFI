@@ -15,7 +15,8 @@ $nb = 0;
     </div>
     <div class="song__info">
         <h2>{{$song->title}}</h2>
-        <p>published by <a href="/user/{{$song->user_id}}">{{$artist[0]->name}}</a>.</p>
+        <p>published by <a href="/user/{{$song->user_id}}">{{$artist[0]->name}}</a> @if ($playlist === false) / {{$nbLikes}} likes - {{$nbPlays}} plays @endif </p>
+        
 
 
         <div class="song__info-icons">
@@ -77,18 +78,24 @@ $nb = 0;
 
         @foreach ($comments as $comment)
 
-        <div class="comment">
-            <a href="#">
-                <img src="/assets/kurochuu.png" alt="">
+            <div class="comment">
+                <a href="/user/{{$comment->id}}">
+                    <img src="/assets/kurochuu.png" alt="">
 
-                <div class="under_img">{{$comment->name}}</div>
-            </a>
+                    <div class="under_img">{{$comment->name}}</div>
+                </a>
 
-            <div>
-                <p>{{$comment->content}}</p>
-                <p class="comment__info">published the {{$comment->created_at}}</p>
+                <div>
+                    <p>{{$comment->content}}</p>
+                    <p class="comment__info">published the {{$comment->when}}
+                    @if ($comment->id == Auth::id())
+                     | <a href='/deleteComment/{{$comment->idComment}}'>Delete my comment</a>
+                    @endif
+                    </p>
+                    
+
+                </div>
             </div>
-        </div>
 
         @endforeach
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Listened;
+use App\Models\Likes;
 use App\Models\Playlist;
 use App\Models\PlaylistSong;
 use Illuminate\Http\Request;
@@ -82,12 +84,16 @@ class MainController extends Controller
         $song = Song::findOrFail($id);
         $uploaderName = User::select('name')->where('id', '=', $song->user_id)->get();
         
-        $comments = Comment::join('users','comments.idWriter', '=', 'users.id')->where('idPost', '=', $id)->get();
+        $comments = Comment::select('*', 'comments.updated_at as when', 'comments.id as idComment')->join('users','comments.idWriter', '=', 'users.id')->where('idPost', '=', $id)->get();
         $nbComments = count($comments);
+
+        $nbLikes = count(Likes::where('idSong','=',$id)->get());
+
+        $nbPlays = count(Listened::where('idListened','=',$id)->where('playlist','=',0)->get());
 
         $allPlaylists = Playlist::select('id','title')->where('user_id','=', Auth::id())->get();
         
-        return view("page.song", ["song" => $song, "artist" => $uploaderName, "comments" => $comments, "nbComments" => $nbComments, "playlist" => false, "allPlaylists" => $allPlaylists]);
+        return view("page.song", ["song" => $song, "artist" => $uploaderName, "comments" => $comments, "nbComments" => $nbComments, "playlist" => false, "allPlaylists" => $allPlaylists, "nbLikes" => $nbLikes, "nbPlays" => $nbPlays]);
     }
 
     public function playlistId($id) { 
@@ -129,7 +135,17 @@ class MainController extends Controller
         $comment->save();
 
         return redirect("/song/$id");
+    }
 
+    public function deleteComment($id) {
+        $remover = Auth::id();
+        $post_author = Comment::where('id','=',$id)->first();
+
+        if ($post_author->idWriter == $remover) {
+            Comment::find($id)->delete();
+        }
+
+        return back();
     }
 
     public function search($search) {
