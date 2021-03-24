@@ -617,14 +617,8 @@ header .header__right input[type=submit] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
+  flex-direction: row;
+  align-items: center;
 }
 
 .song__info-icons .icon-fleche {
@@ -1113,16 +1107,15 @@ button:hover {
 
 #bloc_playlist {
   position: absolute;
-  left: 50%;
+  left: 20%;
+  top: 100%;
   background-color: #BF2B3D;
   font-size: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
+  display: none;
 }
 
 #bloc_playlist a {
@@ -1130,6 +1123,10 @@ button:hover {
   text-decoration: none;
   padding: 20px;
   border-top: 1px solid #EBEBEB;
+}
+
+#bloc_playlist.active {
+  display: flex;
 }
 
 .user-component {

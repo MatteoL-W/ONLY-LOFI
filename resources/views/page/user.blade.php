@@ -37,7 +37,7 @@
         
     </div>
 
-    @include('partials/lasts-user')
+    @include('partials/lasts-user', ["playlists" => $playlists, "songs" => $songs])
 
 
 @endsection

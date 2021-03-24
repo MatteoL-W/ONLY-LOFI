@@ -1,6 +1,6 @@
 #bloc_playlist {
     position: absolute;
-    left: 50%;
+    left: 20%; top: 100%;
     background-color: $rouge;
     font-size: 2rem;
 
@@ -13,4 +13,10 @@
         padding: 20px;
         border-top: 1px solid $gris;
     }
+
+    display: none;
+}
+
+#bloc_playlist.active {
+    display: flex;
 }
