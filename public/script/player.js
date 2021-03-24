@@ -6,7 +6,7 @@ $(document).ready(function() {
          audio.play();
          document.getElementById('play_button').className = 'fas fa-pause';
          document.getElementById('title').innerHTML = $(this).attr('data-title')
-         document.getElementById('artist').innerHTML = $(this).attr('data-artist')
+         document.getElementById('artist').innerHTML = "|&ensp; Upload by "+$(this).attr('data-artist')
     })
     var audio = $('#audio')[0]
     /*Bouton play - pause*/ 
@@ -23,17 +23,17 @@ $(document).ready(function() {
         }
     });
 
+    
     document.getElementById('mute-icon').addEventListener('click', function(){
         var balAudio = document.getElementsByTagName('audio')[0];
-        var currvolume = balAudio.volume;
-        if(currvolume == 0){
-            balAudio.volume = currvolume;
-            document.getElementById('mute-icon').className = 'fas fa-volume-mute';
-            mutebis = false;
+        var savedvolume = document.getElementById('volume-slider').value;
+
+        if(balAudio.volume == 0) {
+            balAudio.volume = savedvolume;
+            document.getElementById('mute-icon').className = 'fas fa-volume-up';
         } else {
             balAudio.volume = 0;
-            document.getElementById('mute-icon').className = 'fas fa-volume-up';
-            mutebis = true;
+            document.getElementById('mute-icon').className = 'fas fa-volume-mute';
         }
     });
 
@@ -101,21 +101,8 @@ function volume(amount){
     balAudio.volume = amount;
     if(balAudio.volume == 0){
         document.getElementById('mute-icon').className = 'fas fa-volume-mute';
+    } else {
+      document.getElementById('mute-icon').className = 'fas fa-volume-up';
     }
 }
 
-let mutebis = false;
-function mute(){
-    var balAudio = document.getElementsByTagName('audio')[0];
-    var currvolume = balAudio.volume;
-    if(mutebis == true){
-        balAudio.volume = currvolume;
-        document.getElementById('mute-icon').className = 'fas fa-volume-mute';
-        mutebis = false;
-    } else {
-        balAudio.volume = 0;
-        document.getElementById('mute-icon').className = 'fas fa-volume-up';
-        mutebis = true;
-    }
-    
-}

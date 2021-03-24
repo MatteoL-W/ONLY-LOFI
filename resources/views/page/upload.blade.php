@@ -10,8 +10,8 @@
             <form method="POST" action="/upload/new" enctype="multipart/form-data">
             @CSRF
                 <h2>Upload your song</h2>
-                <input type="text" name="song_title" id="song_title" placeholder="song title">
-                <label  id="label_song_file"><div id="redirect_file"><span>your song</span><i class='icon-music'></i></div></label>
+                <input type="text" name="song_title" id="song_title" placeholder="Song title - Artist">
+                <label for="song_file" id="label_song_file"><div id="redirect_file"><span>Your song</span><i class='icon-music'></i></div></label>
 
                 <input type="file" name="song_file" id="song_file" accept="audio/mp3, audio/ogg">
                 <input type="submit" value="SUBMIT      →" class="bouton-bleu">
