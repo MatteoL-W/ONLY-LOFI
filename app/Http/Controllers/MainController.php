@@ -303,4 +303,54 @@ class MainController extends Controller
 
         return redirect("/playlist/" . $playlist->id);
     }
+
+    public function modifImage($type, $id) {
+        if ($type == "playlist") {
+            $changing = Playlist::where('id','=',$id)->where('user_id','=',Auth::id())->get()->first();
+            if ($changing == "") {
+                return view('errors/404');
+            }
+            return view('page.modifImg', ["changing" => $changing]);
+        }
+        
+        else if ($type == "song") {
+            $changing = Song::where('id','=',$id)->where('user_id','=',Auth::id())->get()->first();
+            if ($changing == "") {
+                return view('errors/404');
+            }
+            return view('page.modifImg', ["changing" => $changing]);
+        }
+        
+        else {
+            return view('errors/404');
+        }
+    }
+
+    public function TmodifImage(Request $request, $type, $id) {
+        if ($type == "song") {
+            $song = Song::where('id','=',$id)->get()->first();
+        } else if ($type == "playlist") {
+            $playlist = Playlist::where('id','=',$id)->get()->first();
+        }
+
+        $request->validate([
+            'avatar_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        if ($type == "song") {
+            $avatarName = Auth::user()->id.'_song'.$song->title . time().'.'.request()->avatar_file->getClientOriginalExtension();
+            $request->file('avatar_file')->storeAs('public',$avatarName);
+            $song->img = "/storage/".$avatarName;
+            $song->save();
+        }
+        
+        else if ($type == "playlist") {
+            $avatarName = Auth::user()->id.'_playlist'.$playlist->title . time().'.'.request()->avatar_file->getClientOriginalExtension();
+            $request->file('avatar_file')->storeAs('public',$avatarName);
+            $playlist->img = "/storage/".$avatarName;
+            $playlist->save();
+        }
+
+        return back();
+    }
 }

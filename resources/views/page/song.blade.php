@@ -12,6 +12,15 @@ $nb = 0;
 <div class="grid_avatar song">
     <div class='border-bleu-droit'>
         <img src="{{$song->img}}" alt="{{$song->title}}">
+        @if ($playlist === false)
+            @if ($song->user_id == Auth::id())
+            <a href="/modifImage/song/{{$song->id}}" class="modify">Modify this image</a>
+            @endif
+        @else
+            @if ($song->user_id == Auth::id())
+            <a href="/modifImage/playlist/{{$song->id}}" class="modify">Modify this image</a>
+            @endif
+        @endif
     </div>
     <div class="song__info">
         <h2>{{$song->title}}</h2>

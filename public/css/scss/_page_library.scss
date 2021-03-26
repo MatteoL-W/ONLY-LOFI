@@ -9,11 +9,14 @@
         font-size: 2rem;
         text-align: right;
         text-decoration: none;
-        margin-bottom: 50px;
         display: block;
     }
 
     a.see-all:hover {
         text-decoration: underline;
+    }
+
+    h2 {
+        margin-top: 40px;
     }
 }

@@ -477,6 +477,33 @@ header .header__right input[type=submit] {
   display: none;
 }
 
+.song {
+  text-decoration: none;
+}
+.song > div {
+  position: relative;
+}
+
+.modify {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  padding-top: 0 !important;
+  background-color: #2D77A0;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.song:hover .modify {
+  display: flex;
+}
+
 .song__info a {
   color: #2D77A0;
 }
@@ -567,10 +594,6 @@ header .header__right input[type=submit] {
   font-family: "Bahnschrift";
 }
 
-.song {
-  text-decoration: none;
-}
-
 .user__grid-image {
   width: 400px;
   height: 400px;
@@ -637,11 +660,13 @@ header .header__right input[type=submit] {
   font-size: 2rem;
   text-align: right;
   text-decoration: none;
-  margin-bottom: 50px;
   display: block;
 }
 .library a.see-all:hover {
   text-decoration: underline;
+}
+.library h2 {
+  margin-top: 40px;
 }
 
 .network-input {

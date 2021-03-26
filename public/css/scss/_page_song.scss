@@ -1,3 +1,32 @@
+.song {
+    text-decoration: none;
+    > div {
+        position: relative;
+    }
+}
+
+.modify {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 50px;
+    width: 100%;
+
+    padding-top: 0 !important;
+    background-color: $bleu;
+    color: white;
+    font-size: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    display: none;
+}
+
+.song:hover .modify{
+    display: flex;
+}
+
 .song__info a {
     color: $bleu;
 }
@@ -106,6 +135,3 @@
     }
 }
 
-.song {
-    text-decoration: none;
-}

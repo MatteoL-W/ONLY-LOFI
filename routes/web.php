@@ -49,5 +49,8 @@ Route::get('/search/{id}', [MainController::class, "search"]);
 
 Route::get('/changeLike/{id}', [MainController::class, "changeLike"])->middleware('auth')->where('id','[0-9]+');
 
+Route::get('/modifImage/{type}/{id}', [MainController::class, "modifImage"])->middleware('auth')->where('id','[0-9]+');
+Route::post('/modifImage/{type}/{id}', [MainController::class, "TmodifImage"])->middleware('auth')->where('id','[0-9]+');
+
 Auth::routes(['verify' => true]);
 
