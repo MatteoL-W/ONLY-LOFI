@@ -31,6 +31,7 @@
     <form action="/account/networks" method="POST" class="update_info">
         @CSRF
         <h2>Update your informations</h2>
+        <textarea name="description">{{$user->description}}</textarea>
         <div class="container">
             <input name="youtube" type="text" class="network-input youtube" placeholder="change Youtube link" value="{{$user->youtube}}">
             <input name="soundcloud" type="text" class="network-input soundcloud" placeholder="change Soundcloud link" value="{{$user->soundcloud}}">

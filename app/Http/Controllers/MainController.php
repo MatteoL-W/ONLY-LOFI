@@ -244,6 +244,15 @@ class MainController extends Controller
                 Auth::user()->save();
             }
         }
+
+        if (isset($request->description) && (Auth::user()->description != $request->description)) {
+            $request->validate([
+                "description" => 'required|max:255'
+            ]);
+
+            Auth::user()->description = $request->input('description');
+            Auth::user()->save();
+        }
         
         return back();
     }

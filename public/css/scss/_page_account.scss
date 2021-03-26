@@ -33,6 +33,17 @@
         margin-left: auto;
         margin-top: 40px;
     }
+
+    textarea {
+        font-size: 2rem;
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        outline: none;
+        background-color: $bleu;
+        border: 1px solid $gris;
+        color: $gris;
+    }
 }
 
 .network-input::placeholder {
