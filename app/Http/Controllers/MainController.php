@@ -65,17 +65,21 @@ class MainController extends Controller
 
         $request->validate([
             'song_title' => "required|min:4|max:255",
-            'song_file' => 'required|file|mimes:mp3,ogg'
+            'song_file' => 'required|file|mimes:mp3,ogg',
+            'avatar_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $name = $request->file('song_file')->hashName();
         $request->file('song_file')->move("uploads/".Auth::id(), $name);
 
+        $avatarName = Auth::user()->id.'_song'.$request->input('song_title').'.'.request()->avatar_file->getClientOriginalExtension();
+        $request->file('avatar_file')->storeAs('public',$avatarName);
+
         $song = new Song();
         $song->title = $request->input('song_title');
         $song->url = "/uploads/".Auth::id()."/".$name;
 
-        $song->img = "/assets/redswankurochuu.png";
+        $song->img = "/storage/".$avatarName;
         $song->user_id = Auth::id();
 
         $song->save();
@@ -178,12 +182,28 @@ class MainController extends Controller
         
     public function addToPlaylist($idPlaylist, $idSong) {
 
+        $tmp = PlaylistSong::where('idPlaylist','=',$idPlaylist)->where('idSong','=',$idSong)->get();
+
+        if (count($tmp) == 0) {
+            $playlistSong = new PlaylistSong();
+            $playlistSong->idPlaylist = $idPlaylist;
+            $playlistSong->idSong = $idSong;
+            $playlistSong->save();
+        }
+
+        //avertissement doublon
+        return redirect("/playlist/$idPlaylist");
+    }
+
+    // ignorer doublon
+    public function ForceToPlaylist($idPlaylist, $idSong) {
+
         $playlistSong = new PlaylistSong();
         $playlistSong->idPlaylist = $idPlaylist;
         $playlistSong->idSong = $idSong;
         $playlistSong->save();
 
-        return redirect("/song/$idPlaylist");
+        return redirect("/playlist/$idPlaylist");
     }
 
     public function refreshInfo(Request $request) {
@@ -255,5 +275,28 @@ class MainController extends Controller
         }
         
         return back();
+    }
+
+    public function createPlaylist() {
+        return view("page.createPlaylist");
+    }
+
+    public function TcreatePlaylist(Request $request) {
+        $request->validate([
+            'playlist_title' => "required|min:4|max:255",
+            'avatar_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $avatarName = Auth::user()->id.'_playlist'.$request->input('playlist_title').'.'.request()->avatar_file->getClientOriginalExtension();
+        $request->file('avatar_file')->storeAs('public',$avatarName);
+
+        $playlist = new Playlist();
+        $playlist->title = $request->input('playlist_title');
+        $playlist->img = "/storage/".$avatarName;
+        $playlist->user_id = Auth::id();
+
+        $playlist->save();
+
+        return redirect("/playlist/" . $playlist->id);
     }
 }

@@ -36,6 +36,9 @@ Route::get('/song/{id}', [MainController::class, 'songId'])->where('id','[0-9]+'
 Route::post('/song/{id}', [MainController::class, 'addComment'])->where('id','[0-9]+');
 Route::get('/deleteComment/{id}', [MainController::class, 'deleteComment'])->where('id','[0-9]+');
 
+Route::get('/createPlaylist', [MainController::class, 'createPlaylist'])->middleware('auth');
+Route::post('/createPlaylist', [MainController::class, 'TcreatePlaylist'])->middleware('auth');
+
 Route::get('/playlists', [MainController::class, 'playlists'])->middleware('auth');
 Route::get('/playlist/{id}', [MainController::class, 'playlistId'])->where('id','[0-9]+');
 Route::get('/addToPlaylist/{idPlaylist}/{idSong}', [MainController::class, 'addToPlaylist'])->middleware('auth')->where('idPlaylist','[0-9]+')->where('idSong','[0-9]+');
