@@ -4,14 +4,23 @@
 
 <section class="library">
 
-    <h2>Your lasts playlists listened</h2>
-    @include('partials/last4', ["collection" => $PlastsListened])
-    <a class='see-all' href="#">See all your playlists...</a>
+    <section class="template2">
+        <div class="template2__grid">
+            <h2>Your lasts playlists listened</h2>
+            @include('partials/last2', ["collection" => $PlastsListened])
+        </div>
 
-    <h2>Your lasts playlist created</h2>
-    @include('partials/last4', ["collection" => $PlastsCreated])
-    <a class='see-all' href="#">See all your playlists...</a>
+        <div class="template2__grid">
+            <h2>Your lasts playlists created</h2>
+            @include('partials/last2', ["collection" => $PlastsCreated])
+        </div>
+    </section>
+    
+    <a class='see-all' href="/playlists">See all your playlists...</a>
 
+    <h2>Playlists lastly listened by users</h2>
+    @include('partials/last4', ["collection" => $PlastlyListened])
+    
     <h2>Your lasts songs listened</h2>
     @include('partials/last4', ["collection" => $SlastsListened])
 

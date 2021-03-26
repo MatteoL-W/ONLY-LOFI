@@ -1,0 +1,22 @@
+.template2 {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+
+    &__grid {
+        width: 50%;
+
+        > div {
+            text-align: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 20px;
+        }
+
+        h2 {
+            text-align: left;
+        }
+    }
+
+    
+}

@@ -19,6 +19,18 @@
                 margin-right: 20px;
             }
         }
+
+        > a {
+            color: #9B9999;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        p {
+            margin-top: 20px;
+        }
     }
 }
 
@@ -29,10 +41,10 @@
     color: $bleu;
     font-size: 2rem;
 
-    margin-top: 30px;
+    margin-top: 60px;
 
     > div {
-        transform: translateX(100px);
+        transform: translateX(150px);
     }
 
     h2 {

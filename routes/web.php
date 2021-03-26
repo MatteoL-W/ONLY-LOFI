@@ -23,6 +23,8 @@ Route::get('/upload', [MainController::class, 'upload'])->middleware('auth');
 Route::post('/upload/new', [MainController::class, 'store'])->middleware('auth');
 
 Route::get('/account', [MainController::class, 'account'])->middleware('auth');
+Route::post('/account/infos', [MainController::class, 'refreshInfo'])->middleware('auth');
+Route::post('/account/networks', [MainController::class, 'refreshNetwork'])->middleware('auth');
 
 Route::get('/song', [MainController::class, 'song'])->middleware('auth');
 
@@ -32,6 +34,10 @@ Route::get('/likes', [MainController::class, 'likes'])->middleware('auth');
 
 Route::get('/song/{id}', [MainController::class, 'songId'])->where('id','[0-9]+');
 Route::post('/song/{id}', [MainController::class, 'addComment'])->where('id','[0-9]+');
+Route::get('/deleteComment/{id}', [MainController::class, 'deleteComment'])->where('id','[0-9]+');
+
+Route::get('/createPlaylist', [MainController::class, 'createPlaylist'])->middleware('auth');
+Route::post('/createPlaylist', [MainController::class, 'TcreatePlaylist'])->middleware('auth');
 
 Route::get('/playlists', [MainController::class, 'playlists'])->middleware('auth');
 Route::get('/playlist/{id}', [MainController::class, 'playlistId'])->where('id','[0-9]+');
@@ -42,6 +48,9 @@ Route::get('/user/{id}', [MainController::class, 'userId'])->where('id','[0-9]+'
 Route::get('/search/{id}', [MainController::class, "search"]);
 
 Route::get('/changeLike/{id}', [MainController::class, "changeLike"])->middleware('auth')->where('id','[0-9]+');
+
+Route::get('/modifImage/{type}/{id}', [MainController::class, "modifImage"])->middleware('auth')->where('id','[0-9]+');
+Route::post('/modifImage/{type}/{id}', [MainController::class, "TmodifImage"])->middleware('auth')->where('id','[0-9]+');
 
 Auth::routes(['verify' => true]);
 
