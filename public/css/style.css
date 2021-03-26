@@ -629,13 +629,13 @@ header .header__right input[type=submit] {
 .library {
   width: 80%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 35px;
 }
 .library a.see-all {
   margin-top: 20px;
   color: #2D77A0;
   font-size: 2rem;
-  text-align: center;
+  text-align: right;
   text-decoration: none;
   margin-bottom: 50px;
   display: block;
@@ -713,6 +713,24 @@ header .header__right input[type=submit] {
 }
 .grid_avatar div:nth-child(2) {
   padding-top: 100px;
+}
+
+.template2 {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.template2__grid {
+  width: 50%;
+}
+.template2__grid > div {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+}
+.template2__grid h2 {
+  text-align: left;
 }
 
 .template4__grid {

@@ -13,23 +13,6 @@
             </a>
         @endforeach
 
-        
-
-        <!--<a class="template4__grid-card" href='#'>
-            <img src="/assets/lofistream.png" class='hover__listener' alt="">
-            <p>beats to relax/study to</p>
-        </a>
-
-        <a class="template4__grid-card" href='#'>
-            <img src="/assets/lofistream.png" class='hover__listener' alt="">
-            <p>beats to relax/study to</p>
-        </a>
-
-        <a class="template4__grid-card" href='#'>
-            <img src="/assets/lofistream.png" class='hover__listener' alt="">
-            <p>beats to relax/study to</p>
-        </a>-->
-
     </div>
 </section>
 
