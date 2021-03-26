@@ -5,9 +5,9 @@
         flex-direction: column;
         width: 500px;
 
-        input[type=text], div {
+        input[type=text], input[type=date], input[type=password], div {
             padding-left: 30px;
-            padding-right: 20px;
+            padding-right: 30px;
             margin-top: 20px;
             color: white;
             background-color: $bleu;
@@ -31,7 +31,7 @@
             cursor: pointer;
         }
 
-        input[type=text]::placeholder {
+        input[type=password]::placeholder,input[type=text]::placeholder {
             color: white;
         }
 

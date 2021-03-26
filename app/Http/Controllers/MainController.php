@@ -26,11 +26,13 @@ class MainController extends Controller
     }
 
     public function upload() {
-        return view("page.upload");
+        $user = Auth::user();
+        return view("page.upload", ["user" => $user]);
     }
 
     public function account() {
-        return view("page.account");
+        $user = User::findOrFail(Auth::id());
+        return view("page.account", ['user' => $user]);
     }
 
     public function likes() {
@@ -77,7 +79,7 @@ class MainController extends Controller
 
         $song->save();
 
-        return redirect("upload");
+        return redirect("/song/" . $song->id);
     }
 
     public function songId($id) { 
@@ -101,7 +103,6 @@ class MainController extends Controller
         $uploaderName = User::select('name')->where('id', '=', $playlist->user_id)->get();
 
         $playlistContent = [];
-        $artists = [];
         $playlistContentTable = PlaylistSong::all()->where('idPlaylist', '=', $id);
 
         foreach ($playlistContentTable as $songs) {

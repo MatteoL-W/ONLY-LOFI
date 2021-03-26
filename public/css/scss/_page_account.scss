@@ -1,3 +1,40 @@
-.account {
-    
+.network-input {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: white;
+    height: 50px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    text-align: center;
+
+    width: 35%;
+    margin-top: 20px;
+}
+
+.network-input:hover {
+    color: white;
+}
+
+.update_info {
+    width: 90%;
+    margin: 0 auto;
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    input[type=submit] {
+        margin-left: auto;
+        margin-top: 40px;
+    }
+}
+
+.network-input::placeholder {
+    color: white;
 }

@@ -100,7 +100,7 @@ p {
   top: -20px;
   left: 20px;
   width: 100%;
-  height: 100%;
+  height: 400px;
   z-index: -1;
 }
 
@@ -352,6 +352,7 @@ header .header__right input[type=submit] {
   height: 200px;
   background-size: cover;
   background-image: url("/assets/footer.svg");
+  margin-top: 80px;
   margin-bottom: 110px;
   position: relative;
 }
@@ -443,9 +444,9 @@ header .header__right input[type=submit] {
   flex-direction: column;
   width: 500px;
 }
-.upload__grid-upload form input[type=text], .upload__grid-upload form div {
+.upload__grid-upload form input[type=text], .upload__grid-upload form input[type=date], .upload__grid-upload form input[type=password], .upload__grid-upload form div {
   padding-left: 30px;
-  padding-right: 20px;
+  padding-right: 30px;
   margin-top: 20px;
   color: white;
   background-color: #2D77A0;
@@ -465,7 +466,7 @@ header .header__right input[type=submit] {
 .upload__grid-upload form #label_song_file {
   cursor: pointer;
 }
-.upload__grid-upload form input[type=text]::placeholder {
+.upload__grid-upload form input[type=password]::placeholder, .upload__grid-upload form input[type=text]::placeholder {
   color: white;
 }
 .upload__grid-upload form input[type=submit] {
@@ -641,6 +642,44 @@ header .header__right input[type=submit] {
 }
 .library a.see-all:hover {
   text-decoration: underline;
+}
+
+.network-input {
+  padding-left: 30px;
+  padding-right: 30px;
+  color: white;
+  height: 50px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  font-size: 2rem;
+  text-align: center;
+  width: 35%;
+  margin-top: 20px;
+}
+
+.network-input:hover {
+  color: white;
+}
+
+.update_info {
+  width: 90%;
+  margin: 0 auto;
+}
+.update_info div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.update_info input[type=submit] {
+  margin-left: auto;
+  margin-top: 40px;
+}
+
+.network-input::placeholder {
+  color: white;
 }
 
 .grid_avatar {
