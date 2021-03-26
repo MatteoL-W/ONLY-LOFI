@@ -606,7 +606,7 @@ header .header__right input[type=submit] {
   margin-top: 30px;
 }
 #last-user > div {
-  transform: translateX(100px);
+  transform: translateX(150px);
 }
 #last-user h2 {
   transform: translateX(-20px);
@@ -680,6 +680,14 @@ header .header__right input[type=submit] {
 
 .network-input::placeholder {
   color: white;
+}
+
+.upload__grid-upload h2 {
+  margin: 0;
+}
+.upload__grid-upload .wanna_update {
+  color: #9B9999;
+  margin-bottom: 20px;
 }
 
 .grid_avatar {

@@ -22,15 +22,15 @@
             @endif
 
             @if ($user->soundcloud !== '')
-            <a href="##" class='bouton-bleu soundcloud'>SEE SOUNDCLOUD <i class="icon-fleche"></i></a>
+            <a href="{{$user->soundcloud}}" class='bouton-bleu soundcloud'>SEE SOUNDCLOUD <i class="icon-fleche"></i></a>
             @endif
 
             @if ($user->twitter !== '')
-            <a href="##" class='bouton-bleu twitter'>SEE TWITTER <i class="icon-fleche"></i></a>
+            <a href="{{$user->twitter}}" class='bouton-bleu twitter'>SEE TWITTER <i class="icon-fleche"></i></a>
             @endif
 
             @if ($user->instagram !== '')
-            <a href="##" class='bouton-bleu instagram'>SEE INSTAGRAM <i class="icon-fleche"></i></a>
+            <a href="{{$user->instagram}}" class='bouton-bleu instagram'>SEE INSTAGRAM <i class="icon-fleche"></i></a>
             @endif
                 
                 

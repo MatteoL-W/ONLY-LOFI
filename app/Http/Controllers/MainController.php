@@ -12,6 +12,7 @@ use App\Models\PlaylistSong;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Response;
 
 
@@ -183,5 +184,67 @@ class MainController extends Controller
         $playlistSong->save();
 
         return redirect("/song/$idPlaylist");
+    }
+
+    public function refreshInfo(Request $request) {
+
+        if (isset($request->email) && (Auth::user()->email != $request->email)) {
+            $request->validate([
+                'email' => 'required|email'
+            ]);
+
+            Auth::user()->email = $request->input('email');
+            Auth::user()->save();
+        }
+
+        if (isset($request->birthday) && (Auth::user()->birthday != $request->birthday)) {
+            $request->validate([
+                'birthday' => 'required|date'
+            ]);
+
+            Auth::user()->birthday = $request->input('birthday');
+            Auth::user()->save();
+        }
+
+        if (isset($request->pwd) && isset($request->pwd_confirmation)) {
+            $request->validate([
+                'pwd' => 'required|confirmed|min:8'
+            ]);
+
+            Auth::user()->password = Hash::make($request->input('pwd'));
+            Auth::user()->save();
+        }
+
+        if (isset($request->avatar_file) && (Auth::user()->avatar_file != $request->avatar_file)) {
+            
+            $request->validate([
+                'avatar_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+
+            $avatarName = Auth::user()->id.'_avatar'.time().'.'.request()->avatar_file->getClientOriginalExtension();
+            $request->file('avatar_file')->storeAs('public',$avatarName);
+
+            Auth::user()->avatar = "/storage/".$avatarName;
+            Auth::user()->save();
+        }
+
+        return back();
+    }
+
+    public function refreshNetwork(Request $request) {
+        $networks =  ['youtube', 'soundcloud', 'twitter', 'instagram'];
+
+        foreach ($networks as $network) {
+            if (isset($request->$network) && (Auth::user()->$network != $request->$network)) {
+                $request->validate([
+                    $network => 'required|url'
+                ]);
+    
+                Auth::user()->$network = $request->input($network);
+                Auth::user()->save();
+            }
+        }
+        
+        return back();
     }
 }

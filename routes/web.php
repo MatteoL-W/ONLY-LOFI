@@ -23,6 +23,8 @@ Route::get('/upload', [MainController::class, 'upload'])->middleware('auth');
 Route::post('/upload/new', [MainController::class, 'store'])->middleware('auth');
 
 Route::get('/account', [MainController::class, 'account'])->middleware('auth');
+Route::post('/account/infos', [MainController::class, 'refreshInfo'])->middleware('auth');
+Route::post('/account/networks', [MainController::class, 'refreshNetwork'])->middleware('auth');
 
 Route::get('/song', [MainController::class, 'song'])->middleware('auth');
 
