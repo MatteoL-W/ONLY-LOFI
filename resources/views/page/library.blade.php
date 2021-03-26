@@ -18,6 +18,9 @@
     
     <a class='see-all' href="/playlists">See all your playlists...</a>
 
+    <h2>Playlists lastly listened by users</h2>
+    @include('partials/last4', ["collection" => $PlastlyListened])
+    
     <h2>Your lasts songs listened</h2>
     @include('partials/last4', ["collection" => $SlastsListened])
 

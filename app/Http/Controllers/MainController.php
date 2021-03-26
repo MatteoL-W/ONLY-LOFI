@@ -52,12 +52,17 @@ class MainController extends Controller
 
         $PlastsCreated = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->limit(2)->orderBy('playlist.id', 'DESC')->get();
 
+
+        $PlastlyListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist','=', 1)->orderBy('listened.updated_at', 'DESC')->limit(4)->get();
+        $PlastlyListened = $PlastlyListened->unique('idPlaylist');
+
+
         $SlastsListened = Song::select('*','song.id as idSong')->join('listened', 'idListened', '=', 'song.id')->where('idListener','=', Auth::id())->where('playlist','=', 0)->limit(4)->orderBy('listened.id', 'DESC')->get();
         $SlastsListened = $SlastsListened->unique('idSong');
         
         $SlastsLikes = Song::select('*')->join('likes','idSong','=','song.id')->where('idLikeur','=', Auth::id())->orderBy('likes.id', 'DESC')->limit(4)->get();
 
-        return view("page.library", ["PlastsListened" => $PlastsListened, "PlastsCreated" => $PlastsCreated, "SlastsListened" => $SlastsListened, "SlastsLikes" => $SlastsLikes]);
+        return view("page.library", ["PlastsListened" => $PlastsListened, "PlastsCreated" => $PlastsCreated, "PlastlyListened" => $PlastlyListened, "SlastsListened" => $SlastsListened, "SlastsLikes" => $SlastsLikes]);
     }
 
     public function store(Request $request) {
