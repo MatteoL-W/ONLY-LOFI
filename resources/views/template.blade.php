@@ -49,7 +49,9 @@
         </div>
     </div>
 
-@yield('content')
+    <div id="pjax-container">
+        @yield('content')
+    </div>
 
     <div id="hover__circle">
         see more<br><i class='icon-fleche'></i>
