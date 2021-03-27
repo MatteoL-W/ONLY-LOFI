@@ -117,7 +117,7 @@ class MainController extends Controller
         foreach ($playlistContentTable as $songs) {
             array_push($playlistContent, Song::select('*','song.id AS idsong')->join('users', 'song.user_id', '=', 'users.id')->where('song.id', '=', $songs->idSong)->first());
         }
-
+        
         return view("page.song", ["song" => $playlist, "artist" => $uploaderName, "comments" => "none", "nbComments" => "none", "playlist" => true, "playlistContent" => $playlistContent]);
     }
 
@@ -182,7 +182,7 @@ class MainController extends Controller
             ->header('Content-Type', $mime_type)
             ->header('Content-Length', filesize($file))
             ->header('vary', 'Accept-Encoding');
-        }
+    }
         
     public function addToPlaylist($idPlaylist, $idSong) {
 

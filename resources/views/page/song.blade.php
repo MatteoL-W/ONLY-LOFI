@@ -29,10 +29,19 @@ $nb = 0;
 
 
         <div class="song__info-icons">
+        @if ($playlist === true)
+            <a href="#" data-file="/render/{{ $playlistContent[0]->idsong }}{{substr($playlistContent[0]->url, 10)}}" data-nb="{{0}}" data-title="{{$playlistContent[0]->title}}" data-artist="{{$playlistContent[0]->name}}" class='song'>
+                <div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div>
+            </a> 
+            @foreach ($playlistContent as $songFP)
+                <a href="#" data-file="/render/{{ $songFP->idsong }}{{substr($songFP->url, 10)}}" data-title="{{$songFP->title}}" data-artist="{{$songFP->name}}" class='songlist'></a>
+            
+            @endforeach
+
+        @else
             <a href="#" data-file="/render/{{ $song->id }}{{substr($song->url, 10)}}" data-nb="{{$nb++}}" data-title="{{$song->title}}" data-artist="{{$artist[0]->name}}" class="song">
                 <div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div>
-            </a>      
-            @if ($playlist === false)
+            </a> 
                 @auth
                         @if(Auth::user()->ILikeThem->contains($song->id))
                             <a href="/changeLike/{{$song->id}}"><i class='icon-star'></i></a>
@@ -46,7 +55,7 @@ $nb = 0;
                 <a id="addButton"><i class='icon-playlist'></i></a>
                 
                 @include('partials/addToPlaylist', ['idSong' => $song->id])
-            @endif
+        @endif
         </div>
 
     </div>
@@ -62,7 +71,12 @@ $nb = 0;
             <ol>
 
                 @foreach ($playlistContent as $songFP)
-                    <li><a href="/song/{{$songFP->idsong}}"><b>{{$songFP->title}}</b> by {{$songFP->name}}</li></a>
+                    <li>
+                    <a href="#" data-file="/render/{{ $songFP->idsong }}{{substr($songFP->url, 10)}}" data-nb='{{$nb++}}' data-title="{{$songFP->title}}" data-artist="{{$songFP->name}}" class="song">
+                        <div id="bouton_play" class='fas fa-play'></div>
+                    </a>  
+                        <a href="/song/{{$songFP->idsong}}"><b>{{$songFP->title}}</b> by {{$songFP->name}}</a>
+                    </li>
                 @endforeach
 
             </ol>

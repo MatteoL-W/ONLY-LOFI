@@ -1,6 +1,6 @@
 <div id="lecteur">
 
-    <audio src="" preload="metadata" id="audio" loop></audio>
+    <audio src="" preload="metadata" id="audio"></audio>
     
     <button class="fas fa-play" id="play_button"></button>
 
@@ -26,6 +26,9 @@
     <span id="duration" class="time">0:00</span>
 
     <button class="fas fa-forward" id="next"></button>
+
+    <button class="fas fa-random" id="random"></button>
+
 
     <button class="fas fa-volume-up" id="mute-icon"></button>
     <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="1" onchange="volume(this.value);">
