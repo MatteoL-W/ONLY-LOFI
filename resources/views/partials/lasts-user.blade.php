@@ -5,6 +5,7 @@
             @foreach ($playlists as $playlist)
                 <li><a href="/playlist/{{$playlist->id}}">{{$playlist->title}}</span></a></li>
             @endforeach
+            <a href="/playlists">See all your playlists...</a>
         </ol>
     </div>
     <div>
@@ -13,6 +14,7 @@
             @foreach ($songs as $song)
                 <li><a href="/song/{{$song->id}}">{{$song->title}}</span></a></li>
             @endforeach
+            <a href="/allSongs">See all your songs...</a>
         </ol>
     </div>
 

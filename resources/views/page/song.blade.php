@@ -25,8 +25,15 @@ $nb = 0;
     <div class="song__info">
         <h2>{{$song->title}}</h2>
         <p>published by <a href="/user/{{$song->user_id}}">{{$artist[0]->name}}</a> @if ($playlist === false) / {{$nbLikes}} likes - {{$nbPlays}} plays @endif </p>
-        
-
+        @if ($playlist === false)
+            @if ($song->user_id == Auth::id())
+                <p><a href="/delete/song/{{$song->id}}">Delete this song</a></p>
+            @endif
+        @else
+            @if ($song->user_id == Auth::id())
+                <p><a href="/delete/playlist/{{$song->id}}">Delete this song</a></p>
+            @endif
+        @endif
 
         <div class="song__info-icons">
             <a href="#" data-file="/render/{{ $song->id }}{{substr($song->url, 10)}}" data-nb="{{$nb++}}" data-title="{{$song->title}}" data-artist="{{$artist[0]->name}}" class="song">
@@ -44,6 +51,8 @@ $nb = 0;
                 
                 
                 <a id="addButton"><i class='icon-playlist'></i></a>
+
+                
                 
                 @include('partials/addToPlaylist', ['idSong' => $song->id])
             @endif
@@ -89,7 +98,7 @@ $nb = 0;
 
             <div class="comment">
                 <a href="/user/{{$comment->id}}">
-                    <img src="/assets/kurochuu.png" alt="">
+                    <img src="{{$comment->avatar}}" alt="">
 
                     <div class="under_img">{{$comment->name}}</div>
                 </a>

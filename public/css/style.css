@@ -480,9 +480,6 @@ header .header__right input[type=submit] {
 .song {
   text-decoration: none;
 }
-.song > div {
-  position: relative;
-}
 
 .modify {
   position: absolute;
@@ -641,6 +638,11 @@ header .header__right input[type=submit] {
 }
 #last-user ol li span {
   color: #3C3E40;
+}
+#last-user ol > a {
+  color: #3C3E40;
+  text-decoration: none;
+  margin-left: -20px;
 }
 
 .recherche {

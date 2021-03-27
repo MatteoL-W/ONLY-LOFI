@@ -42,8 +42,13 @@ class MainController extends Controller
     }
 
     public function playlists() {
-        $playlists = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->limit(4)->orderBy('playlist.id', 'DESC')->get();
+        $playlists = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->orderBy('playlist.id', 'DESC')->get();
         return view("page.defaultAll", ["collection" => $playlists, "intitule" => "Your playlists created"]);
+    }
+
+    public function yourSongs() {
+        $yourSongs = Song::select('*','song.id as idSong')->where('user_id','=', Auth::id())->orderBy('song.id', 'DESC')->get();
+        return view("page.defaultAll", ["collection" => $yourSongs, "intitule" => "All your uploaded songs"]);
     }
 
     public function song() {
@@ -65,31 +70,7 @@ class MainController extends Controller
         return view("page.library", ["PlastsListened" => $PlastsListened, "PlastsCreated" => $PlastsCreated, "PlastlyListened" => $PlastlyListened, "SlastsListened" => $SlastsListened, "SlastsLikes" => $SlastsLikes]);
     }
 
-    public function store(Request $request) {
-
-        $request->validate([
-            'song_title' => "required|min:4|max:255",
-            'song_file' => 'required|file|mimes:mp3,ogg',
-            'avatar_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-
-        $name = $request->file('song_file')->hashName();
-        $request->file('song_file')->move("uploads/".Auth::id(), $name);
-
-        $avatarName = Auth::user()->id.'_song'.$request->input('song_title').'.'.request()->avatar_file->getClientOriginalExtension();
-        $request->file('avatar_file')->storeAs('public',$avatarName);
-
-        $song = new Song();
-        $song->title = $request->input('song_title');
-        $song->url = "/uploads/".Auth::id()."/".$name;
-
-        $song->img = "/storage/".$avatarName;
-        $song->user_id = Auth::id();
-
-        $song->save();
-
-        return redirect("/song/" . $song->id);
-    }
+    
 
     public function songId($id) { 
         $song = Song::findOrFail($id);
@@ -127,8 +108,8 @@ class MainController extends Controller
 
     public function userId($id) {
         $user = User::findOrFail($id);
-        $playlists = Playlist::select('id', 'title')->where('user_id', '=', $id)->limit(4)->get();
-        $songs = Song::select('id', 'title')->where('user_id', '=', $id)->limit(4)->get();
+        $playlists = Playlist::select('id', 'title')->where('user_id', '=', $id)->orderBy('id', 'DESC')->limit(4)->get();
+        $songs = Song::select('id', 'title')->where('user_id', '=', $id)->orderBy('id', 'DESC')->limit(4)->get();
         $social = ['youtube', 'soundcloud', 'twitter', 'instagram'];
         return view("page.user", ["user" => $user, "social" => $social, "playlists" => $playlists, "songs" => $songs]);
     }
@@ -166,38 +147,11 @@ class MainController extends Controller
         return view('page.search', ['search' => $search, 'users' => $users, 'songs' => $songs, 'playlists' => $playlists]);
     }
 
-    public function changeLike($id) {
-        Auth::user()->ILikeThem()->toggle($id);
-        return back();
-    }
+    
 
-    public function render($id, $file) {
-        $song = Song::find($id);
-        $file = ".".$song->url;
-        $mime_type = "audio/mp3";
-        $fileContents = File::get($file);
-
-        return Response::make($fileContents, 200)
-            ->header('Accept-Ranges', 'bytes')
-            ->header('Content-Type', $mime_type)
-            ->header('Content-Length', filesize($file))
-            ->header('vary', 'Accept-Encoding');
-        }
+    
         
-    public function addToPlaylist($idPlaylist, $idSong) {
-
-        $tmp = PlaylistSong::where('idPlaylist','=',$idPlaylist)->where('idSong','=',$idSong)->get();
-
-        if (count($tmp) == 0) {
-            $playlistSong = new PlaylistSong();
-            $playlistSong->idPlaylist = $idPlaylist;
-            $playlistSong->idSong = $idSong;
-            $playlistSong->save();
-        }
-
-        //avertissement doublon
-        return redirect("/playlist/$idPlaylist");
-    }
+    
 
     // ignorer doublon
     public function ForceToPlaylist($idPlaylist, $idSong) {
@@ -210,147 +164,9 @@ class MainController extends Controller
         return redirect("/playlist/$idPlaylist");
     }
 
-    public function refreshInfo(Request $request) {
-
-        if (isset($request->email) && (Auth::user()->email != $request->email)) {
-            $request->validate([
-                'email' => 'required|email'
-            ]);
-
-            Auth::user()->email = $request->input('email');
-            Auth::user()->save();
-        }
-
-        if (isset($request->birthday) && (Auth::user()->birthday != $request->birthday)) {
-            $request->validate([
-                'birthday' => 'required|date'
-            ]);
-
-            Auth::user()->birthday = $request->input('birthday');
-            Auth::user()->save();
-        }
-
-        if (isset($request->pwd) && isset($request->pwd_confirmation)) {
-            $request->validate([
-                'pwd' => 'required|confirmed|min:8'
-            ]);
-
-            Auth::user()->password = Hash::make($request->input('pwd'));
-            Auth::user()->save();
-        }
-
-        if (isset($request->avatar_file) && (Auth::user()->avatar_file != $request->avatar_file)) {
-            
-            $request->validate([
-                'avatar_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-            ]);
-
-            $avatarName = Auth::user()->id.'_avatar'.time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('public',$avatarName);
-
-            Auth::user()->avatar = "/storage/".$avatarName;
-            Auth::user()->save();
-        }
-
-        return back();
-    }
-
-    public function refreshNetwork(Request $request) {
-        $networks =  ['youtube', 'soundcloud', 'twitter', 'instagram'];
-
-        foreach ($networks as $network) {
-            if (isset($request->$network) && (Auth::user()->$network != $request->$network)) {
-                $request->validate([
-                    $network => 'required|url'
-                ]);
     
-                Auth::user()->$network = $request->input($network);
-                Auth::user()->save();
-            }
-        }
 
-        if (isset($request->description) && (Auth::user()->description != $request->description)) {
-            $request->validate([
-                "description" => 'required|max:255'
-            ]);
+    
 
-            Auth::user()->description = $request->input('description');
-            Auth::user()->save();
-        }
-        
-        return back();
-    }
-
-    public function createPlaylist() {
-        return view("page.createPlaylist");
-    }
-
-    public function TcreatePlaylist(Request $request) {
-        $request->validate([
-            'playlist_title' => "required|min:4|max:255",
-            'avatar_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-
-        $avatarName = Auth::user()->id.'_playlist'.$request->input('playlist_title').'.'.request()->avatar_file->getClientOriginalExtension();
-        $request->file('avatar_file')->storeAs('public',$avatarName);
-
-        $playlist = new Playlist();
-        $playlist->title = $request->input('playlist_title');
-        $playlist->img = "/storage/".$avatarName;
-        $playlist->user_id = Auth::id();
-
-        $playlist->save();
-
-        return redirect("/playlist/" . $playlist->id);
-    }
-
-    public function modifImage($type, $id) {
-        if ($type == "playlist") {
-            $changing = Playlist::where('id','=',$id)->where('user_id','=',Auth::id())->get()->first();
-            if ($changing == "") {
-                return view('errors/404');
-            }
-            return view('page.modifImg', ["changing" => $changing]);
-        }
-        
-        else if ($type == "song") {
-            $changing = Song::where('id','=',$id)->where('user_id','=',Auth::id())->get()->first();
-            if ($changing == "") {
-                return view('errors/404');
-            }
-            return view('page.modifImg', ["changing" => $changing]);
-        }
-        
-        else {
-            return view('errors/404');
-        }
-    }
-
-    public function TmodifImage(Request $request, $type, $id) {
-        if ($type == "song") {
-            $song = Song::where('id','=',$id)->get()->first();
-        } else if ($type == "playlist") {
-            $playlist = Playlist::where('id','=',$id)->get()->first();
-        }
-
-        $request->validate([
-            'avatar_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-
-        if ($type == "song") {
-            $avatarName = Auth::user()->id.'_song'.$song->title . time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('public',$avatarName);
-            $song->img = "/storage/".$avatarName;
-            $song->save();
-        }
-        
-        else if ($type == "playlist") {
-            $avatarName = Auth::user()->id.'_playlist'.$playlist->title . time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('public',$avatarName);
-            $playlist->img = "/storage/".$avatarName;
-            $playlist->save();
-        }
-
-        return back();
-    }
+    
 }
