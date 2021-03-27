@@ -20,7 +20,7 @@
         <div class='header__left'><a href="/"><img src="/assets/inline-logo.svg" alt="Logo ONLYLOFI" class='header__left-logo'></a></div>
         <div class='header__right'>
             
-            <form action="/search" method="get" id="search">
+            <form action="/search" data-pjax method="get" id="search">
                 <input type="search" name="search" id="search" class='header__right-search' placeholder="Search anything...">
                 <input type="submit" value="→">
             </form>
@@ -49,7 +49,9 @@
         </div>
     </div>
 
-@yield('content')
+    <div id="pjax-container">
+        @yield('content')
+    </div>
 
     <div id="hover__circle">
         see more<br><i class='icon-fleche'></i>
