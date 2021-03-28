@@ -28,6 +28,12 @@ enfants.forEach( (parent) => {
         
 
     })
+
+    parent.addEventListener('click', () => {
+        body.classList.toggle('full-width');
+        boutonBurger.classList.toggle("active");
+        menu.classList.toggle("active");
+    })
 })
 
 $('#search').on('submit', function (e) {

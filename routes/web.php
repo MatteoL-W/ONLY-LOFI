@@ -40,6 +40,9 @@ Route::get('/user/{id}', [MainController::class, 'userId'])->where('id','[0-9]+'
 Route::get('/search/{id}', [MainController::class, "search"]);
 Route::get('/search', [MainController::class, "main"]);
 
+Route::get('/addListenedSong/{idListened}', [MainController::class, "addListenedSong"])->middleware('auth')->where('idListener','[0-9]+')->where('idListened','[0-9]+');
+Route::get('/addListenedPlaylist/{idListened}', [MainController::class, "addListenedPlaylist"])->middleware('auth')->where('idListener','[0-9]+')->where('idListened','[0-9]+');
+
 
 /* ADD SONG / PLAYLIST CONTROLLER */
 
@@ -62,6 +65,8 @@ Route::get('/modifImage/{type}/{id}', [ChangeController::class, "modifImage"])->
 Route::post('/modifImage/{type}/{id}', [ChangeController::class, "TmodifImage"])->middleware('auth')->where('id','[0-9]+');
 
 Route::get('/delete/{type}/{id}', [ChangeController::class, "delete"])->middleware('auth')->where('id','[0-9]+');
+
+Route::get('/deleteFromPlaylist/{idPlaylist}/{idSong}', [ChangeController::class, "deleteFromPlaylist"])->middleware('auth')->where('idPlaylist','[0-9]+')->where('idSong','[0-9]+');
 
 Route::get('/changeLike/{id}', [ChangeController::class, "changeLike"])->middleware('auth')->where('id','[0-9]+');
 

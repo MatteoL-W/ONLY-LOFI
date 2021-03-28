@@ -22,19 +22,22 @@
   margin-block-start: 0;
 }
 
-button {
-  width: 50px;
-  height: 50px;
-  background-color: #2d77a0;
-  outline: none;
-  border: none;
-  color: white;
-  font-size: 35px;
-}
+    button {
+      width: 50px;
+      height: 50px;
+      background-color: #2d77a0;
+      outline: none;
+      border: none;
+      color: white;
+      font-size: 35px;
+    }
+    
+    button:hover {
+      cursor: pointer;
+    }
+    
+  }
 
-button:hover {
-  cursor: pointer;
-}
 
 #play_button {
   margin-left: 50px;

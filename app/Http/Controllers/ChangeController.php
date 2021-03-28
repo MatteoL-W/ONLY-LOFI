@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Song;
 use App\Models\Playlist;
+use App\Models\PlaylistSong;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -213,6 +214,20 @@ class ChangeController extends Controller
 
         return redirect("/user/" . Auth::id());
 
+    }
+
+
+
+
+
+    public function deleteFromPlaylist($idPlaylist, $idSong) {
+        $playlist = Playlist::select('*')->where('id','=',$idPlaylist)->get()->first();
+
+        if (Auth::id() == $playlist->user_id) {
+            PlaylistSong::select('*')->where('idPlaylist','=',$idPlaylist)->where('idSong','=',$idSong)->get()->first()->delete();
+        }
+
+        return back();
     }
 
 }
