@@ -22,7 +22,6 @@ class MainController extends Controller
     public function main()
     {
         $PlastsListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist.user_id', '=', Auth::id())->where('playlist', '=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
-        $PlastsListened = $PlastsListened->unique('idPlaylist');
 
         return view("page.main", ["PlastsListened" => $PlastsListened]);
     }

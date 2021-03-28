@@ -84,7 +84,12 @@ $nb = 0;
                     <a href="#" data-file="/render/{{ $songFP->idsong }}{{substr($songFP->url, 10)}}" data-nb='{{$nb++}}' data-title="{{$songFP->title}}" data-artist="{{$songFP->name}}" class="song">
                         <div id="bouton_play" class='fas fa-play'></div>
                     </a>  
-                        <a href="/song/{{$songFP->idsong}}"><b>{{$songFP->title}}</b> by {{$songFP->name}}</a>
+
+                    <a href="/song/{{$songFP->idsong}}"><b>{{$songFP->title}}</b> by {{$songFP->name}}</a>
+                        @if (Auth::id() == $songFP->user_id)
+                            <a href="/deleteFromPlaylist/{{$song->id}}/{{$songFP->idsong}}"><b>- delete from the playlist</b></a>
+                        @endif
+
                     </li>
                 @endforeach
 

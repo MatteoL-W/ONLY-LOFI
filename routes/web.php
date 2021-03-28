@@ -66,6 +66,8 @@ Route::post('/modifImage/{type}/{id}', [ChangeController::class, "TmodifImage"])
 
 Route::get('/delete/{type}/{id}', [ChangeController::class, "delete"])->middleware('auth')->where('id','[0-9]+');
 
+Route::get('/deleteFromPlaylist/{idPlaylist}/{idSong}', [ChangeController::class, "deleteFromPlaylist"])->middleware('auth')->where('idPlaylist','[0-9]+')->where('idSong','[0-9]+');
+
 Route::get('/changeLike/{id}', [ChangeController::class, "changeLike"])->middleware('auth')->where('id','[0-9]+');
 
 Auth::routes(['verify' => true]);

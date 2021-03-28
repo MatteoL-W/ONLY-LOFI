@@ -30,7 +30,9 @@ enfants.forEach( (parent) => {
     })
 
     parent.addEventListener('click', () => {
-        menu.classList.remove('active');
+        body.classList.toggle('full-width');
+        boutonBurger.classList.toggle("active");
+        menu.classList.toggle("active");
     })
 })
 
