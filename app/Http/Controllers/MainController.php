@@ -19,76 +19,85 @@ use Response;
 class MainController extends Controller
 {
 
-    public function main() {
-        $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
+    public function main()
+    {
+        $PlastsListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist.user_id', '=', Auth::id())->where('playlist', '=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
         $PlastsListened = $PlastsListened->unique('idPlaylist');
 
         return view("page.main", ["PlastsListened" => $PlastsListened]);
     }
 
-    public function upload() {
+    public function upload()
+    {
         $user = Auth::user();
         return view("page.upload", ["user" => $user]);
     }
 
-    public function account() {
+    public function account()
+    {
         $user = User::findOrFail(Auth::id());
         return view("page.account", ['user' => $user]);
     }
 
-    public function likes() {
-        $allLikes = Song::select('*')->join('likes','idSong','=','song.id')->where('idLikeur','=', Auth::id())->orderBy('likes.id', 'DESC')->get();
+    public function likes()
+    {
+        $allLikes = Song::select('*')->join('likes', 'idSong', '=', 'song.id')->where('idLikeur', '=', Auth::id())->orderBy('likes.id', 'DESC')->get();
         return view("page.defaultAll", ["collection" => $allLikes, "intitule" => "Your likes"]);
     }
 
-    public function playlists() {
-        $playlists = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->orderBy('playlist.id', 'DESC')->get();
+    public function playlists()
+    {
+        $playlists = Playlist::select('*', 'playlist.id as idPlaylist')->where('user_id', '=', Auth::id())->orderBy('playlist.id', 'DESC')->get();
         return view("page.defaultAll", ["collection" => $playlists, "intitule" => "Your playlists created"]);
     }
 
-    public function yourSongs() {
-        $yourSongs = Song::select('*','song.id as idSong')->where('user_id','=', Auth::id())->orderBy('song.id', 'DESC')->get();
+    public function yourSongs()
+    {
+        $yourSongs = Song::select('*', 'song.id as idSong')->where('user_id', '=', Auth::id())->orderBy('song.id', 'DESC')->get();
         return view("page.defaultAll", ["collection" => $yourSongs, "intitule" => "All your uploaded songs"]);
     }
 
-    public function song() {
-        $PlastsListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist.user_id','=', Auth::id())->where('playlist','=', 1)->orderBy('listened.id', 'DESC')->limit(2)->get();
+    public function song()
+    {
+        $PlastsListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist.user_id', '=', Auth::id())->where('playlist', '=', 1)->orderBy('listened.id', 'DESC')->limit(2)->get();
         $PlastsListened = $PlastsListened->unique('idPlaylist');
 
-        $PlastsCreated = Playlist::select('*','playlist.id as idPlaylist')->where('user_id','=', Auth::id())->limit(2)->orderBy('playlist.id', 'DESC')->get();
+        $PlastsCreated = Playlist::select('*', 'playlist.id as idPlaylist')->where('user_id', '=', Auth::id())->limit(2)->orderBy('playlist.id', 'DESC')->get();
 
 
-        $PlastlyListened = Playlist::select('*','playlist.id as idPlaylist')->join('listened','idListened', '=', 'playlist.id')->where('playlist','=', 1)->orderBy('listened.updated_at', 'DESC')->limit(4)->get();
+        $PlastlyListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist', '=', 1)->orderBy('listened.updated_at', 'DESC')->limit(4)->get();
         $PlastlyListened = $PlastlyListened->unique('idPlaylist');
 
 
-        $SlastsListened = Song::select('*','song.id as idSong')->join('listened', 'idListened', '=', 'song.id')->where('idListener','=', Auth::id())->where('playlist','=', 0)->limit(4)->orderBy('listened.id', 'DESC')->get();
+        $SlastsListened = Song::select('*', 'song.id as idSong')->join('listened', 'idListened', '=', 'song.id')->where('idListener', '=', Auth::id())->where('playlist', '=', 0)->limit(4)->orderBy('listened.id', 'DESC')->get();
         $SlastsListened = $SlastsListened->unique('idSong');
-        
-        $SlastsLikes = Song::select('*')->join('likes','idSong','=','song.id')->where('idLikeur','=', Auth::id())->orderBy('likes.id', 'DESC')->limit(4)->get();
+
+        $SlastsLikes = Song::select('*')->join('likes', 'idSong', '=', 'song.id')->where('idLikeur', '=', Auth::id())->orderBy('likes.id', 'DESC')->limit(4)->get();
 
         return view("page.library", ["PlastsListened" => $PlastsListened, "PlastsCreated" => $PlastsCreated, "PlastlyListened" => $PlastlyListened, "SlastsListened" => $SlastsListened, "SlastsLikes" => $SlastsLikes]);
     }
 
-    
 
-    public function songId($id) { 
+
+    public function songId($id)
+    {
         $song = Song::findOrFail($id);
         $uploaderName = User::select('name')->where('id', '=', $song->user_id)->get();
-        
-        $comments = Comment::select('*', 'comments.updated_at as when', 'comments.id as idComment')->join('users','comments.idWriter', '=', 'users.id')->where('idPost', '=', $id)->get();
+
+        $comments = Comment::select('*', 'comments.updated_at as when', 'comments.id as idComment')->join('users', 'comments.idWriter', '=', 'users.id')->where('idPost', '=', $id)->get();
         $nbComments = count($comments);
 
-        $nbLikes = count(Likes::where('idSong','=',$id)->get());
+        $nbLikes = count(Likes::where('idSong', '=', $id)->get());
 
-        $nbPlays = count(Listened::where('idListened','=',$id)->where('playlist','=',0)->get());
+        $nbPlays = count(Listened::where('idListened', '=', $id)->where('playlist', '=', 0)->get());
 
-        $allPlaylists = Playlist::select('id','title')->where('user_id','=', Auth::id())->get();
-        
+        $allPlaylists = Playlist::select('id', 'title')->where('user_id', '=', Auth::id())->get();
+
         return view("page.song", ["song" => $song, "artist" => $uploaderName, "comments" => $comments, "nbComments" => $nbComments, "playlist" => false, "allPlaylists" => $allPlaylists, "nbLikes" => $nbLikes, "nbPlays" => $nbPlays]);
     }
 
-    public function playlistId($id) { 
+    public function playlistId($id)
+    {
         $playlist = Playlist::findOrFail($id);
         $uploaderName = User::select('name')->where('id', '=', $playlist->user_id)->get();
 
@@ -96,17 +105,19 @@ class MainController extends Controller
         $playlistContentTable = PlaylistSong::all()->where('idPlaylist', '=', $id);
 
         foreach ($playlistContentTable as $songs) {
-            array_push($playlistContent, Song::select('*','song.id AS idsong')->join('users', 'song.user_id', '=', 'users.id')->where('song.id', '=', $songs->idSong)->first());
+            array_push($playlistContent, Song::select('*', 'song.id AS idsong')->join('users', 'song.user_id', '=', 'users.id')->where('song.id', '=', $songs->idSong)->first());
         }
-        
+
         return view("page.song", ["song" => $playlist, "artist" => $uploaderName, "comments" => "none", "nbComments" => "none", "playlist" => true, "playlistContent" => $playlistContent]);
     }
 
-    public function user() {
+    public function user()
+    {
         return view("page.user");
     }
 
-    public function userId($id) {
+    public function userId($id)
+    {
         $user = User::findOrFail($id);
         $playlists = Playlist::select('id', 'title')->where('user_id', '=', $id)->orderBy('id', 'DESC')->limit(4)->get();
         $songs = Song::select('id', 'title')->where('user_id', '=', $id)->orderBy('id', 'DESC')->limit(4)->get();
@@ -114,7 +125,8 @@ class MainController extends Controller
         return view("page.user", ["user" => $user, "social" => $social, "playlists" => $playlists, "songs" => $songs]);
     }
 
-    public function addComment($id, Request $request) {
+    public function addComment($id, Request $request)
+    {
         $request->validate([
             'content' => 'required|min:7|max:500',
         ]);
@@ -128,9 +140,10 @@ class MainController extends Controller
         return redirect("/song/$id");
     }
 
-    public function deleteComment($id) {
+    public function deleteComment($id)
+    {
         $remover = Auth::id();
-        $post_author = Comment::where('id','=',$id)->first();
+        $post_author = Comment::where('id', '=', $id)->first();
 
         if ($post_author->idWriter == $remover) {
             Comment::find($id)->delete();
@@ -139,7 +152,8 @@ class MainController extends Controller
         return back();
     }
 
-    public function search($search) {
+    public function search($search)
+    {
         $songs = Song::whereRaw("title LIKE CONCAT('%', ?, '%')", [$search])->get();
         $playlists = Playlist::whereRaw("title LIKE CONCAT('%', ?, '%')", [$search])->get();
         $users = User::whereRaw("name LIKE CONCAT('%', ?, '%')", [$search])->get();
@@ -147,12 +161,13 @@ class MainController extends Controller
         return view('page.search', ['search' => $search, 'users' => $users, 'songs' => $songs, 'playlists' => $playlists]);
     }
 
-    
 
-    
-    public function render($id, $file) {
+
+
+    public function render($id, $file)
+    {
         $song = Song::find($id);
-        $file = ".".$song->url;
+        $file = "." . $song->url;
         $mime_type = "audio/mp3";
         $fileContents = File::get($file);
 
@@ -162,11 +177,12 @@ class MainController extends Controller
             ->header('Content-Length', filesize($file))
             ->header('vary', 'Accept-Encoding');
     }
-        
-    
+
+
 
     // ignorer doublon
-    public function ForceToPlaylist($idPlaylist, $idSong) {
+    public function ForceToPlaylist($idPlaylist, $idSong)
+    {
 
         $playlistSong = new PlaylistSong();
         $playlistSong->idPlaylist = $idPlaylist;
@@ -176,9 +192,32 @@ class MainController extends Controller
         return redirect("/playlist/$idPlaylist");
     }
 
-    
 
-    
 
-    
+
+    public function addListenedSong($idListened)
+    {
+
+        // appelé en ajax
+
+        $addedSong = new Listened();
+        $addedSong->idListener = Auth::id();
+        $addedSong->idListened = $idListened;
+        $addedSong->playlist = 0;
+        $addedSong->save();
+    }
+
+
+
+
+
+    public function addListenedPlaylist($idListened)
+    {
+
+        $addedPlaylist = new Listened();
+        $addedPlaylist->idListener = Auth::id();
+        $addedPlaylist->idListened = $idListened;
+        $addedPlaylist->playlist = 1;
+        $addedPlaylist->save();
+    }
 }

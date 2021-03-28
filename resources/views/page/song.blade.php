@@ -37,7 +37,7 @@ $nb = 0;
 
         <div class="song__info-icons">
         @if ($playlist === true)
-            <a href="#" data-file="/render/{{ $playlistContent[0]->idsong }}{{substr($playlistContent[0]->url, 10)}}" data-nb="{{0}}" data-title="{{$playlistContent[0]->title}}" data-artist="{{$playlistContent[0]->name}}" class='song'>
+            <a href="#" data-file="/render/{{ $playlistContent[0]->idsong }}{{substr($playlistContent[0]->url, 10)}}" data-nb="{{0}}" data-title="{{$playlistContent[0]->title}}" data-artist="{{$playlistContent[0]->name}}" data-playlist="1" data-listened="{{$song->id}}" class='song'>
                 <div id="bouton_play" class='bouton-bleu'>PLAY <i class='icon-fleche'></i></div>
             </a> 
             @foreach ($playlistContent as $songFP)

@@ -1,18 +1,17 @@
-if (window.location.href.includes('/song/')) {
-    document.querySelector('#addButton').addEventListener('click', (e) => {
-        let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
-        e.preventDefault();
-
-        document.querySelector('#bloc_playlist').classList.toggle('active');
-        console.log(dimensionBouton.x);
-
-        document.querySelector('#bloc_playlist').style.left = dimensionBouton.x + 72 + "px";
-        document.querySelector('#bloc_playlist').style.top = dimensionBouton.y + "px";
-    })
-}
-
-
 jQuery(function() {
+    
+    if (window.location.href.includes('/playlist/') == false) {
+        document.querySelector('#addButton').addEventListener('click', (e) => {
+            let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
+            e.preventDefault();
+        
+            document.querySelector('#bloc_playlist').classList.toggle('active');
+            console.log(dimensionBouton.x);
+        
+            document.querySelector('#bloc_playlist').style.left = dimensionBouton.x + 72 + "px";
+            document.querySelector('#bloc_playlist').style.top = dimensionBouton.y + "px";
+        })
+    }
     
 
     $(document).pjax('a:not(.song)', '#pjax-container')
@@ -41,6 +40,27 @@ jQuery(function() {
         audio.src =  $(this).attr('data-file');
         balAudio.volume = savedvolume;
         audio.play();
+
+        let songId = audio.src;
+        songId = songId.split('/');
+
+        if ($(this).attr('data-playlist') == 1) {
+            $.ajax({
+                url : '/addListenedPlaylist/' + $(this).attr('data-listened'), // La ressource ciblée
+                type : 'GET', // Le type de la requête HTTP
+            });
+        }
+
+        $.ajax({
+            url : '/addListenedSong/' + songId[4], // La ressource ciblée
+            type : 'GET', // Le type de la requête HTTP
+         });
+
+        // mettre ajax pour listened
+
+
+
+
         current = $(this).attr("data-nb");
         document.getElementById('play_button').className = 'fas fa-pause';
         document.getElementById('title').innerHTML = $(this).attr('data-title');
@@ -67,7 +87,7 @@ jQuery(function() {
         if(play == true){
             audio.pause();
             document.getElementById('play_button').className = 'fas fa-play';
-            play = false
+            play = false;
         } else {
             audio.play();
             document.getElementById('play_button').className = 'fas fa-pause';
@@ -202,6 +222,14 @@ jQuery(function() {
             document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
             audio.play();
         }
+
+        let songId = audio.src;
+        songId = songId.split('/');
+
+        $.ajax({
+            url : '/addListenedSong/' + songId[4], // La ressource ciblée
+            type : 'GET', // Le type de la requête HTTP
+         });
         
     });
 

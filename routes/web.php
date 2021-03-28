@@ -40,6 +40,9 @@ Route::get('/user/{id}', [MainController::class, 'userId'])->where('id','[0-9]+'
 Route::get('/search/{id}', [MainController::class, "search"]);
 Route::get('/search', [MainController::class, "main"]);
 
+Route::get('/addListenedSong/{idListened}', [MainController::class, "addListenedSong"])->middleware('auth')->where('idListener','[0-9]+')->where('idListened','[0-9]+');
+Route::get('/addListenedPlaylist/{idListened}', [MainController::class, "addListenedPlaylist"])->middleware('auth')->where('idListener','[0-9]+')->where('idListened','[0-9]+');
+
 
 /* ADD SONG / PLAYLIST CONTROLLER */
 
