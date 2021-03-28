@@ -28,6 +28,10 @@ enfants.forEach( (parent) => {
         
 
     })
+
+    parent.addEventListener('click', () => {
+        menu.classList.remove('active');
+    })
 })
 
 $('#search').on('submit', function (e) {
