@@ -47,7 +47,7 @@ class ChangeController extends Controller
             ]);
 
             $avatarName = Auth::user()->id.'_avatar'.time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('public',$avatarName);
+            $request->file('avatar_file')->storeAs('',$avatarName);
 
             Auth::user()->avatar = "/storage/".$avatarName;
             Auth::user()->save();

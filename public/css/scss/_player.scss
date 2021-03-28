@@ -2,34 +2,70 @@
     position: fixed;
     display: flex;
     align-items: center;
-    
     left: 0;
     bottom: 0;
     width: 100%;
     height: 110px;
     z-index: 1000;
     background-color: #2d77a0;
+    transition: all 1.5s ease-in-out;
+}
 
-    button {
-      width: 50px;
-      height: 50px;
-      background-color: #2d77a0;
-      outline: none;
-      border: none;
-      color: white;
-      font-size: 35px;
-    }
-    
-    button:hover {
-      cursor: pointer;
-    }
-    
-  }
+#lecteur.inactive {
+  transform: translateY(110px);
+}
 
+#player_state {
+  position: fixed;
+  z-index: 10;
+  font-size: 30px;
+  padding: 5px 25px;
+  bottom: 110px;
+  right: 10%;
+  height: 30px;
+  border-radius: 12px 12px 0 0;
+  background-color: #2d77a0;
+  margin-block-start: 0;
+  transition: all 1520ms ease-in-out;
+}
+
+#player_state:hover {
+  cursor: pointer;
+}
+
+#player_state.inactive {
+  transition: all 1470ms ease-in-out;
+  transform: translateY(110px);
+}
+
+#lecteur > div,
+#lecteur > span,
+#lecteur > button,
+#lecteur > input {
+  transition: all 1.5s ease-in-out;
+}
+
+#play_button,
+#prev,
+#next,
+#random,
+#mute-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #2d77a0;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 35px;
+}
+    
+button:hover {
+  cursor: pointer;
+}   
 
 #play_button {
   margin-left: 50px;
-  margin-right: 150px;
+  margin-right: 100px;
 }
 
 #currentTime {
@@ -105,15 +141,11 @@
 }
 
 #next {
-  margin-right: 40px;
+  margin-right: 75px;
 }
 
 #random {
-  margin-right: 40px;
-}
-
-#boucle {
-  margin-right: 40px;
+  margin-right: 75px;
 }
 
 #mute-icon {

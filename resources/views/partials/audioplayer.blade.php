@@ -1,4 +1,6 @@
+<span id="player_state" class="fas fa-angle-down"></span>
 <div id="lecteur">
+    
 
     <audio src="" preload="metadata" id="audio"></audio>
     

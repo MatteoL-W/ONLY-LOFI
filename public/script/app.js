@@ -1,7 +1,7 @@
 jQuery(function() {
     
     if (window.location.href.includes('/playlist/') == false) {
-        document.querySelector('#addButton').addEventListener('click', (e) => {
+        /*document.querySelector('#addButton').addEventListener('click', (e) => {
             let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
             e.preventDefault();
         
@@ -10,7 +10,7 @@ jQuery(function() {
         
             document.querySelector('#bloc_playlist').style.left = dimensionBouton.x + 72 + "px";
             document.querySelector('#bloc_playlist').style.top = dimensionBouton.y + "px";
-        })
+        })*/
     }
     
 
@@ -24,9 +24,9 @@ jQuery(function() {
             window.location.href = "/search/" + e.target.elements[0].value;
     });
 
-    /*$(document).on('submit', 'form[data-pjax]', function(event) {
+    $(document).on('submit', 'form[data-pjax]', function(event) {
         $.pjax.submit(event, '#pjax-container')
-    })*/
+    })
 
     random = false
     
@@ -169,57 +169,101 @@ jQuery(function() {
     
     audio.addEventListener('ended',function(){
         var audio = $('#audio')[0];
-        current++
-        if(current == allsongs.length-1){
-            current = 0;
-        }
-        console.log(songlist);
-        audio.src = songlist[current][0];
-        document.getElementById('title').innerHTML = songlist[current][1];
-        document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
-        audio.play();
-    });
-
-    
-    document.getElementById('next').addEventListener('click',function(){
-        var audio = $('#audio')[0];
-        if(random == true) {
-            if(length.length == songlist.length) {
-                length = [];
-                current = getRandomInt(0, songlist.length);
-                length.push(current);
-                audio.src = songlist[current][0];
-                document.getElementById('title').innerHTML = songlist[current][1];
-                document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
-                audio.play();
-            } else {
-                current = getRandomInt(0, songlist.length);
-                if(length.indexOf(current) > -1 == true){
-                    while(length.indexOf(current) > -1 == true) {
-                        current = getRandomInt(0, songlist.length);
-                    }
+        if(songlist.length > 1){
+            if(random == true ) {
+                if(length.length == songlist.length) {
+                    length = [];
+                    current = getRandomInt(0, songlist.length);
                     length.push(current);
                     audio.src = songlist[current][0];
                     document.getElementById('title').innerHTML = songlist[current][1];
                     document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
                     audio.play();
                 } else {
+                    current = getRandomInt(0, songlist.length);
+                    if(length.indexOf(current) > -1 == true){
+                        while(length.indexOf(current) > -1 == true) {
+                            current = getRandomInt(0, songlist.length);
+                        }
+                        length.push(current);
+                        audio.src = songlist[current][0];
+                        document.getElementById('title').innerHTML = songlist[current][1];
+                        document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                        audio.play();
+                    } else {
+                        length.push(current);
+                        audio.src = songlist[current][0];
+                        document.getElementById('title').innerHTML = songlist[current][1];
+                        document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                        audio.play();
+                    }
+                }
+                
+            } else {
+                current++
+                if(current == songlist.length){
+                    current = 0;
+                }
+                audio.src = songlist[current][0];
+                document.getElementById('title').innerHTML = songlist[current][1];
+                document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                audio.play();
+            }
+        } else {
+            audio.src = $("a.song[data-nb='"+0+"']").attr("data-file");
+            document.getElementById('title').innerHTML = $("a.song[data-nb='"+0+"']").attr("data-title");
+            document.getElementById('artist').innerHTML = "|&ensp; Upload by "+$("a.song[data-nb='"+0+"']").attr("data-artist");
+            audio.play();
+        }
+    });
+
+    
+    document.getElementById('next').addEventListener('click',function(){
+        var audio = $('#audio')[0];
+        if(songlist.length > 1){
+            if(random == true ) {
+                if(length.length == songlist.length) {
+                    length = [];
+                    current = getRandomInt(0, songlist.length);
                     length.push(current);
                     audio.src = songlist[current][0];
                     document.getElementById('title').innerHTML = songlist[current][1];
                     document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
                     audio.play();
+                } else {
+                    current = getRandomInt(0, songlist.length);
+                    if(length.indexOf(current) > -1 == true){
+                        while(length.indexOf(current) > -1 == true) {
+                            current = getRandomInt(0, songlist.length);
+                        }
+                        length.push(current);
+                        audio.src = songlist[current][0];
+                        document.getElementById('title').innerHTML = songlist[current][1];
+                        document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                        audio.play();
+                    } else {
+                        length.push(current);
+                        audio.src = songlist[current][0];
+                        document.getElementById('title').innerHTML = songlist[current][1];
+                        document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                        audio.play();
+                    }
                 }
+                
+            } else {
+                current++
+                if(current == songlist.length){
+                    current = 0;
+                }
+                audio.src = songlist[current][0];
+                document.getElementById('title').innerHTML = songlist[current][1];
+                document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                audio.play();
             }
-            
         } else {
-            current++
-            if(current == songlist.length){
-                current = 0;
-            }
-            audio.src = songlist[current][0];
-            document.getElementById('title').innerHTML = songlist[current][1];
-            document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+            audio.src = $("a.song[data-nb='"+0+"']").attr("data-file");
+            document.getElementById('title').innerHTML = $("a.song[data-nb='"+0+"']").attr("data-title");
+            document.getElementById('artist').innerHTML = "|&ensp; Upload by "+$("a.song[data-nb='"+0+"']").attr("data-artist");
             audio.play();
         }
 
@@ -235,13 +279,52 @@ jQuery(function() {
 
     document.getElementById('prev').addEventListener('click',function(){
         var audio = $('#audio')[0];
-        current--
-        if(current < 0)
-            current = allsongs.length-1
-        audio.src = songlist[current][0];
-        document.getElementById('title').innerHTML = songlist[current][1];
-        document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
-        audio.play()
+        if(songlist.length > 1){
+            if(random == true ) {
+                if(length.length == songlist.length) {
+                    length = [];
+                    current = getRandomInt(0, songlist.length);
+                    length.push(current);
+                    audio.src = songlist[current][0];
+                    document.getElementById('title').innerHTML = songlist[current][1];
+                    document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                    audio.play();
+                } else {
+                    current = getRandomInt(0, songlist.length);
+                    if(length.indexOf(current) > -1 == true){
+                        while(length.indexOf(current) > -1 == true) {
+                            current = getRandomInt(0, songlist.length);
+                        }
+                        length.push(current);
+                        audio.src = songlist[current][0];
+                        document.getElementById('title').innerHTML = songlist[current][1];
+                        document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                        audio.play();
+                    } else {
+                        length.push(current);
+                        audio.src = songlist[current][0];
+                        document.getElementById('title').innerHTML = songlist[current][1];
+                        document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                        audio.play();
+                    }
+                }
+                
+            } else {
+                current--
+                if(current < 0){
+                    current = songlist.length-1;
+                }
+                audio.src = songlist[current][0];
+                document.getElementById('title').innerHTML = songlist[current][1];
+                document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
+                audio.play();
+            }
+        } else {
+            audio.src = $("a.song[data-nb='"+0+"']").attr("data-file");
+            document.getElementById('title').innerHTML = $("a.song[data-nb='"+0+"']").attr("data-title");
+            document.getElementById('artist').innerHTML = "|&ensp; Upload by "+$("a.song[data-nb='"+0+"']").attr("data-artist");
+            audio.play();
+        }
     });
 
     document.getElementById('random').addEventListener('click',function(){
@@ -252,6 +335,17 @@ jQuery(function() {
             random = false;
             document.getElementById('random').style.color = "white";
         }
+    });
+
+    
+    document.getElementById('player_state').addEventListener('click',function(){
+        button = document.getElementById('player_state');
+        lecteur = document.getElementById('lecteur');
+
+        lecteur.classList.toggle("inactive")
+        
+        button.classList.toggle("inactive");
+        
     });
 })
 
