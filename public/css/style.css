@@ -1163,11 +1163,11 @@ header .header__right input[type=submit] {
   height: 110px;
   z-index: 1000;
   background-color: #2d77a0;
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
 }
 
 #lecteur.inactive {
-  -webkit-transition: all 1.5s ease-in-out;
-  transition: all 1.5s ease-in-out;
   -webkit-transform: translateY(110px);
           transform: translateY(110px);
 }
@@ -1184,6 +1184,8 @@ header .header__right input[type=submit] {
   background-color: #2d77a0;
   -webkit-margin-before: 0;
           margin-block-start: 0;
+  -webkit-transition: all 1520ms ease-in-out;
+  transition: all 1520ms ease-in-out;
 }
 
 #player_state:hover {
@@ -1191,9 +1193,18 @@ header .header__right input[type=submit] {
 }
 
 #player_state.inactive {
-  -webkit-transition: all 1.3s ease-in-out;
-  transition: all 1.3s ease-in-out;
-  bottom: 0;
+  -webkit-transition: all 1470ms ease-in-out;
+  transition: all 1470ms ease-in-out;
+  -webkit-transform: translateY(110px);
+          transform: translateY(110px);
+}
+
+#lecteur > div,
+#lecteur > span,
+#lecteur > button,
+#lecteur > input {
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
 }
 
 #play_button,

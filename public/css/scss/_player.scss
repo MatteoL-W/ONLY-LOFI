@@ -8,14 +8,12 @@
     height: 110px;
     z-index: 1000;
     background-color: #2d77a0;
+    transition: all 1.5s ease-in-out;
 }
 
 #lecteur.inactive {
-  transition: all 1.5s ease-in-out;
   transform: translateY(110px);
 }
-
-
 
 #player_state {
   position: fixed;
@@ -28,6 +26,7 @@
   border-radius: 12px 12px 0 0;
   background-color: #2d77a0;
   margin-block-start: 0;
+  transition: all 1520ms ease-in-out;
 }
 
 #player_state:hover {
@@ -35,11 +34,16 @@
 }
 
 #player_state.inactive {
-  transition: all 1.3s ease-in-out;
-  bottom: 0;
+  transition: all 1470ms ease-in-out;
+  transform: translateY(110px);
 }
 
-
+#lecteur > div,
+#lecteur > span,
+#lecteur > button,
+#lecteur > input {
+  transition: all 1.5s ease-in-out;
+}
 
 #play_button,
 #prev,
