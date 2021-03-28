@@ -1,7 +1,7 @@
 jQuery(function() {
     
     if (window.location.href.includes('/playlist/') == false) {
-        document.querySelector('#addButton').addEventListener('click', (e) => {
+        /*document.querySelector('#addButton').addEventListener('click', (e) => {
             let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
             e.preventDefault();
         
@@ -10,7 +10,7 @@ jQuery(function() {
         
             document.querySelector('#bloc_playlist').style.left = dimensionBouton.x + 72 + "px";
             document.querySelector('#bloc_playlist').style.top = dimensionBouton.y + "px";
-        })
+        })*/
     }
     
 
@@ -24,9 +24,9 @@ jQuery(function() {
             window.location.href = "/search/" + e.target.elements[0].value;
     });
 
-    /*$(document).on('submit', 'form[data-pjax]', function(event) {
+    $(document).on('submit', 'form[data-pjax]', function(event) {
         $.pjax.submit(event, '#pjax-container')
-    })*/
+    })
 
     random = false
     
@@ -253,6 +253,17 @@ jQuery(function() {
             document.getElementById('random').style.color = "white";
         }
     });
+
+    
+    document.getElementById('player_state').addEventListener('click',function(){
+        button = document.getElementById('player_state');
+        lecteur = document.getElementById('lecteur');
+
+        lecteur.classList.toggle("inactive")
+        
+        button.classList.toggle("inactive");
+        
+    });
 })
 
 function volume(amount){
@@ -269,16 +280,4 @@ function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function playerstate() {
-    lecteur = document.getElementById('lecteur');
-    button = document.getElementById('player_state');
-    if (lecteur.style.heigth > "100px") {
-        lecteur.style.heigth = "0px";
-        lecteur.className = "fas fa-angle-up";
-    } else {
-        lecteur.style.heigth = "110px";
-        lecteur.className = "fas fa-angle-down";
-    }
 }

@@ -10,11 +10,19 @@
     background-color: #2d77a0;
 }
 
+#lecteur.inactive {
+  transition: all 1.5s ease-in-out;
+  transform: translateY(110px);
+}
+
+
+
 #player_state {
-  position: absolute;
+  position: fixed;
+  z-index: 10;
   font-size: 30px;
   padding: 5px 25px;
-  top: -23%;
+  bottom: 110px;
   right: 10%;
   height: 30px;
   border-radius: 12px 12px 0 0;
@@ -22,26 +30,38 @@
   margin-block-start: 0;
 }
 
-    button {
-      width: 50px;
-      height: 50px;
-      background-color: #2d77a0;
-      outline: none;
-      border: none;
-      color: white;
-      font-size: 35px;
-    }
-    
-    button:hover {
-      cursor: pointer;
-    }
-    
-  }
+#player_state:hover {
+  cursor: pointer;
+}
 
+#player_state.inactive {
+  transition: all 1.3s ease-in-out;
+  bottom: 0;
+}
+
+
+
+#play_button,
+#prev,
+#next,
+#random,
+#mute-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #2d77a0;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 35px;
+}
+    
+button:hover {
+  cursor: pointer;
+}   
 
 #play_button {
   margin-left: 50px;
-  margin-right: 150px;
+  margin-right: 100px;
 }
 
 #currentTime {
@@ -117,15 +137,11 @@
 }
 
 #next {
-  margin-right: 40px;
+  margin-right: 75px;
 }
 
 #random {
-  margin-right: 40px;
-}
-
-#boucle {
-  margin-right: 40px;
+  margin-right: 75px;
 }
 
 #mute-icon {
