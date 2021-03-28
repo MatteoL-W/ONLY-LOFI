@@ -242,3 +242,15 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+function playerstate() {
+    lecteur = document.getElementById('lecteur');
+    button = document.getElementById('player_state');
+    if (lecteur.style.heigth > "100px") {
+        lecteur.style.heigth = "0px";
+        lecteur.className = "fas fa-angle-up";
+    } else {
+        lecteur.style.heigth = "110px";
+        lecteur.className = "fas fa-angle-down";
+    }
+}

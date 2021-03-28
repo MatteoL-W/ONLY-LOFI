@@ -2,14 +2,25 @@
     position: fixed;
     display: flex;
     align-items: center;
-    
     left: 0;
     bottom: 0;
     width: 100%;
     height: 110px;
     z-index: 1000;
     background-color: #2d77a0;
-  }
+}
+
+#player_state {
+  position: absolute;
+  font-size: 30px;
+  padding: 5px 25px;
+  top: -23%;
+  right: 10%;
+  height: 30px;
+  border-radius: 12px 12px 0 0;
+  background-color: #2d77a0;
+  margin-block-start: 0;
+}
 
 button {
   width: 50px;
