@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['pwd']),
             'birthday' => $data['birthday'],
-            'avatar' => 'avatarDefaut.png'
+            'avatar' => '/assets/lofistream.png'
         ]);
     }
 }
