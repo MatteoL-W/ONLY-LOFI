@@ -1207,6 +1207,11 @@ header .header__right input[type=submit] {
   transition: all 1.5s ease-in-out;
 }
 
+#random.quick {
+  -webkit-transition: 0ms;
+  transition: 0ms;
+}
+
 #play_button,
 #prev,
 #next,

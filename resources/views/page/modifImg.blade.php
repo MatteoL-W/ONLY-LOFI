@@ -7,7 +7,7 @@
         <img src="{{$changing->img}}" alt="Upload image">
     </div>
     <div class="upload__grid-upload">
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="" enctype="multipart/form-data" data-pjax>
             @CSRF
             <h2>Modify the image of {{$changing->title}}</h2>
             
