@@ -35,8 +35,3 @@ enfants.forEach( (parent) => {
         menu.classList.toggle("active");
     })
 })
-
-$('#search').on('submit', function (e) {
-    e.preventDefault();
-    window.location.href = "/search/" + e.target.elements[0].value;
-})

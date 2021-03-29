@@ -148,14 +148,14 @@ class ChangeController extends Controller
 
         if ($type == "song") {
             $avatarName = Auth::user()->id.'_song'.$song->title . time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('public',$avatarName);
+            $request->file('avatar_file')->storeAs('',$avatarName);
             $song->img = "/storage/".$avatarName;
             $song->save();
         }
         
         else if ($type == "playlist") {
             $avatarName = Auth::user()->id.'_playlist'.$playlist->title . time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('public',$avatarName);
+            $request->file('avatar_file')->storeAs('',$avatarName);
             $playlist->img = "/storage/".$avatarName;
             $playlist->save();
         }

@@ -11,7 +11,7 @@
         @endif
         </div>
         <div class="upload__grid-upload">
-            <form method="POST" action="/account/infos" enctype="multipart/form-data">
+            <form method="POST" action="/account/infos" enctype="multipart/form-data" data-pjax>
                 @CSRF
                 <h2>Update my account</h2>
                 <a class="wanna_update" href="/user/{{$user->id}}">want to see your page ?</a>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <form action="/account/networks" method="POST" class="update_info">
+    <form action="/account/networks" method="POST" class="update_info" data-pjax>
         @CSRF
         <h2>Update your informations</h2>
         <textarea name="description">{{$user->description}}</textarea>

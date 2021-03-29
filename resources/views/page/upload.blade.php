@@ -7,10 +7,10 @@
             <img src="/assets/img_upload.png" alt="Upload image">
         </div>
         <div class="upload__grid-upload">
-            <form method="POST" action="/upload/new" enctype="multipart/form-data">
+            <form method="POST" action="/upload/new" enctype="multipart/form-data" id="upload" data-pjax>
             @CSRF
                 <h2>Upload your song</h2>
-                <input type="text" name="song_title" id="song_title" placeholder="Song title">
+                <input type="text" name="song_title" id="song_title" placeholder="Song title" value="{{old('song_title')}}">
                 <label for="song_file" id="label_song_file"><div id="redirect_file"><span>Your song</span><i class='icon-music'></i></div></label>
 
                 <label for="avatar_file" id="label_avatar_file"><div id="redirect_file"><span>Your avatar</span><i class='icon-avatar'></i></div></label>

@@ -1,7 +1,7 @@
 jQuery(function() {
-    
+    random = false;
     if (window.location.href.includes('/playlist/') == false) {
-        /*document.querySelector('#addButton').addEventListener('click', (e) => {
+        document.querySelector('#addButton').addEventListener('click', (e) => {
             let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
             e.preventDefault();
         
@@ -10,13 +10,14 @@ jQuery(function() {
         
             document.querySelector('#bloc_playlist').style.left = dimensionBouton.x + 72 + "px";
             document.querySelector('#bloc_playlist').style.top = dimensionBouton.y + "px";
-        })*/
+        })
     }
     
+    setTimeout(function(){document.getElementById('random').classList.toggle("quick") }, 1700);
 
     $(document).pjax('a:not(.song)', '#pjax-container')
 
-    $('#search').on('submit', 'form[data-pjax]', function(e) {
+    $('#search').submit(function (e) {
         e.preventDefault();
         if ($.support.pjax)
             $.pjax({url: "/search/" + e.target.elements[0].value, container: '#pjax-container'});
@@ -24,11 +25,12 @@ jQuery(function() {
             window.location.href = "/search/" + e.target.elements[0].value;
     });
 
+    
+
     $(document).on('submit', 'form[data-pjax]', function(event) {
         $.pjax.submit(event, '#pjax-container')
     })
 
-    random = false
     
     var balAudio = document.getElementsByTagName('audio')[0];
     $("#pjax-container").on("click", "a.song", function(e) {
@@ -38,6 +40,9 @@ jQuery(function() {
         var savedvolume = document.getElementById('volume-slider').value;
         var audio = $('#audio')[0];
         audio.src =  $(this).attr('data-file');
+        solosong = $(this).attr('data-file');
+        solotitle = $(this).attr('data-title')
+        soloartist ="|&ensp; Upload by "+$(this).attr('data-artist');
         balAudio.volume = savedvolume;
         audio.play();
 
@@ -59,9 +64,9 @@ jQuery(function() {
         // mettre ajax pour listened
 
 
-
-
-        current = $(this).attr("data-nb");
+        current = parseInt($(this).attr("data-nb"));
+        length = [];
+        length.push(current);
         document.getElementById('play_button').className = 'fas fa-pause';
         document.getElementById('title').innerHTML = $(this).attr('data-title');
         document.getElementById('artist').innerHTML = "|&ensp; Upload by "+$(this).attr('data-artist');
@@ -71,18 +76,16 @@ jQuery(function() {
                 songlist[i][0] = $("a.song[data-nb='"+i+"']").attr("data-file");
                 songlist[i][1] = $("a.song[data-nb='"+i+"']").attr("data-title");
                 songlist[i][2] = $("a.song[data-nb='"+i+"']").attr("data-artist");
-                length = [];
-                length.push(current);
-            } return songlist, length
+                
+            } return songlist;
             
         }
    })
 
     
-
+    let play = true;
     var audio = $('#audio')[0]
     /*Bouton play - pause*/ 
-    let play = true;
     document.getElementById('play_button').addEventListener('click', function(){
         if(play == true){
             audio.pause();
@@ -181,16 +184,16 @@ jQuery(function() {
                     audio.play();
                 } else {
                     current = getRandomInt(0, songlist.length);
-                    if(length.indexOf(current) > -1 == true){
-                        while(length.indexOf(current) > -1 == true) {
-                            current = getRandomInt(0, songlist.length);
-                        }
+                    if(length.indexOf(current) == -1){
                         length.push(current);
                         audio.src = songlist[current][0];
                         document.getElementById('title').innerHTML = songlist[current][1];
                         document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
-                        audio.play();
+                        audio.play();                     
                     } else {
+                        while(length.indexOf(current) != -1) {
+                            current = getRandomInt(0, songlist.length);
+                        }
                         length.push(current);
                         audio.src = songlist[current][0];
                         document.getElementById('title').innerHTML = songlist[current][1];
@@ -208,13 +211,16 @@ jQuery(function() {
                 document.getElementById('title').innerHTML = songlist[current][1];
                 document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
                 audio.play();
+                
             }
         } else {
-            audio.src = $("a.song[data-nb='"+0+"']").attr("data-file");
-            document.getElementById('title').innerHTML = $("a.song[data-nb='"+0+"']").attr("data-title");
-            document.getElementById('artist').innerHTML = "|&ensp; Upload by "+$("a.song[data-nb='"+0+"']").attr("data-artist");
+            audio.src = solosong;
+            document.getElementById('title').innerHTML = solotitle;
+            document.getElementById('artist').innerHTML = soloartist;
             audio.play();
+           
         }
+        
     });
 
     
@@ -232,16 +238,16 @@ jQuery(function() {
                     audio.play();
                 } else {
                     current = getRandomInt(0, songlist.length);
-                    if(length.indexOf(current) > -1 == true){
-                        while(length.indexOf(current) > -1 == true) {
-                            current = getRandomInt(0, songlist.length);
-                        }
+                    if(length.indexOf(current) == -1){
                         length.push(current);
                         audio.src = songlist[current][0];
                         document.getElementById('title').innerHTML = songlist[current][1];
                         document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
-                        audio.play();
+                        audio.play();                    
                     } else {
+                        while(length.indexOf(current) != -1) {
+                            current = getRandomInt(0, songlist.length);
+                        }
                         length.push(current);
                         audio.src = songlist[current][0];
                         document.getElementById('title').innerHTML = songlist[current][1];
@@ -259,12 +265,14 @@ jQuery(function() {
                 document.getElementById('title').innerHTML = songlist[current][1];
                 document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
                 audio.play();
+                
             }
         } else {
-            audio.src = $("a.song[data-nb='"+0+"']").attr("data-file");
-            document.getElementById('title').innerHTML = $("a.song[data-nb='"+0+"']").attr("data-title");
-            document.getElementById('artist').innerHTML = "|&ensp; Upload by "+$("a.song[data-nb='"+0+"']").attr("data-artist");
+            audio.src = solosong;
+            document.getElementById('title').innerHTML = solotitle;
+            document.getElementById('artist').innerHTML = soloartist;
             audio.play();
+            
         }
 
         let songId = audio.src;
@@ -274,13 +282,17 @@ jQuery(function() {
             url : '/addListenedSong/' + songId[4], // La ressource ciblée
             type : 'GET', // Le type de la requête HTTP
          });
-        
+         play = true;
+         return play;
     });
 
     document.getElementById('prev').addEventListener('click',function(){
         var audio = $('#audio')[0];
+        /* On vérifie si l'on est sur une playlist ou un son seul*/
         if(songlist.length > 1){
+            /* On vérifie si le bouton random est acrif*/
             if(random == true ) {
+                /* On vérifie si l'on a déjà passé toute les musiques de la playlist */
                 if(length.length == songlist.length) {
                     length = [];
                     current = getRandomInt(0, songlist.length);
@@ -291,16 +303,16 @@ jQuery(function() {
                     audio.play();
                 } else {
                     current = getRandomInt(0, songlist.length);
-                    if(length.indexOf(current) > -1 == true){
-                        while(length.indexOf(current) > -1 == true) {
-                            current = getRandomInt(0, songlist.length);
-                        }
+                    if(length.indexOf(current) == -1){
                         length.push(current);
                         audio.src = songlist[current][0];
                         document.getElementById('title').innerHTML = songlist[current][1];
                         document.getElementById('artist').innerHTML = "|&ensp; Upload by "+songlist[current][2];
-                        audio.play();
+                        audio.play();                    
                     } else {
+                        while(length.indexOf(current) != -1) {
+                            current = getRandomInt(0, songlist.length);
+                        }
                         length.push(current);
                         audio.src = songlist[current][0];
                         document.getElementById('title').innerHTML = songlist[current][1];
@@ -310,7 +322,7 @@ jQuery(function() {
                 }
                 
             } else {
-                current--
+                current--;
                 if(current < 0){
                     current = songlist.length-1;
                 }
@@ -320,9 +332,9 @@ jQuery(function() {
                 audio.play();
             }
         } else {
-            audio.src = $("a.song[data-nb='"+0+"']").attr("data-file");
-            document.getElementById('title').innerHTML = $("a.song[data-nb='"+0+"']").attr("data-title");
-            document.getElementById('artist').innerHTML = "|&ensp; Upload by "+$("a.song[data-nb='"+0+"']").attr("data-artist");
+            audio.src = solosong;
+            document.getElementById('title').innerHTML = solotitle;
+            document.getElementById('artist').innerHTML = soloartist;
             audio.play();
         }
     });
@@ -342,7 +354,7 @@ jQuery(function() {
         button = document.getElementById('player_state');
         lecteur = document.getElementById('lecteur');
 
-        lecteur.classList.toggle("inactive")
+        lecteur.classList.toggle("inactive");
         
         button.classList.toggle("inactive");
         

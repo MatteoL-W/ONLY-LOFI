@@ -144,7 +144,7 @@ $nb = 0;
 
         @endforeach
 
-        <form action="" method="post" class="comments">
+        <form action="" method="post" class="comments" data-pjax>
             @csrf
             <h2>Post a comment</h2>
             <textarea name="content" id="content"></textarea>
