@@ -1,5 +1,5 @@
 jQuery(function() {
-    random = false;
+    
     if (window.location.href.includes('/playlist/') == false) {
         document.querySelector('#addButton').addEventListener('click', (e) => {
             let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
@@ -17,14 +17,13 @@ jQuery(function() {
 
     $(document).pjax('a:not(.song)', '#pjax-container')
 
-    $('#search').submit(function (e) {
+    $('#search').on('submit', function (e) {
         e.preventDefault();
         if ($.support.pjax)
             $.pjax({url: "/search/" + e.target.elements[0].value, container: '#pjax-container'});
         else
             window.location.href = "/search/" + e.target.elements[0].value;
-    });
-
+    })
     
 
     $(document).on('submit', 'form[data-pjax]', function(event) {
@@ -338,7 +337,8 @@ jQuery(function() {
             audio.play();
         }
     });
-
+    
+    random = false;
     document.getElementById('random').addEventListener('click',function(){
         if (random == false) {
             random = true;
