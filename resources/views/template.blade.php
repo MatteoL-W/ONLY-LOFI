@@ -20,7 +20,7 @@
         <div class='header__left'><a href="/"><img src="/assets/inline-logo.svg" alt="Logo ONLYLOFI" class='header__left-logo'></a></div>
         <div class='header__right'>
             
-            <form action="/search" data-pjax method="get" id="search">
+            <form method="get" action="/search" id="search">
                 <input type="search" name="search" id="search" class='header__right-search' placeholder="Search anything...">
                 <input type="submit" value="→">
             </form>
@@ -87,7 +87,6 @@
     <script src="/script/hover_circle.js"></script>
     <script src="/script/jquery.pjax.js"></script>
     <script src="/script/toastr.min.js"></script>
-    <script src="/script/player.js"></script>
     <script src="/script/app.js"></script>
 </body>
 </html>

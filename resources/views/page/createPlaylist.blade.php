@@ -7,7 +7,7 @@
             <img src="/assets/img_upload.png" alt="Upload image">
         </div>
         <div class="upload__grid-upload">
-            <form method="POST" action="/createPlaylist" enctype="multipart/form-data">
+            <form method="POST" action="/createPlaylist" enctype="multipart/form-data" data-pjax>
             @CSRF
                 <h2>Create your playlist</h2>
                 <input type="text" name="playlist_title" id="playlist_title" placeholder="Playlist title">
