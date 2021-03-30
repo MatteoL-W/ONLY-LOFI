@@ -1,7 +1,6 @@
 jQuery(function () {
     setTimeout(function () { document.getElementById('random').classList.toggle("quick") }, 1700);
 
-
     /* PARTIE PJAX */
     $(document).pjax('a:not(.song)', '#pjax-container')
 
@@ -303,7 +302,7 @@ jQuery(function () {
         var audio = $('#audio')[0];
         /* On vérifie si l'on est sur une playlist ou un son seul*/
         if (songlist.length > 1) {
-            /* On vérifie si le bouton random est acrif*/
+            /* On vérifie si le bouton random est actif*/
             if (random == true) {
                 /* On vérifie si l'on a déjà passé toute les musiques de la playlist */
                 if (length.length == songlist.length) {

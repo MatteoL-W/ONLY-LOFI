@@ -241,7 +241,7 @@ class ChangeController extends Controller
             PlaylistSong::select('*')->where('idPlaylist','=',$idPlaylist)->where('idSong','=',$idSong)->get()->first()->delete();
         }
 
-        return back();
+        return back()->with('toastr', ["status"=>"success", "message" => "Musique supprimée de la playlist avec succès"]);
     }
 
 }

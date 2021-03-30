@@ -157,24 +157,6 @@ class MainController extends Controller
     }
 
 
-
-
-    public function render($id, $file)
-    {
-        $song = Song::find($id);
-        $file = "." . $song->url;
-        $mime_type = "audio/mp3";
-        $fileContents = File::get($file);
-
-        return Response::make($fileContents, 200)
-            ->header('Accept-Ranges', 'bytes')
-            ->header('Content-Type', $mime_type)
-            ->header('Content-Length', filesize($file))
-            ->header('vary', 'Accept-Encoding');
-    }
-
-
-
     // ignorer doublon
     public function ForceToPlaylist($idPlaylist, $idSong)
     {

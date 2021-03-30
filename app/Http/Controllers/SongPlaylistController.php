@@ -44,7 +44,7 @@ class SongPlaylistController extends Controller
         $songid = $newsong->id;
 
         /*return view("page.song", ["song" => $songid]);*/
-        return redirect("/song/" . $song->id);
+        return redirect("/song/" . $song->id)->with('toastr', ["status"=>"success", "message" => "Music successfully uploaded"]);;
     }
 
 

@@ -51,13 +51,15 @@
 
     <div id="pjax-container">
         @yield('content')
-    </div>
 
-    @if(Session::has("toastr"))
+        @if(Session::has("toastr"))
         <script>
             toastr.{{Session::get('toastr')['status']}}('{{Session::get('toastr')['message']}}')
         </script>
-    @endif
+        @endif
+    </div>
+
+    
 
     <div id="hover__circle">
         see more<br><i class='icon-fleche'></i>
