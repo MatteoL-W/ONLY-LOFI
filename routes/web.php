@@ -27,7 +27,7 @@ Route::get('/song', [MainController::class, 'song'])->middleware('auth');
 Route::get('/likes', [MainController::class, 'likes'])->middleware('auth');
 
 Route::get('/song/{id}', [MainController::class, 'songId'])->where('id','[0-9]+');
-Route::post('/song/{id}', [MainController::class, 'addComment'])->where('id','[0-9]+');
+Route::post('/song/{id}', [MainController::class, 'addComment'])->middleware('auth')->where('id','[0-9]+');
 Route::get('/deleteComment/{id}', [MainController::class, 'deleteComment'])->middleware('auth')->where('id','[0-9]+');
 
 Route::get('/allSongs', [MainController::class, 'yourSongs'])->middleware('auth');

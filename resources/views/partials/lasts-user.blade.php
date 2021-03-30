@@ -5,7 +5,9 @@
             @foreach ($playlists as $playlist)
                 <li><a href="/playlist/{{$playlist->id}}">{{$playlist->title}}</span></a></li>
             @endforeach
-            <a href="/playlists">See all your playlists...</a>
+            @if (Auth::id() == $user->id)
+                <a href="/playlists">See all your playlists...</a>
+            @endif
         </ol>
     </div>
     <div>
@@ -14,7 +16,9 @@
             @foreach ($songs as $song)
                 <li><a href="/song/{{$song->id}}">{{$song->title}}</span></a></li>
             @endforeach
-            <a href="/allSongs">See all your songs...</a>
+            @if (Auth::id() == $user->id)
+                <a href="/allSongs">See all your songs...</a>
+            @endif
         </ol>
     </div>
 

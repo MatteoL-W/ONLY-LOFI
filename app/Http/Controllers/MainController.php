@@ -21,7 +21,7 @@ class MainController extends Controller
 
     public function main()
     {
-        $PlastsListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist.user_id', '=', Auth::id())->where('playlist', '=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
+        $PlastsListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist', '=', 1)->orderBy('listened.id', 'DESC')->limit(4)->get();
 
         return view("page.main", ["PlastsListened" => $PlastsListened]);
     }
@@ -58,14 +58,11 @@ class MainController extends Controller
 
     public function song()
     {
-        $PlastsListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist.user_id', '=', Auth::id())->where('playlist', '=', 1)->orderBy('listened.id', 'DESC')->limit(2)->get();
+        $PlastsListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist', '=', 1)->orderBy('listened.id', 'DESC')->limit(2)->get();
 
         $PlastsCreated = Playlist::select('*', 'playlist.id as idPlaylist')->where('user_id', '=', Auth::id())->limit(2)->orderBy('playlist.id', 'DESC')->get();
 
-
         $PlastlyListened = Playlist::select('*', 'playlist.id as idPlaylist')->join('listened', 'idListened', '=', 'playlist.id')->where('playlist', '=', 1)->orderBy('listened.updated_at', 'DESC')->limit(4)->get();
-        $PlastlyListened = $PlastlyListened->unique('idPlaylist');
-
 
         $SlastsListened = Song::select('*', 'song.id as idSong')->join('listened', 'idListened', '=', 'song.id')->where('idListener', '=', Auth::id())->where('playlist', '=', 0)->limit(4)->orderBy('listened.id', 'DESC')->get();
         //$SlastsListened = $SlastsListened->unique('idSong');
@@ -100,7 +97,7 @@ class MainController extends Controller
         $uploaderName = User::select('name')->where('id', '=', $playlist->user_id)->get();
 
         $playlistContent = [];
-        $playlistContentTable = PlaylistSong::all()->where('idPlaylist', '=', $id);
+        $playlistContentTable = PlaylistSong::where('idPlaylist', '=', $id)->orderBy('created_at')->get();
 
         foreach ($playlistContentTable as $songs) {
             array_push($playlistContent, Song::select('*', 'song.id AS idsong')->join('users', 'song.user_id', '=', 'users.id')->where('song.id', '=', $songs->idSong)->first());

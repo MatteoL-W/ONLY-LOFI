@@ -18,6 +18,15 @@
 
                 <input type="file" name="song_file" id="song_file" accept="audio/mp3, audio/ogg">
                 <input type="submit" value="SUBMIT      →" class="bouton-bleu">
+                @if ($errors->any())
+                    <div>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
             </form>
         </div>
     </div>

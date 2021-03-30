@@ -1,6 +1,7 @@
 jQuery(function() {
     random = false;
-    if (window.location.href.includes('/playlist/') == false) {
+    console.log( document.querySelector('#addButton'));
+    /*if (window.location.href.includes('/playlist/') == false) {
         document.querySelector('#addButton').addEventListener('click', (e) => {
             let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
             e.preventDefault();
@@ -11,21 +12,30 @@ jQuery(function() {
             document.querySelector('#bloc_playlist').style.left = dimensionBouton.x + 72 + "px";
             document.querySelector('#bloc_playlist').style.top = dimensionBouton.y + "px";
         })
-    }
+    }*/
     
     setTimeout(function(){document.getElementById('random').classList.toggle("quick") }, 1700);
 
     $(document).pjax('a:not(.song)', '#pjax-container')
 
-    $('#search').submit(function (e) {
+    $('#search').on('submit', function (e) {
         e.preventDefault();
         if ($.support.pjax)
             $.pjax({url: "/search/" + e.target.elements[0].value, container: '#pjax-container'});
         else
             window.location.href = "/search/" + e.target.elements[0].value;
-    });
+    })
 
     
+
+    $(document).on('click', '#addButton', function(e) {
+        let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
+        e.preventDefault();
+        
+        document.querySelector('#bloc_playlist').classList.toggle('active');
+        document.querySelector('#bloc_playlist').style.left = dimensionBouton.x + 72 + "px";
+        document.querySelector('#bloc_playlist').style.top = dimensionBouton.y + "px";
+    })
 
     $(document).on('submit', 'form[data-pjax]', function(event) {
         $.pjax.submit(event, '#pjax-container')
@@ -60,8 +70,6 @@ jQuery(function() {
             url : '/addListenedSong/' + songId[4], // La ressource ciblée
             type : 'GET', // Le type de la requête HTTP
          });
-
-        // mettre ajax pour listened
 
 
         current = parseInt($(this).attr("data-nb"));
