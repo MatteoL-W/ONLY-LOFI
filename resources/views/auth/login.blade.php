@@ -111,6 +111,8 @@
 
         </div>
 
+        
+        <script src="/script/jquery.pjax.js"></script>
         <script src="/script/inscription.js" async defer></script>
 </body>
 

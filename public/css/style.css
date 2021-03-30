@@ -267,6 +267,11 @@ header {
   flex-direction: row;
   align-items: center;
 }
+@media screen and (max-width: 990px) {
+  header {
+    width: 90%;
+  }
+}
 header > div {
   height: 100%;
 }
@@ -278,11 +283,21 @@ header .header__left {
 header .header__left-logo {
   width: 150px;
 }
+@media screen and (max-width: 1200px) {
+  header .header__left {
+    width: 50%;
+  }
+}
 header .header__right {
   width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media screen and (max-width: 1200px) {
+  header .header__right {
+    width: 50%;
+  }
 }
 header .header__right form {
   height: 30px;
@@ -394,6 +409,9 @@ header .header__right input[type=submit] {
 }
 .hero__illustration img {
   width: 100%;
+}
+.hero .border-bleu-droit::after {
+  height: 100% !important;
 }
 .hero__text {
   width: fit-content;
@@ -761,12 +779,18 @@ header .header__right input[type=submit] {
   display: grid;
   grid-template-columns: 4fr 8fr;
 }
+@media screen and (max-width: 1200px) {
+  .grid_avatar {
+    width: 90%;
+  }
+}
 .grid_avatar div:nth-child(1) img {
   width: 400px;
   height: 400px;
   object-fit: cover;
 }
 .grid_avatar div:nth-child(2) {
+  padding-left: 50px;
   padding-top: 100px;
 }
 

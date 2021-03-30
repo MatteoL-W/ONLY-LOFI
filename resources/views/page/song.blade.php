@@ -31,7 +31,7 @@ $nb = 0;
             @endif
         @else
             @if ($song->user_id == Auth::id())
-                <p><a href="/delete/playlist/{{$song->id}}">Delete this song</a></p>
+                <p><a href="/delete/playlist/{{$song->id}}">Delete this playlist</a></p>
             @endif
         @endif
 
