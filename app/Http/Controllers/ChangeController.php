@@ -47,7 +47,7 @@ class ChangeController extends Controller
             ]);
 
             $avatarName = Auth::user()->id.'_avatar'.time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('',$avatarName);
+            $request->file('avatar_file')->storeAs('public',$avatarName);
 
             Auth::user()->avatar = "/storage/".$avatarName;
             Auth::user()->save();
@@ -148,14 +148,14 @@ class ChangeController extends Controller
 
         if ($type == "song") {
             $avatarName = Auth::user()->id.'_song'.$song->title . time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('',$avatarName);
+            $request->file('avatar_file')->storeAs('public',$avatarName);
             $song->img = "/storage/".$avatarName;
             $song->save();
         }
         
         else if ($type == "playlist") {
             $avatarName = Auth::user()->id.'_playlist'.$playlist->title . time().'.'.request()->avatar_file->getClientOriginalExtension();
-            $request->file('avatar_file')->storeAs('',$avatarName);
+            $request->file('avatar_file')->storeAs('public',$avatarName);
             $playlist->img = "/storage/".$avatarName;
             $playlist->save();
         }
@@ -186,24 +186,38 @@ class ChangeController extends Controller
         if ($type == "playlist") {
 
             $changing = Playlist::where('id','=',$id)->where('user_id','=',Auth::id())->get()->first();
+            
             if ($changing == "") {
                 return view('errors/404');
             }
 
+            $fromPlaylist = PlaylistSong::where('idPlaylist','=',$id)->get();
+
             if (Auth::id() == $changing->user_id) {
                 $changing->delete();
+
+                foreach ($fromPlaylist as $row) {
+                    $row->delete();
+                }
             }
         }
         
         else if ($type == "song") {
 
             $changing = Song::where('id','=',$id)->where('user_id','=',Auth::id())->get()->first();
+            
             if ($changing == "") {
                 return view('errors/404');
             }
+
+            $fromPlaylist = PlaylistSong::where('idSong','=',$id)->get();
             
             if (Auth::id() == $changing->user_id) {
                 $changing->delete();
+                
+                foreach ($fromPlaylist as $row) {
+                    $row->delete();
+                }
             }
 
         }

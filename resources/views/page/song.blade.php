@@ -31,7 +31,7 @@ $nb = 0;
             @endif
         @else
             @if ($song->user_id == Auth::id())
-                <p><a href="/delete/playlist/{{$song->id}}">Delete this song</a></p>
+                <p><a href="/delete/playlist/{{$song->id}}">Delete this playlist</a></p>
             @endif
         @endif
 
@@ -89,12 +89,12 @@ $nb = 0;
 
                 @foreach ($playlistContent as $songFP)
                     <li>
-                    <a href="#" data-file="/render/{{ $songFP->idsong }}{{substr($songFP->url, 10)}}" data-nb='{{$nb++}}' data-title="{{$songFP->title}}" data-artist="{{$songFP->name}}" class="song">
-                        <div id="bouton_play" class='fas fa-play'></div>
+                    <a href="" data-file="/render/{{ $songFP->idsong }}{{substr($songFP->url, 10)}}" data-nb='{{$nb++}}' data-title="{{$songFP->title}}" data-artist="{{$songFP->name}}" class="song">
+                        <div style="margin-left: 10px; margin-right: 10px;" id="bouton_play" class='fas fa-play'></div>
                     </a>  
 
-                    <a href="/song/{{$songFP->idsong}}"><b>{{$songFP->title}}</b> by {{$songFP->name}}</a>
-                        @if (Auth::id() == $songFP->user_id)
+                    <a href="/song/{{$songFP->idsong}}"><b>{{$songFP->title}}</b></a><a href="/user/{{$songFP->user_id}}"> by {{$songFP->name}}</a>
+                        @if (Auth::id() == $song->user_id)
                             <a href="/deleteFromPlaylist/{{$song->id}}/{{$songFP->idsong}}"><b>- delete from the playlist</b></a>
                         @endif
 

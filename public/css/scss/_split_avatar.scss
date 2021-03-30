@@ -6,14 +6,20 @@
     display: grid;
     grid-template-columns: 4fr 8fr;
 
+    @include lg() {
+        width: 90%;
+    }
+
     div:nth-child(1) {
         img {
             width: 400px;
             height: 400px;
+            object-fit: cover;
         }
     }
 
     div:nth-child(2) {
+        padding-left: 50px;
         padding-top: 100px;
     }
 }

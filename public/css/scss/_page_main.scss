@@ -11,6 +11,10 @@
         }
     }
 
+    .border-bleu-droit::after {
+        height: 100% !important;
+    }
+
     &__text {
         width: fit-content;
 

@@ -29,7 +29,7 @@ class SongPlaylistController extends Controller
         $request->file('song_file')->move("uploads/".Auth::id(), $name);
 
         $avatarName = Auth::user()->id.'_song'.$request->input('song_title').'.'.request()->avatar_file->getClientOriginalExtension();
-        $request->file('avatar_file')->storeAs('',$avatarName);
+        $request->file('avatar_file')->storeAs('public',$avatarName);
 
         $song = new Song();
         $song->title = $request->input('song_title');
@@ -77,7 +77,7 @@ class SongPlaylistController extends Controller
         ]);
 
         $avatarName = Auth::user()->id.'_playlist'.$request->input('playlist_title').'.'.request()->avatar_file->getClientOriginalExtension();
-        $request->file('avatar_file')->storeAs('',$avatarName);
+        $request->file('avatar_file')->storeAs('public',$avatarName);
 
         $playlist = new Playlist();
         $playlist->title = $request->input('playlist_title');

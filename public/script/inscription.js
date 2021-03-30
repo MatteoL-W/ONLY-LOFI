@@ -5,7 +5,8 @@ document.querySelector('#goToSignInBtn').addEventListener('click', () => {
     document.querySelector('#fixed-bar').classList.add('is-moving-right');
     setTimeout(() => {
         document.querySelector('#fixed-bar').classList.remove('is-moving-right');
-    }, 1000)
+    }, 1000);
+    history.pushState({}, '', "/register")
 });
 
 document.querySelector('#goToLoginBtn').addEventListener('click', () => {
@@ -16,7 +17,8 @@ document.querySelector('#goToLoginBtn').addEventListener('click', () => {
     setTimeout(() => {
         document.querySelector('#moving-image').classList.remove('is-moving');
         document.querySelector('#fixed-bar').classList.remove('is-rotating');
-    }, 1000)
+    }, 1000);
+    history.pushState({}, '', "/login")
 });
 
 
@@ -29,3 +31,5 @@ boutonInfo.addEventListener('click', () => {
         item.classList.toggle('info_active');
     })
 });
+
+$(document).pjax('a:not(.song)', '#pjax-container')
