@@ -1,6 +1,6 @@
 jQuery(function() {
     
-    if (window.location.href.includes('/playlist/') == false) {
+    if (window.location.href.includes('/song/') == true) {
         document.querySelector('#addButton').addEventListener('click', (e) => {
             let dimensionBouton = document.querySelector('#addButton').getBoundingClientRect();
             e.preventDefault();

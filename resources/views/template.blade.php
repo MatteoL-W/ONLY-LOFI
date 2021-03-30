@@ -54,6 +54,12 @@
         @yield('content')
     </div>
 
+    @if(Session::has("toastr"))
+        <script>
+            toastr.{{Session::get('toastr')['status']}}('{{Session::get('toastr')['message']}}')
+        </script>
+    @endif
+
     <div id="hover__circle">
         see more<br><i class='icon-fleche'></i>
     </div>
